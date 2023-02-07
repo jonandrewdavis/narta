@@ -1,0 +1,36 @@
+[gd_scene load_steps=6 format=3 uid="uid://6ir6h4qiovt2"]
+
+[ext_resource type="PackedScene" uid="uid://cldinnvk54gag" path="res://Characters/Player/Player.tscn" id="1_klcr7"]
+[ext_resource type="PackedScene" uid="uid://bx4221jv3vwlc" path="res://Characters/Enemies/Flying Creature/FlyingCreature.tscn" id="2_0u5io"]
+[ext_resource type="PackedScene" uid="uid://dopqrfojt4ax4" path="res://Characters/Enemies/Goblin/Goblin.tscn" id="3_bnukc"]
+
+[sub_resource type="Gradient" id="Gradient_km47v"]
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_i5obj"]
+gradient = SubResource("Gradient_km47v")
+
+[node name="TestBox" type="Node2D"]
+
+[node name="Player" parent="." instance=ExtResource("1_klcr7")]
+position = Vector2(12, -34)
+
+[node name="FlyingCreature" parent="." instance=ExtResource("2_0u5io")]
+position = Vector2(-58, -24)
+
+[node name="TextureRect" type="TextureRect" parent="."]
+offset_left = 93.0
+offset_top = -29.0
+offset_right = 157.0
+offset_bottom = 35.0
+texture = SubResource("GradientTexture2D_i5obj")
+
+[node name="TextureRect2" type="TextureRect" parent="."]
+offset_left = -167.0
+offset_top = -133.0
+offset_right = -103.0
+offset_bottom = -69.0
+texture = SubResource("GradientTexture2D_i5obj")
+
+[node name="Goblin" parent="." instance=ExtResource("3_bnukc")]
+position = Vector2(35, -3)
+projectile_speed = 150

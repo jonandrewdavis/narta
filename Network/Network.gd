@@ -5,6 +5,7 @@ extends Node
 @onready var address_entry = $MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer/address
 
 const Player = preload("res://Player/Player.tscn")
+const Spawner = preload("res://Spawner/Spawner.tscn")
 
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
@@ -39,7 +40,8 @@ func _on_host_pressed():
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
-	add_player(multiplayer.get_unique_id())
+	# add_player(multiplayer.get_unique_id())
+	get_parent().add_child(Spawner.instantiate())
 	print('Sever Started.')
 
 

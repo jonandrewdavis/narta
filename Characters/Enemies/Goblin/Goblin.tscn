@@ -1,0 +1,274 @@
+[gd_scene load_steps=23 format=3 uid="uid://dopqrfojt4ax4"]
+
+[ext_resource type="PackedScene" uid="uid://d1ieqk72dudgf" path="res://Characters/Enemies/Enemy.tscn" id="1"]
+[ext_resource type="Texture2D" uid="uid://bltfr0fj1hdnq" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/enemies/goblin/goblin_idle_anim_f2.png" id="4_xtknj"]
+[ext_resource type="Script" path="res://Characters/Enemies/Goblin/Goblin.gd" id="5"]
+[ext_resource type="Texture2D" uid="uid://cgls8pk87u3jg" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/enemies/goblin/goblin_run_anim_f0.png" id="5_nmg3b"]
+[ext_resource type="Script" path="res://Characters/Enemies/Goblin/GoblinFSM.gd" id="6"]
+[ext_resource type="Texture2D" uid="uid://cuu5yw1ogjsm" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/enemies/goblin/goblin_run_anim_f1.png" id="6_vimd5"]
+[ext_resource type="Texture2D" uid="uid://m2x5jlevlps2" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/enemies/goblin/goblin_idle_anim_f0.png" id="7_gju8h"]
+[ext_resource type="Texture2D" uid="uid://bwamg632fdd81" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/enemies/goblin/goblin_idle_anim_f1.png" id="8_3nsym"]
+[ext_resource type="Texture2D" uid="uid://cpow0jvjk13tf" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/enemies/goblin/goblin_idle_anim_f3.png" id="9_ier2s"]
+[ext_resource type="Texture2D" uid="uid://bn561l7fkwsu6" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/enemies/goblin/goblin_idle_anim_f4.png" id="10_k1lbm"]
+[ext_resource type="Texture2D" uid="uid://0c8uj55xsl5w" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/enemies/goblin/goblin_idle_anim_f5.png" id="11_t84sv"]
+[ext_resource type="Texture2D" uid="uid://cs1rts03bendn" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/enemies/goblin/goblin_run_anim_f2.png" id="12_gmgx7"]
+[ext_resource type="Texture2D" uid="uid://d28vabns776wn" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/enemies/goblin/goblin_run_anim_f3.png" id="13_0phkj"]
+[ext_resource type="Texture2D" uid="uid://eudnwtjuu4s6" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/enemies/goblin/goblin_run_anim_f4.png" id="14_0m5t4"]
+[ext_resource type="Texture2D" uid="uid://b34smxvfkfeey" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/enemies/goblin/goblin_run_anim_f5.png" id="15_nhl5v"]
+
+[sub_resource type="SpriteFrames" id="17"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("4_xtknj")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_nmg3b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vimd5")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("7_gju8h")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_3nsym")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_xtknj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("9_ier2s")
+}, {
+"duration": 1.0,
+"texture": ExtResource("10_k1lbm")
+}, {
+"duration": 1.0,
+"texture": ExtResource("11_t84sv")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_nmg3b")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_vimd5")
+}, {
+"duration": 1.0,
+"texture": ExtResource("12_gmgx7")
+}, {
+"duration": 1.0,
+"texture": ExtResource("13_0phkj")
+}, {
+"duration": 1.0,
+"texture": ExtResource("14_0m5t4")
+}, {
+"duration": 1.0,
+"texture": ExtResource("15_nhl5v")
+}],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="CircleShape2D" id="18"]
+radius = 4.0
+
+[sub_resource type="Animation" id="19"]
+resource_name = "dead"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 0.6),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": ["idle", "explosion"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.6, 0.7, 0.8, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1),
+"update": 1,
+"values": [3, 0, 1, 2, 3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
+}
+tracks/3/type = "method"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath(".")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"queue_free"
+}]
+}
+
+[sub_resource type="Animation" id="20"]
+resource_name = "hurt"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [3]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
+"update": 1,
+"values": [false, true, false, true]
+}
+
+[sub_resource type="Animation" id="21"]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["idle"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="Animation" id="22"]
+length = 0.6
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": ["move"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:frame")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 0.4, 0.5),
+"transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
+"update": 1,
+"values": [0, 1, 2, 3, 4, 5]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_g78ci"]
+_data = {
+"dead": SubResource("19"),
+"hurt": SubResource("20"),
+"idle": SubResource("21"),
+"move": SubResource("22")
+}
+
+[node name="Goblin" instance=ExtResource("1")]
+script = ExtResource("5")
+projectile_speed = 150
+max_speed = 75
+
+[node name="FiniteStateMachine" parent="." index="0"]
+script = ExtResource("6")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("17")
+animation = &"move"
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(1, 2)
+shape = SubResource("18")
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_g78ci")
+}
+
+[node name="PathTimer" parent="." index="4"]
+wait_time = 0.2
+
+[node name="AttackTimer" type="Timer" parent="." index="5"]
+wait_time = 1.5
+one_shot = true
+
+[node name="AimRayCast" type="RayCast2D" parent="." index="6"]
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_AttackTimer_timeout"]

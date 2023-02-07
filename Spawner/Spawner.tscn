@@ -4,7 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dkvybfll2yadk" path="res://Mob/Mob.tscn" id="2_7lqg8"]
 [ext_resource type="Script" path="res://Spawner/SpawnInfo.gd" id="3_tv4s0"]
 
-[sub_resource type="Resource" id="Resource_7k68l"]
+[sub_resource type="Resource" id="Resource_8s6og"]
 script = ExtResource("3_tv4s0")
 time_start = 5
 time_end = 9999
@@ -14,7 +14,7 @@ enemy_spawn_delay = 5.0
 
 [node name="Spawner" type="Node2D"]
 script = ExtResource("1_857qc")
-spawns = Array[ExtResource("3_tv4s0")]([SubResource("Resource_7k68l")])
+spawns = Array[ExtResource("3_tv4s0")]([SubResource("Resource_8s6og")])
 
 [node name="Timer" type="Timer" parent="."]
 autostart = true

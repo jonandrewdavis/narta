@@ -1,12 +1,9 @@
 extends Node2D
 
-@onready var world = get_tree().get_root().get_child(0).get_node('World')
-
 @export var spawns: Array[Spawn_Info] = []
 @onready var player = Vector2.ZERO
 var time = 0
 
-# @rpc("any_peer")
 func _on_timer_timeout():
 	if player == null: return
 	time += 1
@@ -22,7 +19,7 @@ func _on_timer_timeout():
 				while counter < i.enemy_number:
 					var enemy_spawn = new_enemy.instantiate()
 					enemy_spawn.global_position = get_random_position()
-					world.add_child(enemy_spawn)
+					get_parent().add_child(enemy_spawn)
 					counter += 1
 	# emit_signal("changetime",time)
 

@@ -1,4 +1,4 @@
-[gd_scene load_steps=22 format=3 uid="uid://bkd34gv2qo74h"]
+[gd_scene load_steps=18 format=3 uid="uid://bkd34gv2qo74h"]
 
 [ext_resource type="Texture2D" uid="uid://cg7jhiwq2h2sq" path="res://Assets/Texture/TX Tileset Grass.png" id="2_gs5ly"]
 [ext_resource type="PackedScene" uid="uid://3s30xhs7xn4c" path="res://Network/Network.tscn" id="3_q7ekw"]
@@ -8,10 +8,7 @@
 [ext_resource type="Texture2D" uid="uid://ckpkc3y50nwos" path="res://Assets/Texture/TX Tileset Wall.png" id="6_uaa6b"]
 [ext_resource type="Texture2D" uid="uid://bgkwy5q6xdij3" path="res://Assets/Texture/TX Props.png" id="7_0wmlo"]
 [ext_resource type="Texture2D" uid="uid://pg3uyri5gn78" path="res://Assets/Texture/TX Shadow.png" id="8_locdx"]
-[ext_resource type="PackedScene" uid="uid://3afd2gp5hjb0" path="res://Spawner/Spawner.tscn" id="10_6c47l"]
 [ext_resource type="PackedScene" uid="uid://ce7621uriln12" path="res://Things/Bush.tscn" id="10_agq8m"]
-[ext_resource type="PackedScene" uid="uid://dkvybfll2yadk" path="res://Mob/Mob.tscn" id="11_c6oql"]
-[ext_resource type="Script" path="res://Spawner/SpawnInfo.gd" id="12_58qw4"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oero3"]
 texture = ExtResource("2_gs5ly")
@@ -1703,14 +1700,6 @@ sources/4 = SubResource("TileSetAtlasSource_1omq3")
 sources/5 = SubResource("TileSetAtlasSource_wt4wn")
 sources/7 = SubResource("TileSetAtlasSource_ha40k")
 
-[sub_resource type="Resource" id="Resource_gaqoi"]
-script = ExtResource("12_58qw4")
-time_start = 30
-time_end = 99999
-enemy = ExtResource("11_c6oql")
-enemy_number = 1
-enemy_spawn_delay = 8.0
-
 [node name="World" type="Node2D"]
 
 [node name="Network" parent="." instance=ExtResource("3_q7ekw")]
@@ -1737,6 +1726,3 @@ layer_1/tile_data = PackedInt32Array(1638404, 2, 24, 1703940, 2, 25, 1638405, 65
 
 [node name="Bush" parent="." instance=ExtResource("10_agq8m")]
 position = Vector2(43, -31)
-
-[node name="Spawner" parent="." instance=ExtResource("10_6c47l")]
-spawns = Array[ExtResource("12_58qw4")]([SubResource("Resource_gaqoi")])

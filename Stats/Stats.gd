@@ -1,7 +1,7 @@
 extends Node
 
 @export var max_health = 1
-@onready var health = max_health : set = set_health
+@export @onready var health = max_health : set = set_health
 
 signal no_health
 
