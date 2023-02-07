@@ -1,0 +1,14 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7imeivbq2c18"]
+
+[ext_resource type="Script" path="res://Box/Hurtbox.gd" id="1_b1rdd"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_puoxn"]
+radius = 5.0
+
+[node name="Hurtbox" type="Area2D"]
+script = ExtResource("1_b1rdd")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource("CircleShape2D_puoxn")
+
+[node name="Timer" type="Timer" parent="."]

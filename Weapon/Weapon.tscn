@@ -1,0 +1,33 @@
+[gd_scene load_steps=5 format=3 uid="uid://61d7i6b3vd42"]
+
+[ext_resource type="Script" path="res://Weapon/Weapon.gd" id="1_qude6"]
+[ext_resource type="Texture2D" uid="uid://dhdlsflmb30jq" path="res://Assets/frames/weapon_regular_sword.png" id="2_h515u"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_0trow"]
+radius = 5.0
+height = 24.0
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_jlcyp"]
+properties/0/path = NodePath("Area2D/AnimationPlayer:current_animation")
+properties/0/spawn = true
+properties/0/sync = true
+
+[node name="Weapon" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(11, 0)
+script = ExtResource("1_qude6")
+
+[node name="Sprite2D" type="Sprite2D" parent="Area2D"]
+position = Vector2(0, -10)
+texture = ExtResource("2_h515u")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(0, -10)
+shape = SubResource("CapsuleShape2D_0trow")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="Area2D"]
+root_node = NodePath("../..")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
+replication_config = SubResource("SceneReplicationConfig_jlcyp")
