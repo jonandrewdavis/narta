@@ -1,5 +1,14 @@
-[gd_scene load_steps=2 format=2]
+[gd_scene load_steps=3 format=3 uid="uid://beluunhju2xob"]
 
-[ext_resource path="res://Weapons/Projectile.tscn" type="PackedScene" id=1]
+[ext_resource type="PackedScene" uid="uid://cpgknykowjx3v" path="res://Weapons/Projectile.tscn" id="1"]
 
-[node name="ThrowableKnife" instance=ExtResource( 1 )]
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_5om5v"]
+resource_local_to_scene = true
+radius = 1.41421
+height = 15.5564
+
+[node name="ThrowableKnife" instance=ExtResource("1")]
+collision_layer = 12
+
+[node name="CollisionShape2D" parent="." index="0"]
+shape = SubResource("CapsuleShape2D_5om5v")

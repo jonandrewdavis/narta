@@ -5,7 +5,6 @@ var enemy_exited: bool = false
 var direction: Vector2 = Vector2.ZERO
 var knife_speed: int = 0
 
-
 func launch(initial_position: Vector2, dir: Vector2, speed: int) -> void:
 	position = initial_position
 	direction = dir
@@ -13,23 +12,20 @@ func launch(initial_position: Vector2, dir: Vector2, speed: int) -> void:
 	knife_speed = speed
 	
 	rotation += dir.angle() + PI/4
-	
+
 	
 func _physics_process(delta: float) -> void:
 	position += direction * knife_speed * delta
 
+func _collide(body) -> void:
+	if enemy_exited:
+		if body.has_method('is_player'):
+			body.take_damage(damage, knockback_direction, knockback_force)
+		queue_free()
 
-func _on_ThrowableKnike_body_exited(_body: CharacterBody3D) -> void:
+func _on_body_exited(_body):
 	if not enemy_exited:
 		enemy_exited = true
-		set_collision_mask_value(0, true)
 		set_collision_mask_value(1, true)
 		set_collision_mask_value(2, true)
 		set_collision_mask_value(3, true)
-
-
-func _collide(body: CharacterBody2D) -> void:
-	if enemy_exited:
-		if body != null:
-			body.take_damage(damage, knockback_direction, knockback_force)
-		queue_free()

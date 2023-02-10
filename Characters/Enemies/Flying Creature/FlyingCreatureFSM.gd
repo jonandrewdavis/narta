@@ -1,6 +1,5 @@
 extends FiniteStateMachine
 
-@onready var parent = get_parent()
 
 func _init():
 	_add_state("chase")
@@ -12,9 +11,8 @@ func _ready() -> void:
 	
 	
 func _state_logic(_delta: float) -> void:
-	if state == states.chase:
-		parent.chase()
-		parent.move()
+	pass
+
 		
 func _get_transition() -> int:
 	match state:

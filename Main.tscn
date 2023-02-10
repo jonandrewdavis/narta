@@ -1,8 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://dom0ubhrhtma0"]
+[gd_scene load_steps=3 format=3 uid="uid://dom0ubhrhtma0"]
 
+[ext_resource type="Script" path="res://Main.gd" id="1_jimg5"]
 [ext_resource type="PackedScene" uid="uid://bkd34gv2qo74h" path="res://World.tscn" id="1_y72ed"]
 
 [node name="Main" type="Node2D"]
+script = ExtResource("1_jimg5")
 
 [node name="World" parent="." instance=ExtResource("1_y72ed")]
-metadata/_edit_lock_ = true

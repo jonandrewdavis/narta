@@ -1,6 +1,9 @@
-[gd_scene load_steps=2 format=3 uid="uid://3s30xhs7xn4c"]
+[gd_scene load_steps=3 format=3 uid="uid://3s30xhs7xn4c"]
 
 [ext_resource type="Script" path="res://Network/Network.gd" id="1_63yud"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0ibl"]
+bg_color = Color(0.219608, 0.219608, 0.219608, 1)
 
 [node name="Network" type="Node2D"]
 script = ExtResource("1_63yud")
@@ -11,12 +14,11 @@ script = ExtResource("1_63yud")
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 194.0
-offset_top = 76.0
-offset_right = -156.0
-offset_bottom = -75.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 0
+theme_override_styles/panel = SubResource("StyleBoxFlat_e0ibl")
+metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MainMenuCanvas/MainMenu"]
 layout_mode = 2
@@ -31,8 +33,9 @@ theme_override_constants/separation = 15
 
 [node name="Username" type="Label" parent="MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
-text = "Username:
-"
+text = "narta"
+horizontal_alignment = 1
+uppercase = true
 
 [node name="user" type="LineEdit" parent="MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -41,12 +44,14 @@ caret_blink = true
 caret_blink_interval = 0.5
 
 [node name="address" type="LineEdit" parent="MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 placeholder_text = "Enter Address (optional)"
 caret_blink = true
 caret_blink_interval = 0.5
 
 [node name="Label" type="Label" parent="MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer"]
+visible = false
 layout_mode = 2
 text = "Choose:"
 

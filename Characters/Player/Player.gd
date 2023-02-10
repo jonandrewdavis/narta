@@ -10,16 +10,21 @@ signal weapon_droped(index)
 
 @onready var parent: Node2D = get_parent()
 @onready var weapons: Node2D = get_node("Weapons")
-@onready var dust_position: Marker2D = get_node("DustPosition")
 
+const RESPAWN_RADIUS = 250
 
 func _ready() -> void:
 	emit_signal("weapon_picked_up", weapons.get_child(0).get_texture())
 	_restore_previous_state()
 	
-	
+func is_player():
+	return true
+
 func _restore_previous_state() -> void:
-	self.hp = SavedData.hp
+	max_hp = 2
+	set_hp(2)
+	state_machine.set_state(state_machine.states.idle)
+	
 	for weapon in SavedData.weapons:
 		weapon = weapon.duplicate()
 		weapon.position = Vector2.ZERO
@@ -46,27 +51,18 @@ func _process(_delta: float) -> void:
 	current_weapon.move(mouse_direction)
 
 
-# func _physics_process(delta):
-
-	
-		
 func get_input() -> void:
 	mov_direction = Vector2.ZERO
-	if Input.is_action_pressed("ui_down"):
-		mov_direction += Vector2.DOWN
-	if Input.is_action_pressed("ui_left"):
-		mov_direction += Vector2.LEFT
-	if Input.is_action_pressed("ui_right"):
-		mov_direction += Vector2.RIGHT
-	if Input.is_action_pressed("ui_up"):
-		mov_direction += Vector2.UP
-		
+	mov_direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
+	mov_direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
+	mov_direction = mov_direction.normalized()	
+	
 	if not current_weapon.is_busy():
 		if Input.is_action_just_released("ui_previous_weapon"):
 			_switch_weapon(UP)
 		elif Input.is_action_just_released("ui_next_weapon"):
 			_switch_weapon(DOWN)
-		elif Input.is_action_just_pressed("ui_throw") and current_weapon.get_index() != 0:
+		elif Input.is_action_just_pressed("attack3") and current_weapon.get_index() != 0:
 			_drop_weapon()
 		
 	current_weapon.get_input()
@@ -129,8 +125,7 @@ func cancel_attack() -> void:
 	current_weapon.cancel_attack()
 	
 		
-func switch_camera() -> void:
-	var main_scene_camera: Camera2D = get_parent().get_node("Camera2D")
-	main_scene_camera.position = position
-	main_scene_camera.current = true
-	get_node("Camera2D").current = false
+func respawn() -> void:
+	mov_direction = Vector2.ZERO
+	position = Vector2(0 + randf()* RESPAWN_RADIUS,0 + randf()* RESPAWN_RADIUS)
+	_restore_previous_state()

@@ -1,34 +1,35 @@
-[gd_scene load_steps=8 format=2]
+[gd_scene load_steps=7 format=3 uid="uid://88pk7u6w6i7d"]
 
-[ext_resource path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/effects (new)/enemy_afterdead_explosion_anim_spritesheet.png" type="Texture2D" id=1]
-[ext_resource path="res://Characters/Enemies/SpawnExplosion.gd" type="Script" id=2]
+[ext_resource type="Texture2D" uid="uid://dqmhytp2rm4l7" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/effects (new)/enemy_afterdead_explosion_anim_f0.png" id="1_ysvbb"]
+[ext_resource type="Script" path="res://Characters/Enemies/SpawnExplosion.gd" id="2"]
+[ext_resource type="Texture2D" uid="uid://cy0tb1kq6cbi7" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/effects (new)/enemy_afterdead_explosion_anim_f1.png" id="2_t68h0"]
+[ext_resource type="Texture2D" uid="uid://cy0jxeo7sxduf" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/effects (new)/enemy_afterdead_explosion_anim_f2.png" id="3_wow1q"]
+[ext_resource type="Texture2D" uid="uid://df3wgetorwyyx" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/effects (new)/enemy_afterdead_explosion_anim_f3.png" id="4_k4qqi"]
 
-[sub_resource type="AtlasTexture" id=1]
-atlas = ExtResource( 1 )
-region = Rect2( 0, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=2]
-atlas = ExtResource( 1 )
-region = Rect2( 16, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=3]
-atlas = ExtResource( 1 )
-region = Rect2( 32, 0, 16, 16 )
-
-[sub_resource type="AtlasTexture" id=4]
-atlas = ExtResource( 1 )
-region = Rect2( 48, 0, 16, 16 )
-
-[sub_resource type="SpriteFrames" id=5]
-animations = [ {
-"sprite_frames": [ SubResource( 1 ), SubResource( 2 ), SubResource( 3 ), SubResource( 4 ) ],
-"loop": false,
-"name": "default",
+[sub_resource type="SpriteFrames" id="5"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_ysvbb")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_t68h0")
+}, {
+"duration": 1.0,
+"texture": ExtResource("3_wow1q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_k4qqi")
+}],
+"loop": true,
+"name": &"explosion",
 "speed": 5.0
-} ]
+}]
 
 [node name="SpawnExplosion" type="AnimatedSprite2D"]
-sprite_frames = SubResource( 5 )
-script = ExtResource( 2 )
+sprite_frames = SubResource("5")
+animation = &"explosion"
+frame_progress = 0.252807
+script = ExtResource("2")
 
 [connection signal="animation_finished" from="." to="." method="_on_SpawnExplosion_animation_finished"]

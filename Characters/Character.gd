@@ -3,33 +3,34 @@ extends CharacterBody2D
 
 const HIT_EFFECT_SCENE: PackedScene = preload("res://Characters/HitEffect.tscn")
 
-const FRICTION: float = 0.15
+# const FRICTION: float = 0.15
 
 @export var max_hp: int = 2
 @export var hp: int = 2 : set = set_hp 
 signal hp_changed(new_hp)
 
-@export var acceleration: int = 40
-@export var max_speed: int = 100
-var max_vec = Vector2(max_speed, max_speed)
-
+@export var FRICTION: int = 500
+@export var acceleration = 500
+@export var max_speed = 100
 @export var flying: bool = false
+
 
 @onready var state_machine: Node = get_node("FiniteStateMachine")
 @onready var animated_sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
+@onready var health_bar = $HealthBar
 
-var mov_direction: Vector2 = Vector2.ZERO
+@onready var mov_direction: Vector2 = Vector2.ZERO
 
-func _physics_process(_delta: float) -> void:
-	set_velocity(velocity)
+
+func _physics_process(delta: float) -> void:
+	if mov_direction != Vector2.ZERO && acceleration != null:
+		velocity = velocity.move_toward(mov_direction * max_speed, acceleration * delta)
+	else:
+		velocity = velocity.move_toward(Vector2.ZERO, FRICTION * delta)
 	move_and_slide()
-	velocity = velocity
-	velocity = lerp(velocity, Vector2.ZERO, FRICTION)
-	
-	
+
 func move() -> void:
-	mov_direction = mov_direction.normalized()
-	velocity += mov_direction * acceleration
+	pass
 
 	
 func take_damage(dam: int, dir: Vector2, force: int) -> void:
@@ -43,11 +44,17 @@ func take_damage(dam: int, dir: Vector2, force: int) -> void:
 			velocity += dir * force
 		else:
 			state_machine.set_state(state_machine.states.dead)
-			velocity += dir * force * 2
+			velocity += dir * force * 1.2
 		
 		
 func set_hp(new_hp: int) -> void:
 	hp = clamp(new_hp, 0, max_hp)
+	if hp < max_hp:
+		health_bar.visible = true
+		health_bar.value = hp
+		health_bar.max_value = max_hp
+	if hp == 0:
+		health_bar.visible = false
 	emit_signal("hp_changed", hp)
 	
 	

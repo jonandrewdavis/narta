@@ -1,23 +1,18 @@
 extends FiniteStateMachine
 
-@onready var parent = get_parent()
-
 func _init():
 	_add_state("idle")
 	_add_state("move")
 	_add_state("hurt")
 	_add_state("dead")
 	
-	
 func _ready() -> void:
 	set_state(states.move)
 	
-	
+# NOTE: it's a little confusing rthat "move" is a state, but, but also a func, Chase is a func.
 func _state_logic(_delta: float) -> void:
 	if state == states.move:
-		parent.chase()
 		parent.move()
-		
 		
 func _get_transition() -> int:
 	match state:

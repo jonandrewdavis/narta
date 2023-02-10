@@ -6,9 +6,9 @@ func can_see_player():
 	return player != null
 
 func _on_body_entered(body):
-	print('ent', body)
+	# print('See player')
 	player = body
 
 func _on_body_exited(body):
-	print('x')
+	# print('No player')
 	player = null

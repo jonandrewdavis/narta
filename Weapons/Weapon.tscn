@@ -1,15 +1,16 @@
-[gd_scene load_steps=14 format=3 uid="uid://dkyoq8h20ka41"]
+[gd_scene load_steps=14 format=3 uid="uid://5m5v82xsla1a"]
 
 [ext_resource type="Script" path="res://Weapons/Weapon.gd" id="2"]
 [ext_resource type="Shader" path="res://Characters/Player/White.gdshader" id="2_1v15r"]
 [ext_resource type="Script" path="res://Weapons/WeaponHitbox.gd" id="3"]
-[ext_resource type="Texture2D" uid="uid://cqxhkbyovftus" path="res://Art/19+ icons/white.png" id="4"]
 [ext_resource type="Animation" path="res://Weapons/sword_active_ability.tres" id="4_jkws3"]
 [ext_resource type="Script" path="res://Weapons/UI.gd" id="6"]
+[ext_resource type="Texture2D" uid="uid://cqxhkbyovftus" path="res://Art/Icons19/white.png" id="6_yg6sr"]
 
 [sub_resource type="ShaderMaterial" id="1"]
 resource_local_to_scene = true
 shader = ExtResource("2_1v15r")
+shader_parameter/active = false
 
 [sub_resource type="ParticleProcessMaterial" id="2"]
 spread = 180.0
@@ -374,6 +375,7 @@ wait_time = 4.0
 one_shot = true
 
 [node name="UI" type="CanvasLayer" parent="."]
+visible = false
 script = ExtResource("6")
 
 [node name="AbilityIcon" type="TextureProgressBar" parent="UI"]
@@ -386,7 +388,7 @@ offset_right = 404.0
 offset_bottom = 298.0
 scale = Vector2(0.15, 0.15)
 fill_mode = 8
-texture_progress = ExtResource("4")
+texture_progress = ExtResource("6_yg6sr")
 tint_progress = Color(0.25098, 0.235294, 0.235294, 0.839216)
 
 [connection signal="area_entered" from="Node2D/Sprite2D/Hitbox" to="Node2D/Sprite2D/Hitbox" method="_on_Hitbox_area_entered"]

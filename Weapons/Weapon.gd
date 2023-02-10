@@ -17,24 +17,23 @@ var can_active_ability: bool = true
 @onready var ui: CanvasLayer = get_node("UI")
 @onready var ability_icon: TextureProgressBar = ui.get_node("AbilityIcon")
 
-
 func _ready() -> void:
 	if not on_floor:
 		player_detector.set_collision_mask_value(1, false)
 		player_detector.set_collision_mask_value(2, false)
 
 func get_input() -> void:
-	if Input.is_action_just_pressed("ui_attack") and not animation_player.is_playing():
+	if Input.is_action_just_pressed("attack") and not animation_player.is_playing():
 		animation_player.play("charge")
-	elif Input.is_action_just_released("ui_attack"):
+	elif Input.is_action_just_released("attack"):
 		if animation_player.is_playing() and animation_player.current_animation == "charge":
 			animation_player.play("attack")
 		elif charge_particles.emitting:
 			animation_player.play("strong_attack")
-	elif Input.is_action_just_pressed("ui_active_ability") and animation_player.has_animation("active_ability") and not is_busy() and can_active_ability:
+	elif Input.is_action_just_pressed("attack2") and animation_player.has_animation("active_ability") and not is_busy() and can_active_ability:
 		can_active_ability = false
 		cool_down_timer.start()
-		ui.recharge_ability_animation(cool_down_timer.wait_time)
+		# ui.recharge_ability_animation(cool_down_timer.wait_time)
 		animation_player.play("active_ability")
 			
 			

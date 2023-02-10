@@ -1,7 +1,5 @@
 extends FiniteStateMachine
 
-@onready var parent = get_parent()
-
 func _init():
 	_add_state("idle")
 	_add_state("move")
@@ -37,10 +35,10 @@ func _enter_state(_previous_state: int, new_state: int) -> void:
 		states.idle:
 			animation_player.play("idle")
 		states.move:
-			animation_player.play("idle")
+			animation_player.play("move")
 		states.hurt:
-			animation_player.play("idle")
+			animation_player.play("hurt")
 			parent.cancel_attack()
 		states.dead:
-			animation_player.play("idle")
+			animation_player.play("dead")
 			parent.cancel_attack()
