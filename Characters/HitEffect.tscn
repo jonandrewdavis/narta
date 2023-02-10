@@ -3,7 +3,7 @@
 [ext_resource type="Texture2D" uid="uid://bf2d2ftg3p2yy" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/effects (new)/hit_effect_anim_spritesheet.png" id="1"]
 [ext_resource type="Script" path="res://Characters/PlayAnimation.gd" id="2_ogito"]
 
-[sub_resource type="Animation" id="Animation_efiyj"]
+[sub_resource type="Animation" id="Animation_av8hn"]
 resource_name = "animation"
 length = 0.36
 step = 0.12
@@ -34,9 +34,9 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3jp1n"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8qtun"]
 _data = {
-"animation": SubResource("Animation_efiyj")
+"animation": SubResource("Animation_av8hn")
 }
 
 [node name="HitEffect" type="Sprite2D"]
@@ -46,5 +46,5 @@ script = ExtResource("2_ogito")
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
 libraries = {
-"": SubResource("AnimationLibrary_3jp1n")
+"": SubResource("AnimationLibrary_8qtun")
 }

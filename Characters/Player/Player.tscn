@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://p6owxvdwh2s6" path="res://Art/DungeonTilesetFrames/knight_m_run_anim_f2.png" id="11_25nhm"]
 [ext_resource type="Texture2D" uid="uid://dkpfoco6newe1" path="res://Art/DungeonTilesetFrames/knight_m_run_anim_f3.png" id="12_63r64"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_vs0en"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_7u252"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -73,10 +73,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_amh5q"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_8m4lp"]
 radius = 4.0
 
-[sub_resource type="Animation" id="Animation_mhsec"]
+[sub_resource type="Animation" id="Animation_qnkrk"]
 length = 5.0
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -117,7 +117,7 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_2wr7g"]
+[sub_resource type="Animation" id="Animation_j7drf"]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -156,7 +156,7 @@ tracks/2/keys = {
 "values": [1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_nxdkg"]
+[sub_resource type="Animation" id="Animation_6a56v"]
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -183,7 +183,7 @@ tracks/1/keys = {
 "values": [0, 1]
 }
 
-[sub_resource type="Animation" id="Animation_d4r5u"]
+[sub_resource type="Animation" id="Animation_wjr0y"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
@@ -211,12 +211,12 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_trfla"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_cmwbd"]
 _data = {
-"dead": SubResource("Animation_mhsec"),
-"hurt": SubResource("Animation_2wr7g"),
-"idle": SubResource("Animation_nxdkg"),
-"move": SubResource("Animation_d4r5u")
+"dead": SubResource("Animation_qnkrk"),
+"hurt": SubResource("Animation_j7drf"),
+"idle": SubResource("Animation_6a56v"),
+"move": SubResource("Animation_wjr0y")
 }
 
 [node name="Player" instance=ExtResource("1")]
@@ -225,32 +225,41 @@ collision_mask = 5
 script = ExtResource("4")
 hp = 4
 
-[node name="FiniteStateMachine" parent="." index="0"]
+[node name="Label" type="Label" parent="." index="0"]
+offset_left = -32.0
+offset_top = -23.0
+offset_right = 32.0
+offset_bottom = -11.0
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_constants/shadow_offset_x = 0
+theme_override_constants/shadow_offset_y = 0
+theme_override_constants/outline_size = 0
+theme_override_constants/shadow_outline_size = 2
+theme_override_font_sizes/font_size = 5
+horizontal_alignment = 1
+
+[node name="FiniteStateMachine" parent="." index="1"]
 script = ExtResource("5")
 
-[node name="AnimatedSprite2D" parent="." index="1"]
+[node name="AnimatedSprite2D" parent="." index="2"]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_vs0en")
+sprite_frames = SubResource("SpriteFrames_7u252")
 animation = &"hurt"
 autoplay = "idle"
 frame = 3
 
-[node name="CollisionShape2D" parent="." index="2"]
+[node name="CollisionShape2D" parent="." index="3"]
 position = Vector2(0, 3)
-shape = SubResource("CircleShape2D_amh5q")
+shape = SubResource("CircleShape2D_8m4lp")
 
-[node name="AnimationPlayer" parent="." index="3"]
+[node name="AnimationPlayer" parent="." index="4"]
 autoplay = "idle"
 libraries = {
-"": SubResource("AnimationLibrary_trfla")
+"": SubResource("AnimationLibrary_cmwbd")
 }
-
-[node name="Weapons" type="Node2D" parent="." index="4"]
-
-[node name="Sword" parent="Weapons" index="0" instance=ExtResource("6")]
-visible = false
 
 [node name="Camera2D" type="Camera2D" parent="." index="5"]
 
-[node name="DustPosition" type="Marker2D" parent="." index="6"]
-position = Vector2(0, 6)
+[node name="Weapons" type="Node2D" parent="." index="8"]
+
+[node name="Sword" parent="Weapons" index="0" instance=ExtResource("6")]

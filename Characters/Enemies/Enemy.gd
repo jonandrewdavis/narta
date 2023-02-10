@@ -11,7 +11,7 @@ var path = 0
 func _ready() -> void:
 	# This should be a signal for "die":
 	# var __ = connect("tree_exited", get_parent(), "_on_enemy_killed")
-	print('Ready, mob', state_machine)
+	print('Ready, mob', hp)
 	max_speed = 50
 	state_machine.set_state(0)
 		

@@ -4,7 +4,7 @@
 class_name Hitbox
 extends Area2D
 
-@export var damage: int = 1
+@export var damage = 1
 var knockback_direction: Vector2 = Vector2.ZERO
 @export var knockback_force: int = 300
 
@@ -43,4 +43,5 @@ func _collide(body: CharacterBody2D) -> void:
 	if body == null or not body.has_method("take_damage"):
 		queue_free()
 	else:
+		print('take damage called', damage)
 		body.take_damage(damage, knockback_direction, knockback_force)

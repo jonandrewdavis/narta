@@ -1,8 +1,9 @@
 extends Node
 
 @onready var main_menu = $MainMenuCanvas/MainMenu
-@onready var user = $MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer/user
+@onready var username = $MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer/user
 @onready var address_entry = $MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer/address
+@onready var join_button = $MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer/Join
 
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
@@ -42,6 +43,8 @@ func _on_host_pressed():
 func add_player(peer_id):
 	var player = Player.instantiate()
 	player.name = str(peer_id)
+	print('DEBUG: Add player', username.text)
+	player.username = username.text
 	get_parent().add_child(player)
 
 	
@@ -49,3 +52,10 @@ func remove_player(peer_id):
 	var player = get_node_or_null(str(peer_id))
 	if player:
 		player.queue_free()
+		
+
+func _on_user_text_changed(new_text):
+	if new_text != "":
+		join_button.disabled = false
+	else:
+		join_button.disabled = true

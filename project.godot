@@ -14,9 +14,9 @@ config/name="narta"
 config/description="A small game"
 run/main_scene="res://Main.tscn"
 config/features=PackedStringArray("4.0", "Forward Plus")
+boot_splash/bg_color=Color(0, 0, 0, 1)
 boot_splash/image="res://CAPLOLGAMES.png"
 config/icon="res://n-icon.svg"
-boot_splash/minimum_display_time=2200
 
 [autoload]
 
@@ -111,3 +111,4 @@ attack3={
 
 2d/snap/snap_2d_transforms_to_pixel=true
 2d/snap/snap_2d_vertices_to_pixel=true
+textures/canvas_textures/default_texture_filter=0

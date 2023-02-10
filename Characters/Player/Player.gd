@@ -8,21 +8,25 @@ signal weapon_switched(prev_index, new_index)
 signal weapon_picked_up(weapon_texture)
 signal weapon_droped(index)
 
+@onready var userlabel = $Label
 @onready var parent: Node2D = get_parent()
-@onready var weapons: Node2D = get_node("Weapons")
+@onready var weapons: Node2D = $Weapons
+
+var username = '';
 
 const RESPAWN_RADIUS = 250
 
 func _ready() -> void:
 	emit_signal("weapon_picked_up", weapons.get_child(0).get_texture())
+	userlabel.text = username
 	_restore_previous_state()
 	
 func is_player():
 	return true
 
 func _restore_previous_state() -> void:
-	max_hp = 2
-	set_hp(2)
+	max_hp = 5
+	set_hp(5)
 	state_machine.set_state(state_machine.states.idle)
 	
 	for weapon in SavedData.weapons:

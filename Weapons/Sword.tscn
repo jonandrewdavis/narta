@@ -1,15 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://d0l61mjed78g0"]
+[gd_scene load_steps=6 format=3 uid="uid://d0l61mjed78g0"]
 
 [ext_resource type="PackedScene" uid="uid://5m5v82xsla1a" path="res://Weapons/Weapon.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://c1xnjlxdy7dn6" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/effects (new)/slash_effect_anim_spritesheet.png" id="2"]
 [ext_resource type="Texture2D" uid="uid://dhdlsflmb30jq" path="res://Art/DungeonTilesetFrames/weapon_regular_sword.png" id="3_t4h2a"]
-[ext_resource type="Shader" path="res://Characters/Player/White.gdshader" id="4"]
 [ext_resource type="Texture2D" uid="uid://dlbrhjxv3c8pb" path="res://Art/Icons19/swingB.png" id="5_820sj"]
-
-[sub_resource type="ShaderMaterial" id="6"]
-resource_local_to_scene = true
-shader = ExtResource("4")
-shader_parameter/active = false
 
 [sub_resource type="CapsuleShape2D" id="1"]
 radius = 2.0
@@ -19,7 +13,6 @@ height = 10.0
 
 [node name="Sprite2D" parent="Node2D" index="0"]
 texture_filter = 1
-material = SubResource("6")
 position = Vector2(7, 3)
 texture = ExtResource("3_t4h2a")
 
@@ -35,9 +28,9 @@ disabled = false
 [node name="ChargeParticles" parent="Node2D/Sprite2D" index="1"]
 position = Vector2(5.65685, -4.24264)
 
-[node name="White Cube" type="Sprite2D" parent="Node2D" index="1"]
-
 [node name="SlashSprite" type="Sprite2D" parent="." index="1"]
+visible = false
+texture_filter = 1
 position = Vector2(26, 0)
 scale = Vector2(2, 2)
 texture = ExtResource("2")

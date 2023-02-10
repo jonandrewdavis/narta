@@ -5,8 +5,8 @@ const HIT_EFFECT_SCENE: PackedScene = preload("res://Characters/HitEffect.tscn")
 
 # const FRICTION: float = 0.15
 
-@export var max_hp: int = 2
-@export var hp: int = 2 : set = set_hp 
+@export var max_hp: int = 3
+@export var hp: int = 3 
 signal hp_changed(new_hp)
 
 @export var FRICTION: int = 500
@@ -36,7 +36,7 @@ func move() -> void:
 func take_damage(dam: int, dir: Vector2, force: int) -> void:
 	if state_machine.state != state_machine.states.hurt and state_machine.state != state_machine.states.dead:
 		_spawn_hit_effect()
-		self.hp -= dam
+		hp -= dam
 		if name == "Player":
 			SavedData.hp = hp
 		if hp > 0:
@@ -48,6 +48,7 @@ func take_damage(dam: int, dir: Vector2, force: int) -> void:
 		
 		
 func set_hp(new_hp: int) -> void:
+	print('whos settinghp', new_hp)
 	hp = clamp(new_hp, 0, max_hp)
 	if hp < max_hp:
 		health_bar.visible = true
@@ -55,7 +56,7 @@ func set_hp(new_hp: int) -> void:
 		health_bar.max_value = max_hp
 	if hp == 0:
 		health_bar.visible = false
-	emit_signal("hp_changed", hp)
+	# emit_signal("hp_changed", hp)
 	
 	
 func _spawn_hit_effect() -> void:
