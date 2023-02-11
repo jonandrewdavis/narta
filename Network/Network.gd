@@ -22,11 +22,6 @@ func _ready():
 				await get_tree().create_timer(2).timeout
 				_on_host_pressed()
 
-# if you capture mouse, you've gotta have this
-func _unhandled_input(_event):
-	if Input.is_action_just_pressed("ui_escape"):
-		get_tree().quit()
-
 func _on_join_pressed():
 	main_menu.hide()
 	if username.text != '': SavedData.username = username.text

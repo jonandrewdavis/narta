@@ -12,6 +12,8 @@ signal weapon_droped(index)
 @onready var parent: Node2D = get_parent()
 @onready var weapons: Node2D = $Weapons
 
+var UI = preload("res://UI/UI.tscn")
+var UIref = null
 
 var mouse_direction: Vector2
 
@@ -22,10 +24,17 @@ func _enter_tree():
 
 func _ready() -> void:
 	if not is_multiplayer_authority(): return
+	var newCamera = Camera2D.new()
+	var newUI = UI.instantiate()
 	emit_signal("weapon_picked_up", weapons.get_child(0).get_texture())
 	userlabel.text = SavedData.username		
-	add_child(Camera2D.new())
 	_restore_previous_state()
+	newCamera.ignore_rotation = true
+	newCamera.limit_smoothed = true
+	add_child(newCamera)
+	newUI.player = self
+	add_child(newUI)
+	UIref = newUI
 	
 func is_player():
 	return true
@@ -68,12 +77,20 @@ func _process(_delta: float) -> void:
 		
 	current_weapon.move(mouse_direction)
 
+
 func _unhandled_input(event):
 	if not is_multiplayer_authority(): return
+	if Input.is_action_just_pressed("inventory"):
+		print(UIref)
+		UIref._on_inventory_button_pressed()
+		return
+	if Input.is_action_just_pressed("ui_escape"):
+		get_tree().quit()
+
 
 func get_input() -> void:
 	if not is_multiplayer_authority(): return
-	
+		
 	mov_direction = Vector2.ZERO
 	mov_direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	mov_direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")

@@ -1,6 +1,6 @@
-[gd_scene load_steps=25 format=3 uid="uid://bkd34gv2qo74h"]
+[gd_scene load_steps=27 format=3 uid="uid://bkd34gv2qo74h"]
 
-[ext_resource type="Script" path="res://World.gd" id="1_x3wxr"]
+[ext_resource type="Script" path="res://World.gd" id="1_uyt4d"]
 [ext_resource type="Texture2D" uid="uid://cg7jhiwq2h2sq" path="res://Assets/Texture/TX Tileset Grass.png" id="2_gs5ly"]
 [ext_resource type="PackedScene" uid="uid://3s30xhs7xn4c" path="res://Network/Network.tscn" id="3_q7ekw"]
 [ext_resource type="Texture2D" uid="uid://c432uxfa3ism1" path="res://Assets/Texture/TX Tileset Stone Ground.png" id="3_wgnad"]
@@ -11,7 +11,9 @@
 [ext_resource type="Texture2D" uid="uid://pg3uyri5gn78" path="res://Assets/Texture/TX Shadow.png" id="8_locdx"]
 [ext_resource type="Texture2D" uid="uid://bdtmtlqskrnyb" path="res://Assets/TilesA2.png" id="9_g5gr6"]
 [ext_resource type="Texture2D" uid="uid://dg65on8miox0v" path="res://Assets/FE8 - Snowy Bern.png" id="11_8evff"]
-[ext_resource type="PackedScene" uid="uid://d0hmrybyykito" path="res://Characters/Enemies/DemonSmall/DemonSmall.tscn" id="12_kx2sf"]
+[ext_resource type="Script" path="res://addons/inventory_editor/InventoryItem2D.gd" id="12_yvce8"]
+[ext_resource type="PackedScene" uid="uid://goe3wjl5ldd4" path="res://addons/inventory_example/2d/items/HealthNormal.tscn" id="13_ysxwd"]
+[ext_resource type="PackedScene" uid="uid://dq30mwf216bjo" path="res://Items/Coal.tscn" id="15_1kxt1"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oero3"]
 texture = ExtResource("2_gs5ly")
@@ -2898,7 +2900,7 @@ sources/8 = SubResource("TileSetAtlasSource_xut66")
 radius = 293.615
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_x3wxr")
+script = ExtResource("1_uyt4d")
 
 [node name="Network" parent="." instance=ExtResource("3_q7ekw")]
 
@@ -2934,11 +2936,29 @@ collision_mask = 128
 shape = SubResource("CircleShape2D_rg1iu")
 debug_color = Color(0.584314, 0.541176, 0.262745, 0.419608)
 
-[node name="DemonSmall" parent="." instance=ExtResource("12_kx2sf")]
-position = Vector2(-317, 60)
+[node name="Items" type="Node2D" parent="."]
 
-[node name="DemonSmall2" parent="." instance=ExtResource("12_kx2sf")]
-position = Vector2(-314, -36)
+[node name="Item2D" type="Node2D" parent="Items"]
+script = ExtResource("12_yvce8")
+item_put = "f4352b3f-8500-419f-9617-9da134d822f5"
+to_inventory = "cbc0ed38-7550-4d01-a07a-8b9f11c0a9dd"
 
-[node name="DemonSmall3" parent="." instance=ExtResource("12_kx2sf")]
-position = Vector2(-323, 4)
+[node name="InventoryItem_f4352b3f-8500-419f-9617-9da134d822f5" parent="Items/Item2D" instance=ExtResource("13_ysxwd")]
+position = Vector2(173, -156)
+scale = Vector2(0.2, 0.2)
+
+[node name="Item2D2" type="Node2D" parent="Items"]
+script = ExtResource("12_yvce8")
+item_put = "c9054497-3242-4056-8230-a21d891c916f"
+to_inventory = "cbc0ed38-7550-4d01-a07a-8b9f11c0a9dd"
+
+[node name="InventoryItem_c9054497-3242-4056-8230-a21d891c916f" parent="Items/Item2D2" instance=ExtResource("15_1kxt1")]
+position = Vector2(-21, -15)
+
+[node name="Item2D3" type="Node2D" parent="Items"]
+script = ExtResource("12_yvce8")
+item_put = "c9054497-3242-4056-8230-a21d891c916f"
+to_inventory = "cbc0ed38-7550-4d01-a07a-8b9f11c0a9dd"
+
+[node name="InventoryItem_c9054497-3242-4056-8230-a21d891c916f" parent="Items/Item2D3" instance=ExtResource("15_1kxt1")]
+position = Vector2(-29, 31)

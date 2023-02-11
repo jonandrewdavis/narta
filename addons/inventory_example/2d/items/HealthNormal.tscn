@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://goe3wjl5ldd4"]
+
+[ext_resource type="Texture2D" uid="uid://mqpvohufub43" path="res://addons/inventory_example/textures/potions/HealthNormal.png" id="1"]
+
+[sub_resource type="CapsuleShape2D" id="1"]
+radius = 19.9739
+height = 60.8035
+
+[node name="HealthNormal" type="Node2D"]
+
+[node name="Area2D" type="Area2D" parent="."]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+rotation = 0.610865
+shape = SubResource("1")
+
+[node name="HealthNormal" type="Sprite2D" parent="."]
+texture = ExtResource("1")

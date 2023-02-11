@@ -1,0 +1,21 @@
+[gd_scene load_steps=3 format=3 uid="uid://dq30mwf216bjo"]
+
+[ext_resource type="Texture2D" uid="uid://cvwjtc63fq00g" path="res://Art/coal.png" id="1_6u2b4"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_r0m85"]
+radius = 2.0
+
+[node name="Coal" type="Node2D"]
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+scale = Vector2(0.009, 0.009)
+texture = ExtResource("1_6u2b4")
+
+[node name="Area2D" type="Area2D" parent="."]
+position = Vector2(23, -3)
+collision_layer = 15
+collision_mask = 15
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+position = Vector2(-23, 3)
+shape = SubResource("CircleShape2D_r0m85")
