@@ -2,8 +2,6 @@
 
 [ext_resource type="Script" path="res://Weapons/Weapon.gd" id="2"]
 [ext_resource type="Script" path="res://Weapons/WeaponHitbox.gd" id="3"]
-[ext_resource type="Script" path="res://Weapons/UI.gd" id="6"]
-[ext_resource type="Texture2D" uid="uid://cqxhkbyovftus" path="res://Art/Icons19/white.png" id="6_yg6sr"]
 
 [sub_resource type="Shader" id="Shader_ps0v4"]
 code = "shader_type canvas_item;
@@ -26,9 +24,20 @@ resource_local_to_scene = true
 shader = SubResource("Shader_ps0v4")
 shader_parameter/active = false
 
+[sub_resource type="Gradient" id="Gradient_iapq3"]
+offsets = PackedFloat32Array(0, 0.463107, 1)
+colors = PackedColorArray(1, 1, 1, 0.627451, 1, 1, 1, 0.993851, 1, 1, 1, 0.705882)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_bxscy"]
+gradient = SubResource("Gradient_iapq3")
+
 [sub_resource type="ParticleProcessMaterial" id="2"]
+emission_shape = 1
+emission_sphere_radius = 10.0
 spread = 180.0
 gravity = Vector3(0, 0, 0)
+color = Color(1, 1, 1, 0.462745)
+color_ramp = SubResource("GradientTexture1D_bxscy")
 
 [node name="Weapon" type="Node2D"]
 script = ExtResource("2")
@@ -50,11 +59,12 @@ script = ExtResource("3")
 position = Vector2(5.65685, -4.24264)
 rotation = 0.785398
 
-[node name="ChargeParticles" type="GPUParticles2D" parent="Node2D/Sprite2D"]
+[node name="ChargeParticles" type="GPUParticles2D" parent="Node2D"]
+rotation = -0.785398
 emitting = false
 amount = 15
 process_material = SubResource("2")
-lifetime = 0.6
+lifetime = 0.3
 
 [node name="PlayerDetector" type="Area2D" parent="."]
 collision_layer = 0
@@ -65,23 +75,6 @@ collision_mask = 3
 [node name="CoolDownTimer" type="Timer" parent="."]
 wait_time = 4.0
 one_shot = true
-
-[node name="UI" type="CanvasLayer" parent="."]
-visible = false
-script = ExtResource("6")
-
-[node name="AbilityIcon" type="TextureProgressBar" parent="UI"]
-anchors_preset = 2
-anchor_top = 1.0
-anchor_bottom = 1.0
-offset_left = 24.0
-offset_top = -82.0
-offset_right = 404.0
-offset_bottom = 298.0
-scale = Vector2(0.15, 0.15)
-fill_mode = 8
-texture_progress = ExtResource("6_yg6sr")
-tint_progress = Color(0.25098, 0.235294, 0.235294, 0.839216)
 
 [connection signal="area_entered" from="Node2D/Sprite2D/Hitbox" to="Node2D/Sprite2D/Hitbox" method="_on_Hitbox_area_entered"]
 [connection signal="body_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]

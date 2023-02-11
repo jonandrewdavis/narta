@@ -12,6 +12,9 @@ signal weapon_droped(index)
 @onready var parent: Node2D = get_parent()
 @onready var weapons: Node2D = $Weapons
 
+
+var mouse_direction: Vector2
+
 const RESPAWN_RADIUS = 200
 
 func _enter_tree():
@@ -56,7 +59,7 @@ func _restore_previous_state() -> void:
 func _process(_delta: float) -> void:
 	if not is_multiplayer_authority(): return
 	
-	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()
+	mouse_direction = (get_global_mouse_position() - global_position).normalized()
 	
 	if mouse_direction.x > 0 and animated_sprite.flip_h:
 		animated_sprite.flip_h = false
@@ -74,7 +77,13 @@ func get_input() -> void:
 	mov_direction = Vector2.ZERO
 	mov_direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	mov_direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
-	mov_direction = mov_direction.normalized()	
+	mov_direction = mov_direction.normalized()
+	
+	# NOTE: DO NOT USE
+	# This can add some mouse control over the player, but it's jarring when
+	# you are used WASD being the exclusive determinator. Better to modulate speed.
+	#if current_weapon.is_busy():
+	#	mov_direction =	mov_direction + mouse_direction / 4
 	
 	if not current_weapon.is_busy():
 		if Input.is_action_just_released("ui_previous_weapon"):
