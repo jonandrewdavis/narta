@@ -3,12 +3,30 @@ extends Node2D
 var DemonSmall = preload("res://Characters/Enemies/DemonSmall/DemonSmall.tscn")
 var Goblin = preload("res://Characters/Enemies/Goblin/Goblin.tscn")
 
+
+@onready var spawnBoundary1 =  $Spawn1/SpawnShape.shape.extents
+@onready var spawnOrigin1 = $Spawn1/SpawnShape.global_position
+
+@onready var spawnBoundary2 =  $Spawn2/SpawnShape2.shape.extents
+@onready var spawnOrigin2 = $Spawn2/SpawnShape2.global_position
+
+func gen_random_pos():
+	var x = 0
+	var y = 0
+	if randi() % 2 == 0:
+		x = randi_range(spawnOrigin1.x, spawnOrigin1.x + spawnBoundary1.x)
+		y = randi_range(spawnOrigin1.y, spawnOrigin1.y + spawnBoundary1.y)
+	else:
+		x = randi_range(spawnOrigin2.x, spawnOrigin2.x + spawnBoundary2.x)
+		y = randi_range(spawnOrigin2.y, spawnOrigin2.y + spawnBoundary2.y)
+	return Vector2(x, y)
+
 func _on_timer_timeout():
 	add_enemy()
 
 func add_enemy():
 	var newDemon = DemonSmall.instantiate()
-	# newDemon.global_position = get_random_position()
+	newDemon.global_position = gen_random_pos()
 	get_parent().add_child(newDemon, true)	
 
 

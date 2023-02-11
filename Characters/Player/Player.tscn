@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://p6owxvdwh2s6" path="res://Art/DungeonTilesetFrames/knight_m_run_anim_f2.png" id="11_25nhm"]
 [ext_resource type="Texture2D" uid="uid://dkpfoco6newe1" path="res://Art/DungeonTilesetFrames/knight_m_run_anim_f3.png" id="12_63r64"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_lne3h"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_76mfm"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -73,10 +73,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_gsydo"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_ynh7y"]
 radius = 4.0
 
-[sub_resource type="Animation" id="Animation_kxyn1"]
+[sub_resource type="Animation" id="Animation_5jqdp"]
 length = 3.5
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -117,7 +117,7 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_omw3l"]
+[sub_resource type="Animation" id="Animation_ud7bq"]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -156,7 +156,7 @@ tracks/2/keys = {
 "values": [1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_7mqmq"]
+[sub_resource type="Animation" id="Animation_mm6ct"]
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -195,7 +195,7 @@ tracks/2/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_2axqc"]
+[sub_resource type="Animation" id="Animation_ym7ab"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
@@ -223,15 +223,15 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_ww2lr"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_x5ycl"]
 _data = {
-"dead": SubResource("Animation_kxyn1"),
-"hurt": SubResource("Animation_omw3l"),
-"idle": SubResource("Animation_7mqmq"),
-"move": SubResource("Animation_2axqc")
+"dead": SubResource("Animation_5jqdp"),
+"hurt": SubResource("Animation_ud7bq"),
+"idle": SubResource("Animation_mm6ct"),
+"move": SubResource("Animation_ym7ab")
 }
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_hagoe"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_hipx0"]
 properties/0/path = NodePath("AnimationPlayer:current_animation")
 properties/0/spawn = true
 properties/0/sync = true
@@ -239,20 +239,11 @@ properties/1/path = NodePath(".:position")
 properties/1/spawn = true
 properties/1/sync = true
 properties/2/path = NodePath("Label:text")
-properties/2/spawn = false
-properties/2/sync = true
-properties/3/path = NodePath("HealthBar:value")
+properties/2/spawn = true
+properties/2/sync = false
+properties/3/path = NodePath(".:hp")
 properties/3/spawn = true
 properties/3/sync = true
-properties/4/path = NodePath("HealthBar:max_value")
-properties/4/spawn = true
-properties/4/sync = true
-properties/5/path = NodePath("HealthBar:visible")
-properties/5/spawn = true
-properties/5/sync = true
-properties/6/path = NodePath(".:hp")
-properties/6/spawn = true
-properties/6/sync = true
 
 [node name="Player" instance=ExtResource("1")]
 collision_layer = 2
@@ -279,18 +270,18 @@ script = ExtResource("5")
 [node name="AnimatedSprite2D" parent="." index="2"]
 texture_filter = 1
 position = Vector2(0, -2)
-sprite_frames = SubResource("SpriteFrames_lne3h")
+sprite_frames = SubResource("SpriteFrames_76mfm")
 animation = &"dead"
 autoplay = "idle"
 
 [node name="CollisionShape2D" parent="." index="3"]
 position = Vector2(0, 3)
-shape = SubResource("CircleShape2D_gsydo")
+shape = SubResource("CircleShape2D_ynh7y")
 
 [node name="AnimationPlayer" parent="." index="4"]
 autoplay = "idle"
 libraries = {
-"": SubResource("AnimationLibrary_ww2lr")
+"": SubResource("AnimationLibrary_x5ycl")
 }
 
 [node name="Weapons" type="Node2D" parent="." index="6"]
@@ -298,4 +289,4 @@ libraries = {
 [node name="Sword" parent="Weapons" index="0" instance=ExtResource("6")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="7"]
-replication_config = SubResource("SceneReplicationConfig_hagoe")
+replication_config = SubResource("SceneReplicationConfig_hipx0")

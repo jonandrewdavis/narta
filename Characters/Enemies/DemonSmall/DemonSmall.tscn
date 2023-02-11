@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ex05svwlacuy" path="res://Assets/imp/imp_run_anim_f2.png" id="8_ay173"]
 [ext_resource type="Texture2D" uid="uid://qrppbst682rg" path="res://Assets/imp/imp_run_anim_f3.png" id="9_bc6nx"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_dbvtu"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_lkg8j"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -64,10 +64,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_e7nwj"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_m0waw"]
 radius = 5.09902
 
-[sub_resource type="Animation" id="Animation_tx7gu"]
+[sub_resource type="Animation" id="Animation_dspse"]
 resource_name = "dead"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -96,7 +96,7 @@ tracks/1/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_hp5qh"]
+[sub_resource type="Animation" id="Animation_tq2mn"]
 resource_name = "hurt"
 length = 0.6
 tracks/0/type = "value"
@@ -124,7 +124,7 @@ tracks/1/keys = {
 "values": [false, true, false, true]
 }
 
-[sub_resource type="Animation" id="Animation_wo4iv"]
+[sub_resource type="Animation" id="Animation_14xhx"]
 resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -139,7 +139,7 @@ tracks/0/keys = {
 "values": [&"idle"]
 }
 
-[sub_resource type="Animation" id="Animation_f3qlh"]
+[sub_resource type="Animation" id="Animation_vuq5m"]
 resource_name = "walk"
 length = 0.8
 loop_mode = 1
@@ -180,12 +180,12 @@ tracks/2/keys = {
 "values": [true]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_vdjsm"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_vukej"]
 _data = {
-"dead": SubResource("Animation_tx7gu"),
-"hurt": SubResource("Animation_hp5qh"),
-"idle": SubResource("Animation_wo4iv"),
-"walk": SubResource("Animation_f3qlh")
+"dead": SubResource("Animation_dspse"),
+"hurt": SubResource("Animation_tq2mn"),
+"idle": SubResource("Animation_14xhx"),
+"walk": SubResource("Animation_vuq5m")
 }
 
 [node name="DemonSmall" instance=ExtResource("1_u1ea2")]
@@ -195,18 +195,18 @@ safe_margin = 0.1
 script = ExtResource("2_0wvdk")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
-sprite_frames = SubResource("SpriteFrames_dbvtu")
+sprite_frames = SubResource("SpriteFrames_lkg8j")
 animation = &"walk"
 autoplay = "idle"
 frame = 3
 
 [node name="CollisionShape2D" parent="." index="2"]
-shape = SubResource("CircleShape2D_e7nwj")
+shape = SubResource("CircleShape2D_m0waw")
 
 [node name="AnimationPlayer" parent="." index="3"]
 autoplay = "idle"
 libraries = {
-"": SubResource("AnimationLibrary_vdjsm")
+"": SubResource("AnimationLibrary_vukej")
 }
 
 [node name="PathTimer" parent="." index="5"]

@@ -1,7 +1,13 @@
-[gd_scene load_steps=3 format=3 uid="uid://cpu7i5qlewohp"]
+[gd_scene load_steps=5 format=3 uid="uid://cpu7i5qlewohp"]
 
 [ext_resource type="Script" path="res://Spawner/MobSpawner.gd" id="1_khojc"]
 [ext_resource type="Texture2D" uid="uid://b6ligfo7nkk2w" path="res://Art/Icons19/starsB.png" id="2_mb68r"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5vsk"]
+size = Vector2(1815, 424)
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfky0"]
+size = Vector2(1788, 450.25)
 
 [node name="MobSpawner" type="Node2D"]
 script = ExtResource("1_khojc")
@@ -10,8 +16,26 @@ script = ExtResource("1_khojc")
 wait_time = 3.0
 autostart = true
 
-[node name="Sprite2D" type="Sprite2D" parent="."]
+[node name="Spawn1" type="Area2D" parent="."]
+position = Vector2(11, -561)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Spawn1"]
 scale = Vector2(0.104605, 0.104605)
 texture = ExtResource("2_mb68r")
+
+[node name="SpawnShape" type="CollisionShape2D" parent="Spawn1"]
+shape = SubResource("RectangleShape2D_i5vsk")
+
+[node name="Spawn2" type="Area2D" parent="."]
+position = Vector2(1, 554)
+metadata/_edit_group_ = true
+
+[node name="Sprite2D" type="Sprite2D" parent="Spawn2"]
+scale = Vector2(0.104605, 0.104605)
+texture = ExtResource("2_mb68r")
+
+[node name="SpawnShape2" type="CollisionShape2D" parent="Spawn2"]
+shape = SubResource("RectangleShape2D_vfky0")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

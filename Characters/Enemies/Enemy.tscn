@@ -20,21 +20,9 @@ properties/0/sync = true
 properties/1/path = NodePath(".:hp")
 properties/1/spawn = true
 properties/1/sync = true
-properties/2/path = NodePath("HealthBar:value")
+properties/2/path = NodePath("AnimationPlayer:current_animation")
 properties/2/spawn = true
 properties/2/sync = true
-properties/3/path = NodePath("HealthBar:max_value")
-properties/3/spawn = true
-properties/3/sync = true
-properties/4/path = NodePath("HealthBar:visible")
-properties/4/spawn = true
-properties/4/sync = true
-properties/5/path = NodePath("AnimationPlayer:current_animation")
-properties/5/spawn = true
-properties/5/sync = true
-properties/6/path = NodePath(".:max_speed")
-properties/6/spawn = true
-properties/6/sync = true
 
 [node name="Enemy" instance=ExtResource("1")]
 collision_layer = 132

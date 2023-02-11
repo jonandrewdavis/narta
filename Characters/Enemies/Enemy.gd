@@ -15,6 +15,7 @@ func _enter_tree():
 	set_multiplayer_authority(1)
 
 func _ready() -> void:
+	print('DEBUG: Mob Ready')
 	max_speed = 35
 	state_machine.set_state(0)
 
