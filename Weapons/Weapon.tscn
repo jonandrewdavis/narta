@@ -1,4 +1,4 @@
-[gd_scene load_steps=14 format=3 uid="uid://5m5v82xsla1a"]
+[gd_scene load_steps=8 format=3 uid="uid://df12c6rmklpqr"]
 
 [ext_resource type="Script" path="res://Weapons/Weapon.gd" id="2"]
 [ext_resource type="Script" path="res://Weapons/WeaponHitbox.gd" id="3"]
@@ -30,145 +30,6 @@ shader_parameter/active = false
 spread = 180.0
 gravity = Vector3(0, 0, 0)
 
-[sub_resource type="Animation" id="7"]
-resource_name = "active_ability"
-length = 0.6
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node2D/Sprite2D/ChargeParticles:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1),
-"transitions": PackedFloat32Array(1, 1),
-"values": [{
-"args": [],
-"method": &"triple_shoot"
-}, {
-"args": [],
-"method": &"triple_shoot"
-}]
-}
-
-[sub_resource type="Animation" id="3"]
-resource_local_to_scene = true
-resource_name = "attack"
-length = 0.5
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node2D/Sprite2D/ChargeParticles:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [0],
-"method": &"shoot"
-}]
-}
-
-[sub_resource type="Animation" id="4"]
-resource_local_to_scene = true
-resource_name = "cancel_attack"
-length = 0.3
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node2D/Sprite2D/ChargeParticles:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-
-[sub_resource type="Animation" id="5"]
-resource_local_to_scene = true
-resource_name = "charge"
-length = 1.2
-step = 0.2
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node2D/Sprite2D/ChargeParticles:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(1.2),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [true]
-}
-
-[sub_resource type="Animation" id="6"]
-resource_local_to_scene = true
-resource_name = "strong_attack"
-length = 0.7
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("Node2D/Sprite2D/ChargeParticles:emitting")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"update": 1,
-"values": [false]
-}
-tracks/1/type = "method"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath(".")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0),
-"transitions": PackedFloat32Array(1),
-"values": [{
-"args": [],
-"method": &"triple_shoot"
-}]
-}
-
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_3uxni"]
-_data = {
-"active_ability": SubResource("7"),
-"attack": SubResource("3"),
-"cancel_attack": SubResource("4"),
-"charge": SubResource("5"),
-"strong_attack": SubResource("6")
-}
-
 [node name="Weapon" type="Node2D"]
 script = ExtResource("2")
 
@@ -188,7 +49,6 @@ script = ExtResource("3")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Node2D/Sprite2D/Hitbox"]
 position = Vector2(5.65685, -4.24264)
 rotation = 0.785398
-disabled = true
 
 [node name="ChargeParticles" type="GPUParticles2D" parent="Node2D/Sprite2D"]
 emitting = false
@@ -201,11 +61,6 @@ collision_layer = 0
 collision_mask = 3
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-
-[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-libraries = {
-"": SubResource("AnimationLibrary_3uxni")
-}
 
 [node name="CoolDownTimer" type="Timer" parent="."]
 wait_time = 4.0

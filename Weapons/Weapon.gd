@@ -1,5 +1,5 @@
-class_name Weapon
 extends Node2D
+class_name Weapon
 
 @export var on_floor: bool = false
 
@@ -14,34 +14,38 @@ var can_active_ability: bool = true
 @onready var player_detector: Area2D = get_node("PlayerDetector")
 @onready var tween: Tween = create_tween()
 @onready var cool_down_timer: Timer = get_node("CoolDownTimer")
-@onready var ui: CanvasLayer = get_node("UI")
-@onready var ability_icon: TextureProgressBar = ui.get_node("AbilityIcon")
+
+# @onready var ability_icon: TextureProgressBar = ui.get_node("AbilityIcon")
 
 func _ready() -> void:
 	if not on_floor:
+		# player_detector.set_collision_mask_value(0, false)
 		player_detector.set_collision_mask_value(1, false)
-		player_detector.set_collision_mask_value(2, false)
+
 
 func get_input() -> void:
+	if not is_multiplayer_authority(): return
+	
 	if Input.is_action_just_pressed("attack") and not animation_player.is_playing():
-		animation_player.play("charge")
+		animation_player.play("SwordBase/charge")
 	elif Input.is_action_just_released("attack"):
-		if animation_player.is_playing() and animation_player.current_animation == "charge":
-			animation_player.play("attack")
+		if animation_player.is_playing() and animation_player.current_animation == "SwordBase/charge":
+			animation_player.play("SwordBase/attack")
 		elif charge_particles.emitting:
-			animation_player.play("strong_attack")
-	elif Input.is_action_just_pressed("attack2") and animation_player.has_animation("active_ability") and not is_busy() and can_active_ability:
+			animation_player.play("SwordBase/strong_attack")
+	elif Input.is_action_just_pressed("attack3") and animation_player.has_animation("SwordBase/active_ability") and not is_busy() and can_active_ability:
 		can_active_ability = false
 		cool_down_timer.start()
-		# ui.recharge_ability_animation(cool_down_timer.wait_time)
-		animation_player.play("active_ability")
+		animation_player.play("SwordBase/active_ability")
 			
 			
 func move(mouse_direction: Vector2) -> void:
+	if not is_multiplayer_authority(): return
+	
 	if ranged_weapon:
 		rotation_degrees = rad_to_deg(mouse_direction.angle()) + rotation_offset
 	else:
-		if not animation_player.is_playing() or animation_player.current_animation == "charge":
+		if not animation_player.is_playing() or animation_player.current_animation == "SwordBase/charge":
 			rotation = mouse_direction.angle()
 			hitbox.knockback_direction = mouse_direction
 			if scale.y == 1 and mouse_direction.x < 0:
@@ -51,7 +55,7 @@ func move(mouse_direction: Vector2) -> void:
 			
 			
 func cancel_attack() -> void:
-	animation_player.play("cancel_attack")
+	animation_player.play("SwordBase/cancel_attack")
 	
 	
 func is_busy() -> bool:
@@ -89,12 +93,12 @@ func _on_CoolDownTimer_timeout() -> void:
 	
 	
 func show() -> void:
-	ability_icon.show()
+	# ability_icon.show()
 	super.show()
 	
 	
 func hide() -> void:
-	ability_icon.hide()
+	# ability_icon.hide()
 	super.hide()
 	
 	

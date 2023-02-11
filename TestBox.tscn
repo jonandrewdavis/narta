@@ -10,3 +10,7 @@ position = Vector2(-96, -23)
 
 [node name="DemonSmall" parent="." instance=ExtResource("4_2jw7k")]
 position = Vector2(53, -27)
+collision_layer = 4
+collision_mask = 5
+acceleration = 500
+max_speed = 100

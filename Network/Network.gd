@@ -9,6 +9,7 @@ const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
 
 var Player = preload('res://Characters/Player/Player.tscn')
+var MobSpawner = preload("res://Spawner/MobSpawner.tscn")
 
 func _ready():
 	var args = OS.get_cmdline_user_args()
@@ -28,23 +29,27 @@ func _unhandled_input(_event):
 
 func _on_join_pressed():
 	main_menu.hide()
+	if username.text != '': SavedData.username = username.text
 	enet_peer.create_client(address_entry.text, PORT)
 	multiplayer.multiplayer_peer = enet_peer
 
+
 func _on_host_pressed():
 	main_menu.hide()
+	if username.text != '': SavedData.username = username.text
 	enet_peer.create_server(PORT)
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
-	add_player(multiplayer.get_unique_id())
-
+	print('DEBUG: SEVER IS READY:', multiplayer.get_unique_id())
+	add_player(multiplayer.get_unique_id())	
+	var spawner = MobSpawner.instantiate()
+	get_parent().add_child(spawner, true)
 
 func add_player(peer_id):
 	var player = Player.instantiate()
 	player.name = str(peer_id)
-	print('DEBUG: Add player', username.text)
-	player.username = username.text
+	print('DEBUG: Add player', peer_id)
 	get_parent().add_child(player)
 
 	

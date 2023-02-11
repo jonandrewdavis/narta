@@ -1,9 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://d1ieqk72dudgf"]
+[gd_scene load_steps=9 format=3 uid="uid://d1ieqk72dudgf"]
 
 [ext_resource type="PackedScene" uid="uid://yxn00wsmdix6" path="res://Characters/Character.tscn" id="1"]
 [ext_resource type="Script" path="res://Characters/Enemies/Enemy.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://c30k35ly7ca0q" path="res://Box/PlayerDetectionZone.tscn" id="3_2a6ox"]
-[ext_resource type="Script" path="res://Characters/Hitbox.gd" id="4_7q765"]
+[ext_resource type="Script" path="res://Characters/Enemies/HitboxEnemy.gd" id="4_m278j"]
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_u14jn"]
 animations = []
@@ -11,11 +11,34 @@ animations = []
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_2cg2a"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p67vi"]
-radius = 5.09902
+radius = 6.08276
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_okc3a"]
+properties/0/path = NodePath(".:position")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:hp")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("HealthBar:value")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("HealthBar:max_value")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath("HealthBar:visible")
+properties/4/spawn = true
+properties/4/sync = true
+properties/5/path = NodePath("AnimationPlayer:current_animation")
+properties/5/spawn = true
+properties/5/sync = true
+properties/6/path = NodePath(".:max_speed")
+properties/6/spawn = true
+properties/6/sync = true
 
 [node name="Enemy" instance=ExtResource("1")]
-collision_layer = 4
-collision_mask = 5
+collision_layer = 132
+collision_mask = 133
 script = ExtResource("2")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
@@ -29,17 +52,19 @@ libraries = {
 }
 
 [node name="PathTimer" type="Timer" parent="." index="5"]
-wait_time = 0.5
-autostart = true
+wait_time = 0.2
 
 [node name="PlayerDetectionZone" parent="." index="6" instance=ExtResource("3_2a6ox")]
 visible = false
 
 [node name="Hitbox" type="Area2D" parent="." index="7"]
 collision_mask = 2
-script = ExtResource("4_7q765")
+script = ExtResource("4_m278j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Hitbox" index="0"]
 shape = SubResource("CircleShape2D_p67vi")
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="8"]
+replication_config = SubResource("SceneReplicationConfig_okc3a")
 
 [connection signal="timeout" from="PathTimer" to="." method="_on_path_timer_timeout"]

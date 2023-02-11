@@ -8,22 +8,25 @@ var path = 0
 @onready var PZ = playerDetectionZone
 @onready var hitbox: Area2D = $Hitbox
 
+# TODO: explode packed scene or shader destroy
+
+# on enter, they're controlled by the server.
+func _enter_tree():
+	set_multiplayer_authority(1)
+
 func _ready() -> void:
-	# This should be a signal for "die":
-	# var __ = connect("tree_exited", get_parent(), "_on_enemy_killed")
-	print('Ready, mob', hp)
-	max_speed = 50
+	max_speed = 35
 	state_machine.set_state(0)
-		
+
+# NOTE: THIS IS FOR OFFENSIVE PURPOSES. This dir is the direction the enemy is moving.
 func _process(_delta: float) -> void:
 	hitbox.knockback_direction = velocity.normalized()
 
 func _physics_process(delta):
-		if PZ.player != null:
-			accelerate_towards_point(PZ.player.global_position, delta)
-		else:
-			pass
-
+			if PZ.player != null:
+				accelerate_towards_point(PZ.player.global_position, delta)
+			else:
+				pass
 	# if softCollision.is_colliding():
 	#	velocity += softCollision.get_push_vector() * delta * 400
 	# velocity = move_and_slide(velocity).
@@ -38,12 +41,12 @@ func accelerate_towards_point(point, delta):
 	move_and_slide()
 	
 func _on_path_timer_timeout():
-	pass
 	# if is_instance_valid(PZ.player):
 	#	chase()
 	# else:
 	#	path_timer.stop()
 	#	mov_direction = Vector2.ZERO
+	pass
 		
 func _get_path_to_player() -> void:
 	# print(' i want to move towards')

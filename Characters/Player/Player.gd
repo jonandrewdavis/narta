@@ -12,22 +12,31 @@ signal weapon_droped(index)
 @onready var parent: Node2D = get_parent()
 @onready var weapons: Node2D = $Weapons
 
-var username = '';
+const RESPAWN_RADIUS = 200
 
-const RESPAWN_RADIUS = 250
+func _enter_tree():
+	set_multiplayer_authority(str(name).to_int())
 
 func _ready() -> void:
+	if not is_multiplayer_authority(): return
 	emit_signal("weapon_picked_up", weapons.get_child(0).get_texture())
-	userlabel.text = username
+	userlabel.text = SavedData.username		
+	add_child(Camera2D.new())
 	_restore_previous_state()
 	
 func is_player():
 	return true
 
 func _restore_previous_state() -> void:
+	max_speed = 100
 	max_hp = 5
-	set_hp(5)
+	hp = 5
+	if randi() / 2 == 0:
+		position = Vector2(0 + randf() * RESPAWN_RADIUS, 0 + randf() * RESPAWN_RADIUS)
+	else: 
+		position = Vector2(0 - randf() * RESPAWN_RADIUS, 0 - randf() * RESPAWN_RADIUS)
 	state_machine.set_state(state_machine.states.idle)
+	_update_health_bar()
 	
 	for weapon in SavedData.weapons:
 		weapon = weapon.duplicate()
@@ -45,6 +54,8 @@ func _restore_previous_state() -> void:
 	
 
 func _process(_delta: float) -> void:
+	if not is_multiplayer_authority(): return
+	
 	var mouse_direction: Vector2 = (get_global_mouse_position() - global_position).normalized()
 	
 	if mouse_direction.x > 0 and animated_sprite.flip_h:
@@ -54,8 +65,12 @@ func _process(_delta: float) -> void:
 		
 	current_weapon.move(mouse_direction)
 
+func _unhandled_input(event):
+	if not is_multiplayer_authority(): return
 
 func get_input() -> void:
+	if not is_multiplayer_authority(): return
+	
 	mov_direction = Vector2.ZERO
 	mov_direction.x = Input.get_action_strength("ui_right") - Input.get_action_strength("ui_left")
 	mov_direction.y = Input.get_action_strength("ui_down") - Input.get_action_strength("ui_up")
@@ -126,10 +141,8 @@ func _drop_weapon() -> void:
 		
 		
 func cancel_attack() -> void:
-	current_weapon.cancel_attack()
+	pass
+	# current_weapon.cancel_attack()
 	
-		
 func respawn() -> void:
-	mov_direction = Vector2.ZERO
-	position = Vector2(0 + randf()* RESPAWN_RADIUS,0 + randf()* RESPAWN_RADIUS)
 	_restore_previous_state()

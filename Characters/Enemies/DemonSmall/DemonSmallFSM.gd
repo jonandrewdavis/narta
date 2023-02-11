@@ -8,12 +8,13 @@ func _init():
 	
 func _ready() -> void:
 	set_state(states.chase)
-	
-	
+
+# this doesn't do anythign
 func _state_logic(_delta: float) -> void:
 	if state == states.chase:
 		parent.chase()
 		parent.move()
+	
 		
 func _get_transition() -> int:
 	match state:
@@ -30,3 +31,4 @@ func _enter_state(_previous_state: int, new_state: int) -> void:
 			animation_player.play("hurt")
 		states.dead:
 			animation_player.play("dead")
+			parent.max_speed = 0

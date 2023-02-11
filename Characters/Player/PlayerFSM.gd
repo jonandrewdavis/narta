@@ -38,7 +38,8 @@ func _enter_state(_previous_state: int, new_state: int) -> void:
 			animation_player.play("move")
 		states.hurt:
 			animation_player.play("hurt")
-			parent.cancel_attack()
+			# parent.cancel_attack()
 		states.dead:
 			animation_player.play("dead")
-			parent.cancel_attack()
+			parent.max_speed = 0
+			# parent.cancel_attack()

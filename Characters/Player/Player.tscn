@@ -1,4 +1,4 @@
-[gd_scene load_steps=21 format=3 uid="uid://cldinnvk54gag"]
+[gd_scene load_steps=22 format=3 uid="uid://cldinnvk54gag"]
 
 [ext_resource type="PackedScene" uid="uid://yxn00wsmdix6" path="res://Characters/Character.tscn" id="1"]
 [ext_resource type="Script" path="res://Characters/Player/Player.gd" id="4"]
@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://p6owxvdwh2s6" path="res://Art/DungeonTilesetFrames/knight_m_run_anim_f2.png" id="11_25nhm"]
 [ext_resource type="Texture2D" uid="uid://dkpfoco6newe1" path="res://Art/DungeonTilesetFrames/knight_m_run_anim_f3.png" id="12_63r64"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_7u252"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_lne3h"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -73,11 +73,11 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_8m4lp"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_gsydo"]
 radius = 4.0
 
-[sub_resource type="Animation" id="Animation_qnkrk"]
-length = 5.0
+[sub_resource type="Animation" id="Animation_kxyn1"]
+length = 3.5
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -85,7 +85,7 @@ tracks/0/path = NodePath("AnimatedSprite2D:animation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0, 1.4, 4.8),
+"times": PackedFloat32Array(0, 0.4, 2.5),
 "transitions": PackedFloat32Array(1, 1, 1),
 "update": 1,
 "values": ["idle", "dead", &"idle"]
@@ -97,7 +97,7 @@ tracks/1/path = NodePath("AnimatedSprite2D:visible")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 1.4, 4.8),
+"times": PackedFloat32Array(0, 0.1, 0.2, 0.3, 2.2, 2.9),
 "transitions": PackedFloat32Array(1, 1, 1, 1, 1, 1),
 "update": 1,
 "values": [false, true, false, true, false, true]
@@ -109,7 +109,7 @@ tracks/2/path = NodePath(".")
 tracks/2/interp = 1
 tracks/2/loop_wrap = true
 tracks/2/keys = {
-"times": PackedFloat32Array(4.8),
+"times": PackedFloat32Array(2.7),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
@@ -117,7 +117,7 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_j7drf"]
+[sub_resource type="Animation" id="Animation_omw3l"]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -156,7 +156,7 @@ tracks/2/keys = {
 "values": [1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_6a56v"]
+[sub_resource type="Animation" id="Animation_7mqmq"]
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -182,8 +182,20 @@ tracks/1/keys = {
 "update": 1,
 "values": [0, 1]
 }
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:visible")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0.1),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
-[sub_resource type="Animation" id="Animation_wjr0y"]
+[sub_resource type="Animation" id="Animation_2axqc"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
@@ -211,13 +223,36 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_cmwbd"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ww2lr"]
 _data = {
-"dead": SubResource("Animation_qnkrk"),
-"hurt": SubResource("Animation_j7drf"),
-"idle": SubResource("Animation_6a56v"),
-"move": SubResource("Animation_wjr0y")
+"dead": SubResource("Animation_kxyn1"),
+"hurt": SubResource("Animation_omw3l"),
+"idle": SubResource("Animation_7mqmq"),
+"move": SubResource("Animation_2axqc")
 }
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_hagoe"]
+properties/0/path = NodePath("AnimationPlayer:current_animation")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:position")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("Label:text")
+properties/2/spawn = false
+properties/2/sync = true
+properties/3/path = NodePath("HealthBar:value")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath("HealthBar:max_value")
+properties/4/spawn = true
+properties/4/sync = true
+properties/5/path = NodePath("HealthBar:visible")
+properties/5/spawn = true
+properties/5/sync = true
+properties/6/path = NodePath(".:hp")
+properties/6/spawn = true
+properties/6/sync = true
 
 [node name="Player" instance=ExtResource("1")]
 collision_layer = 2
@@ -243,23 +278,24 @@ script = ExtResource("5")
 
 [node name="AnimatedSprite2D" parent="." index="2"]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_7u252")
-animation = &"hurt"
+position = Vector2(0, -2)
+sprite_frames = SubResource("SpriteFrames_lne3h")
+animation = &"dead"
 autoplay = "idle"
-frame = 3
 
 [node name="CollisionShape2D" parent="." index="3"]
 position = Vector2(0, 3)
-shape = SubResource("CircleShape2D_8m4lp")
+shape = SubResource("CircleShape2D_gsydo")
 
 [node name="AnimationPlayer" parent="." index="4"]
 autoplay = "idle"
 libraries = {
-"": SubResource("AnimationLibrary_cmwbd")
+"": SubResource("AnimationLibrary_ww2lr")
 }
 
-[node name="Camera2D" type="Camera2D" parent="." index="5"]
-
-[node name="Weapons" type="Node2D" parent="." index="8"]
+[node name="Weapons" type="Node2D" parent="." index="6"]
 
 [node name="Sword" parent="Weapons" index="0" instance=ExtResource("6")]
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="7"]
+replication_config = SubResource("SceneReplicationConfig_hagoe")

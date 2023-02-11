@@ -16,7 +16,7 @@
 [ext_resource type="Texture2D" uid="uid://eudnwtjuu4s6" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/enemies/goblin/goblin_run_anim_f4.png" id="14_0m5t4"]
 [ext_resource type="Texture2D" uid="uid://b34smxvfkfeey" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/enemies/goblin/goblin_run_anim_f5.png" id="15_nhl5v"]
 
-[sub_resource type="SpriteFrames" id="17"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_nya5c"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -84,10 +84,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="18"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_48x55"]
 radius = 4.0
 
-[sub_resource type="Animation" id="19"]
+[sub_resource type="Animation" id="Animation_yrohg"]
 resource_name = "dead"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -140,7 +140,7 @@ tracks/3/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="20"]
+[sub_resource type="Animation" id="Animation_xi6q4"]
 resource_name = "hurt"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -179,7 +179,7 @@ tracks/2/keys = {
 "values": [false, true, false, true]
 }
 
-[sub_resource type="Animation" id="21"]
+[sub_resource type="Animation" id="Animation_h2wgy"]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -206,7 +206,7 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
-[sub_resource type="Animation" id="22"]
+[sub_resource type="Animation" id="Animation_1s80s"]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -233,12 +233,12 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3, 4, 5]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_g78ci"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_kqk7g"]
 _data = {
-"dead": SubResource("19"),
-"hurt": SubResource("20"),
-"idle": SubResource("21"),
-"move": SubResource("22")
+"dead": SubResource("Animation_yrohg"),
+"hurt": SubResource("Animation_xi6q4"),
+"idle": SubResource("Animation_h2wgy"),
+"move": SubResource("Animation_1s80s")
 }
 
 [node name="Goblin" instance=ExtResource("1")]
@@ -249,16 +249,16 @@ projectile_speed = 125
 script = ExtResource("6")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
-sprite_frames = SubResource("17")
+sprite_frames = SubResource("SpriteFrames_nya5c")
 animation = &"dead"
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(1, 2)
-shape = SubResource("18")
+shape = SubResource("CircleShape2D_48x55")
 
 [node name="AnimationPlayer" parent="." index="3"]
 libraries = {
-"": SubResource("AnimationLibrary_g78ci")
+"": SubResource("AnimationLibrary_kqk7g")
 }
 
 [node name="AttackTimer" type="Timer" parent="." index="5"]
@@ -266,8 +266,5 @@ wait_time = 1.5
 one_shot = true
 
 [node name="AimRayCast" type="RayCast2D" parent="." index="6"]
-
-[node name="PathTimer" parent="." index="7"]
-wait_time = 0.2
 
 [connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]

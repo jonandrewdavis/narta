@@ -1,15 +1,7 @@
-[gd_scene load_steps=6 format=3 uid="uid://yxn00wsmdix6"]
+[gd_scene load_steps=5 format=3 uid="uid://yxn00wsmdix6"]
 
 [ext_resource type="Script" path="res://Characters/Character.gd" id="1"]
 [ext_resource type="Script" path="res://Characters/FSM.gd" id="2"]
-
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_co5y0"]
-properties/0/path = NodePath(".:position")
-properties/0/spawn = true
-properties/0/sync = true
-properties/1/path = NodePath("AnimationPlayer:current_animation")
-properties/1/spawn = true
-properties/1/sync = true
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71cgp"]
 
@@ -27,9 +19,6 @@ script = ExtResource("2")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
-
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="."]
-replication_config = SubResource("SceneReplicationConfig_co5y0")
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 visible = false
