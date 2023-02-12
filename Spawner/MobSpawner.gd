@@ -27,6 +27,7 @@ func _on_timer_timeout():
 func add_enemy():
 	var newDemon = DemonSmall.instantiate()
 	newDemon.global_position = gen_random_pos()
+	print(get_parent())
 	get_parent().add_child(newDemon, true)	
 
 

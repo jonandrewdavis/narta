@@ -11,7 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://ex05svwlacuy" path="res://Assets/imp/imp_run_anim_f2.png" id="8_ay173"]
 [ext_resource type="Texture2D" uid="uid://qrppbst682rg" path="res://Assets/imp/imp_run_anim_f3.png" id="9_bc6nx"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_ji06g"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_a1btv"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -64,11 +64,12 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_74o8u"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_f7hf3"]
 radius = 5.09902
 
-[sub_resource type="Animation" id="Animation_u4s8g"]
+[sub_resource type="Animation" id="Animation_qcyws"]
 resource_name = "dead"
+length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -88,15 +89,15 @@ tracks/1/path = NodePath(".")
 tracks/1/interp = 1
 tracks/1/loop_wrap = true
 tracks/1/keys = {
-"times": PackedFloat32Array(0.8),
+"times": PackedFloat32Array(1.2),
 "transitions": PackedFloat32Array(1),
 "values": [{
 "args": [],
-"method": &"queue_free"
+"method": &"_die"
 }]
 }
 
-[sub_resource type="Animation" id="Animation_b5r2w"]
+[sub_resource type="Animation" id="Animation_wc3pn"]
 resource_name = "hurt"
 length = 0.6
 tracks/0/type = "value"
@@ -124,7 +125,7 @@ tracks/1/keys = {
 "values": [false, true, false, true]
 }
 
-[sub_resource type="Animation" id="Animation_k8jyk"]
+[sub_resource type="Animation" id="Animation_2sw36"]
 resource_name = "idle"
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -139,7 +140,7 @@ tracks/0/keys = {
 "values": [&"idle"]
 }
 
-[sub_resource type="Animation" id="Animation_2lmt3"]
+[sub_resource type="Animation" id="Animation_gxvjd"]
 resource_name = "walk"
 length = 0.8
 loop_mode = 1
@@ -180,12 +181,12 @@ tracks/2/keys = {
 "values": [true]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_opnnl"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_tw3iu"]
 _data = {
-"dead": SubResource("Animation_u4s8g"),
-"hurt": SubResource("Animation_b5r2w"),
-"idle": SubResource("Animation_k8jyk"),
-"walk": SubResource("Animation_2lmt3")
+"dead": SubResource("Animation_qcyws"),
+"hurt": SubResource("Animation_wc3pn"),
+"idle": SubResource("Animation_2sw36"),
+"walk": SubResource("Animation_gxvjd")
 }
 
 [node name="DemonSmall" instance=ExtResource("1_u1ea2")]
@@ -195,17 +196,17 @@ safe_margin = 0.1
 script = ExtResource("2_0wvdk")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
-sprite_frames = SubResource("SpriteFrames_ji06g")
+sprite_frames = SubResource("SpriteFrames_a1btv")
 animation = &"dead"
 autoplay = "idle"
 
 [node name="CollisionShape2D" parent="." index="2"]
-shape = SubResource("CircleShape2D_74o8u")
+shape = SubResource("CircleShape2D_f7hf3")
 
 [node name="AnimationPlayer" parent="." index="3"]
 autoplay = "idle"
 libraries = {
-"": SubResource("AnimationLibrary_opnnl")
+"": SubResource("AnimationLibrary_tw3iu")
 }
 
 [node name="PathTimer" parent="." index="5"]

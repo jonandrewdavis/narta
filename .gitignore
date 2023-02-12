@@ -23,3 +23,5 @@ mono_crash.*.json
 *.exe
 *.pck
 *.zip
+
+*.pem

@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://bjm7hqccnpl5h"]
+
+[ext_resource type="Script" path="res://addons/inventory_editor/InventoryItem2D.gd" id="1_4dhgi"]
+[ext_resource type="PackedScene" uid="uid://dq30mwf216bjo" path="res://Items/Coal.tscn" id="2_lye2u"]
+
+[node name="CoalItem" type="Node2D"]
+script = ExtResource("1_4dhgi")
+item_put = "c9054497-3242-4056-8230-a21d891c916f"
+to_inventory = "cbc0ed38-7550-4d01-a07a-8b9f11c0a9dd"
+
+[node name="InventoryItem_c9054497-3242-4056-8230-a21d891c916f" parent="." instance=ExtResource("2_lye2u")]

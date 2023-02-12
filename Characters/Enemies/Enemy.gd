@@ -8,6 +8,8 @@ var path = 0
 @onready var PZ = playerDetectionZone
 @onready var hitbox: Area2D = $Hitbox
 
+var CoalItem = preload("res://Items/CoalItem.tscn")
+
 # TODO: explode packed scene or shader destroy
 
 # on enter, they're controlled by the server.
@@ -61,3 +63,13 @@ func _get_path_to_move_away_from_player() -> void:
 	# var dir: Vector2 = (global_position - PZ.player.position).normalized()
 	# spath = navigation.get_simple_path(global_position, global_position + dir * 100)
 	pass
+
+@rpc('any_peer')
+func _die():
+	var world = get_tree().get_root().get_node("Main").get_node("World")
+	if world != null:
+		var newCoal = CoalItem.instantiate()
+		print(global_position)
+		newCoal.position = global_position
+		world.add_child(newCoal, true)
+	queue_free()

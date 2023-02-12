@@ -85,7 +85,7 @@ func _unhandled_input(event):
 		UIref._on_inventory_button_pressed()
 		return
 	if Input.is_action_just_pressed("ui_escape"):
-		get_tree().quit()
+		UIref._on_open_menu()
 
 
 func get_input() -> void:

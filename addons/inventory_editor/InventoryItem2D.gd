@@ -16,9 +16,12 @@ const questManagerName = "QuestManager"
 @export var remove_collected: bool = true
 @export var autosave: bool = true
 
+@rpc('any_peer')
 func _ready() -> void:
+	print('ready coal')
 	if get_tree().get_root().has_node(InventoryManagerName):
 		_inventoryManager = get_tree().get_root().get_node(InventoryManagerName)
+		print('manager:',_inventoryManager)
 		if has_node("InventoryItem_" + item_put + "/Area2D"):
 			var area = get_node("InventoryItem_" + item_put + "/Area2D")
 			if not area.body_entered.is_connected(_on_body_entered):
@@ -28,11 +31,12 @@ func _ready() -> void:
 	if get_tree().get_root().has_node(questManagerName):
 		questManager = get_tree().get_root().get_node(questManagerName)
 
+@rpc('any_peer')
 func _on_body_entered(body: Node) -> void:
-	if _inventoryManager.player != body:
-		return
+	print('body entered')
 	inside = true
 	var remainder = _inventoryManager.add_item(to_inventory, item_put, quantity)
+	print('remove_collected')
 	if remove_collected and remainder == 0:
 		queue_free()
 		if questManager and questManager.is_quest_started():
@@ -62,7 +66,7 @@ func _process(delta: float) -> void:
 						scene.set_owner(get_tree().edited_scene_root)
 				root.remove_child(manager)
 				manager.queue_free()
-
+@rpc('any_peer')
 func _remove_old_childs() -> void:
 	for child in get_children():
 		if str(child.name).begins_with("InventoryItem_"):

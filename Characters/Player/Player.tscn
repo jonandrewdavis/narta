@@ -14,7 +14,7 @@
 [ext_resource type="Texture2D" uid="uid://p6owxvdwh2s6" path="res://Art/DungeonTilesetFrames/knight_m_run_anim_f2.png" id="11_25nhm"]
 [ext_resource type="Texture2D" uid="uid://dkpfoco6newe1" path="res://Art/DungeonTilesetFrames/knight_m_run_anim_f3.png" id="12_63r64"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_polac"]
+[sub_resource type="SpriteFrames" id="SpriteFrames_mcw1c"]
 animations = [{
 "frames": [{
 "duration": 1.0,
@@ -73,10 +73,10 @@ animations = [{
 "speed": 5.0
 }]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_kne7r"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_hdjgt"]
 radius = 4.0
 
-[sub_resource type="Animation" id="Animation_hg7k4"]
+[sub_resource type="Animation" id="Animation_pra6c"]
 length = 3.5
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -117,7 +117,7 @@ tracks/2/keys = {
 }]
 }
 
-[sub_resource type="Animation" id="Animation_df0sa"]
+[sub_resource type="Animation" id="Animation_tljxu"]
 length = 0.6
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -156,7 +156,7 @@ tracks/2/keys = {
 "values": [1, 2, 3]
 }
 
-[sub_resource type="Animation" id="Animation_qwnsj"]
+[sub_resource type="Animation" id="Animation_0jovk"]
 loop_mode = 1
 tracks/0/type = "value"
 tracks/0/imported = false
@@ -195,7 +195,7 @@ tracks/2/keys = {
 "values": [true]
 }
 
-[sub_resource type="Animation" id="Animation_ldxvt"]
+[sub_resource type="Animation" id="Animation_82fac"]
 length = 0.8
 loop_mode = 1
 tracks/0/type = "value"
@@ -223,15 +223,15 @@ tracks/1/keys = {
 "values": [0, 1, 2, 3]
 }
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_mx8fx"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_egfu4"]
 _data = {
-"dead": SubResource("Animation_hg7k4"),
-"hurt": SubResource("Animation_df0sa"),
-"idle": SubResource("Animation_qwnsj"),
-"move": SubResource("Animation_ldxvt")
+"dead": SubResource("Animation_pra6c"),
+"hurt": SubResource("Animation_tljxu"),
+"idle": SubResource("Animation_0jovk"),
+"move": SubResource("Animation_82fac")
 }
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_ivdsa"]
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_h1e6j"]
 properties/0/path = NodePath("AnimationPlayer:current_animation")
 properties/0/spawn = true
 properties/0/sync = true
@@ -270,18 +270,18 @@ script = ExtResource("5")
 [node name="AnimatedSprite2D" parent="." index="2"]
 texture_filter = 1
 position = Vector2(0, -2)
-sprite_frames = SubResource("SpriteFrames_polac")
+sprite_frames = SubResource("SpriteFrames_mcw1c")
 animation = &"dead"
 autoplay = "idle"
 
 [node name="CollisionShape2D" parent="." index="3"]
 position = Vector2(0, 3)
-shape = SubResource("CircleShape2D_kne7r")
+shape = SubResource("CircleShape2D_hdjgt")
 
 [node name="AnimationPlayer" parent="." index="4"]
 autoplay = "idle"
 libraries = {
-"": SubResource("AnimationLibrary_mx8fx")
+"": SubResource("AnimationLibrary_egfu4")
 }
 
 [node name="Weapons" type="Node2D" parent="." index="6"]
@@ -289,4 +289,4 @@ libraries = {
 [node name="Sword" parent="Weapons" index="0" instance=ExtResource("6")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="7"]
-replication_config = SubResource("SceneReplicationConfig_ivdsa")
+replication_config = SubResource("SceneReplicationConfig_h1e6j")
