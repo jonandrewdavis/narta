@@ -1,8 +1,6 @@
 extends Node2D
 
 var DemonSmall = preload("res://Characters/Enemies/DemonSmall/DemonSmall.tscn")
-var Goblin = preload("res://Characters/Enemies/Goblin/Goblin.tscn")
-
 
 @onready var spawnBoundary1 =  $Spawn1/SpawnShape.shape.extents
 @onready var spawnOrigin1 = $Spawn1/SpawnShape.global_position
@@ -25,10 +23,10 @@ func _on_timer_timeout():
 	add_enemy()
 
 func add_enemy():
-	var newDemon = DemonSmall.instantiate()
-	newDemon.global_position = gen_random_pos()
-	print(get_parent())
-	get_parent().add_child(newDemon, true)	
+	#var newDemon = DemonSmall.instantiate()
+	# newDemon.global_position = gen_random_pos()
+	# get_parent().add_child(newDemon, true)
+	pass	
 
 
 func get_random_position(up = true, down = true, left = true, right = true):

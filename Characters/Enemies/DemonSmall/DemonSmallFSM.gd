@@ -17,16 +17,18 @@ func _state_logic(_delta: float) -> void:
 	
 		
 func _get_transition() -> int:
+
 	match state:
 		states.hurt:
-			if not animation_player.is_playing():
+			if not animation_player.is_playing() and animation_player != null:
 				return states.chase
 	return -1
 	
 func _enter_state(_previous_state: int, new_state: int) -> void:
 	match new_state:
 		states.chase:
-			animation_player.play("walk")
+			if animation_player.has_animation("walk"):
+				animation_player.play("walk")
 		states.hurt:
 			animation_player.play("hurt")
 		states.dead:

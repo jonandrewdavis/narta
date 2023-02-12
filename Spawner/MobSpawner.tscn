@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://Spawner/MobSpawner.gd" id="1_khojc"]
 [ext_resource type="Texture2D" uid="uid://b6ligfo7nkk2w" path="res://Art/Icons19/starsB.png" id="2_mb68r"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_i5vsk"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_5qlxu"]
 size = Vector2(1815, 424)
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_vfky0"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_u1n5j"]
 size = Vector2(1788, 450.25)
 
 [node name="MobSpawner" type="Node2D"]
@@ -25,7 +25,7 @@ scale = Vector2(0.104605, 0.104605)
 texture = ExtResource("2_mb68r")
 
 [node name="SpawnShape" type="CollisionShape2D" parent="Spawn1"]
-shape = SubResource("RectangleShape2D_i5vsk")
+shape = SubResource("RectangleShape2D_5qlxu")
 
 [node name="Spawn2" type="Area2D" parent="."]
 position = Vector2(1, 554)
@@ -36,6 +36,6 @@ scale = Vector2(0.104605, 0.104605)
 texture = ExtResource("2_mb68r")
 
 [node name="SpawnShape2" type="CollisionShape2D" parent="Spawn2"]
-shape = SubResource("RectangleShape2D_vfky0")
+shape = SubResource("RectangleShape2D_u1n5j")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

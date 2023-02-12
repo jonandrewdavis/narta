@@ -12,7 +12,6 @@ var can_active_ability: bool = true
 @onready var hitbox: Area2D = get_node("Node2D/Sprite2D/Hitbox")
 @onready var charge_particles: GPUParticles2D = get_node("Node2D/ChargeParticles")
 @onready var player_detector: Area2D = get_node("PlayerDetector")
-@onready var tween: Tween = create_tween()
 @onready var cool_down_timer: Timer = get_node("CoolDownTimer")
 @onready var playerBody: CharacterBody2D = get_parent().get_parent();
 
@@ -74,22 +73,11 @@ func _on_PlayerDetector_body_entered(body: CharacterBody2D) -> void:
 		body.pick_up_weapon(self)
 		position = Vector2.ZERO
 	else:
-		var __ = tween.stop_all()
-		assert(__)
 		player_detector.set_collision_mask_value(1, true)
 		
 		
-func interpolate_pos(initial_pos: Vector2, final_pos: Vector2) -> void:
-	var __ = tween.interpolate_property(self, "position", initial_pos, final_pos, 0.8, Tween.TRANS_QUART, Tween.EASE_OUT)
-	assert(__)
-	__ = tween.start()
-	assert(__)
-	player_detector.set_collision_mask_value(0, true)
-
-
-func _on_Tween_tween_completed(_object: Object, _key: NodePath) -> void:
-	player_detector.set_collision_mask_value(1, true)
-
+func interpolate_pos(_initial_pos: Vector2, _final_pos: Vector2) -> void:
+	pass
 
 func _on_CoolDownTimer_timeout() -> void:
 	can_active_ability = true

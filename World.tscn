@@ -2894,7 +2894,7 @@ sources/8 = SubResource("TileSetAtlasSource_xut66")
 [sub_resource type="Environment" id="Environment_r3r3x"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_rg1iu"]
-radius = 293.615
+radius = 225.08
 
 [node name="World" type="Node2D"]
 script = ExtResource("1_uyt4d")

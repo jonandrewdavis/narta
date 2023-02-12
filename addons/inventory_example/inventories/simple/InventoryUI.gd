@@ -8,26 +8,31 @@ extends InventoryUI
 @export var Item: PackedScene
 
 func set_inventory_manager(inv_uuid, manager) -> void:
+	if not is_multiplayer_authority(): return
 	inventory = inv_uuid
 	_inventoryManager = manager
 	_update_view()
 
 func _ready() -> void:
+	if not is_multiplayer_authority(): return
 	if get_tree().get_root().has_node(InventoryManagerName):
 		_inventoryManager = get_tree().get_root().get_node(InventoryManagerName)
 	_update_view()
 
 func _update_view() -> void:
+	if not is_multiplayer_authority(): return
 	_clear_view()
 	_draw_view()
 
 func _clear_view() -> void:
+	if not is_multiplayer_authority(): return
 	var children = _grid_ui.get_children()
 	for child in children:
 		_grid_ui.remove_child(child)
 		child.queue_free()
 
 func _draw_view() -> void:
+	if not is_multiplayer_authority(): return
 	if _inventoryManager:
 		var inventory_db = _inventoryManager.get_inventory_db(inventory) as InventoryInventory
 		if inventory_db:

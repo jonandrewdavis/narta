@@ -1,7 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://yxn00wsmdix6"]
+[gd_scene load_steps=8 format=3 uid="uid://yxn00wsmdix6"]
 
 [ext_resource type="Script" path="res://Characters/Character.gd" id="1"]
 [ext_resource type="Script" path="res://Characters/FSM.gd" id="2"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_01vgn"]
+
+[sub_resource type="Animation" id="Animation_ydli4"]
+resource_name = "default"
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ppch"]
+_data = {
+"default": SubResource("Animation_ydli4")
+}
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_71cgp"]
 
@@ -15,10 +25,15 @@ script = ExtResource("1")
 script = ExtResource("2")
 
 [node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_01vgn")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+reset_on_save = false
+libraries = {
+"": SubResource("AnimationLibrary_8ppch")
+}
 
 [node name="HealthBar" type="ProgressBar" parent="."]
 visible = false

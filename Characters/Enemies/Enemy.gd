@@ -53,7 +53,6 @@ func _on_path_timer_timeout():
 		
 func _get_path_to_player() -> void:
 	# print(' i want to move towards')
-	#print(player, map)
 	# if player != null:
 	#	path = NavigationServer2D.map_get_path(map, global_position, player.position, false, 1)
 	pass
@@ -69,7 +68,5 @@ func _die():
 	var world = get_tree().get_root().get_node("Main").get_node("World")
 	if world != null:
 		var newCoal = CoalItem.instantiate()
-		print(global_position)
 		newCoal.position = global_position
 		world.add_child(newCoal, true)
-	queue_free()

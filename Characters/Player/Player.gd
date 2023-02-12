@@ -43,7 +43,7 @@ func _restore_previous_state() -> void:
 	max_speed = 100
 	max_hp = 5
 	hp = 5
-	if randi() / 2 == 0:
+	if randi() % 2 == 0:
 		position = Vector2(0 + randf() * RESPAWN_RADIUS, 0 + randf() * RESPAWN_RADIUS)
 	else: 
 		position = Vector2(0 - randf() * RESPAWN_RADIUS, 0 - randf() * RESPAWN_RADIUS)
@@ -78,10 +78,9 @@ func _process(_delta: float) -> void:
 	current_weapon.move(mouse_direction)
 
 
-func _unhandled_input(event):
+func _unhandled_input(_event):
 	if not is_multiplayer_authority(): return
 	if Input.is_action_just_pressed("inventory"):
-		print(UIref)
 		UIref._on_inventory_button_pressed()
 		return
 	if Input.is_action_just_pressed("ui_escape"):
@@ -159,16 +158,14 @@ func _drop_weapon() -> void:
 	weapons.call_deferred("remove_child", weapon_to_drop)
 	get_parent().call_deferred("add_child", weapon_to_drop)
 	weapon_to_drop.set_owner(get_parent())
-	await weapon_to_drop.tween.tree_entered
 	weapon_to_drop.show()
 	
-	var throw_dir: Vector2 = (get_global_mouse_position() - position).normalized()
-	weapon_to_drop.interpolate_pos(position, position + throw_dir * 50)
+	# var throw_dir: Vector2 = (get_global_mouse_position() - position).normalized()
+	# weapon_to_drop.interpolate_pos(position, position + throw_dir * 50)
 		
 		
 func cancel_attack() -> void:
-	pass
-	# current_weapon.cancel_attack()
+	current_weapon.cancel_attack()
 	
 func respawn() -> void:
 	_restore_previous_state()

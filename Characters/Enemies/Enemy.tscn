@@ -1,14 +1,19 @@
-[gd_scene load_steps=9 format=3 uid="uid://d1ieqk72dudgf"]
+[gd_scene load_steps=11 format=3 uid="uid://d1ieqk72dudgf"]
 
 [ext_resource type="PackedScene" uid="uid://yxn00wsmdix6" path="res://Characters/Character.tscn" id="1"]
 [ext_resource type="Script" path="res://Characters/Enemies/Enemy.gd" id="2"]
 [ext_resource type="PackedScene" uid="uid://c30k35ly7ca0q" path="res://Box/PlayerDetectionZone.tscn" id="3_2a6ox"]
+[ext_resource type="SpriteFrames" uid="uid://ix3xq83w5k2n" path="res://Characters/Enemies/DemonSmall/DemonSmallFrames.tres" id="3_wkviv"]
+[ext_resource type="AnimationLibrary" uid="uid://dg33xg8bw3lb2" path="res://Characters/Enemies/DemonSmall/DemonSmallAnimations.res" id="4_35r8m"]
 [ext_resource type="Script" path="res://Characters/Enemies/HitboxEnemy.gd" id="4_m278j"]
 
-[sub_resource type="SpriteFrames" id="SpriteFrames_u14jn"]
-animations = []
+[sub_resource type="Animation" id="Animation_ydli4"]
+resource_name = "default"
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_2cg2a"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_8ppch"]
+_data = {
+"default": SubResource("Animation_ydli4")
+}
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_p67vi"]
 radius = 6.08276
@@ -31,12 +36,13 @@ script = ExtResource("2")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 texture_filter = 1
-sprite_frames = SubResource("SpriteFrames_u14jn")
-animation = &""
+sprite_frames = ExtResource("3_wkviv")
+animation = &"walk"
 
 [node name="AnimationPlayer" parent="." index="3"]
 libraries = {
-"": SubResource("AnimationLibrary_2cg2a")
+"": SubResource("AnimationLibrary_8ppch"),
+"DemonSmallAnimations": ExtResource("4_35r8m")
 }
 
 [node name="PathTimer" type="Timer" parent="." index="5"]

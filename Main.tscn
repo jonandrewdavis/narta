@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://dom0ubhrhtma0"]
+[gd_scene load_steps=4 format=3 uid="uid://dom0ubhrhtma0"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_jimg5"]
 [ext_resource type="PackedScene" uid="uid://bkd34gv2qo74h" path="res://World.tscn" id="1_y72ed"]
+[ext_resource type="PackedScene" uid="uid://d0hmrybyykito" path="res://Characters/Enemies/DemonSmall/DemonSmall.tscn" id="3_ohbsu"]
 
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jimg5")
@@ -9,5 +10,9 @@ script = ExtResource("1_jimg5")
 [node name="World" parent="." instance=ExtResource("1_y72ed")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Characters/Player/Player.tscn", "res://Characters/Enemies/DemonSmall/DemonSmall.tscn", "res://Characters/HitEffect.tscn", "res://Characters/Enemies/Goblin/Goblin.tscn", "res://Items/CoalItem.tscn", "res://Items/Coal.tscn")
+_spawnable_scenes = PackedStringArray("res://Characters/Player/Player.tscn", "res://Characters/HitEffect.tscn", "res://Items/CoalItem.tscn", "res://Items/Coal.tscn", "res://Characters/Enemies/DemonSmall/DemonSmall.tscn")
 spawn_path = NodePath("../World")
+spawn_limit = 300
+
+[node name="DemonSmall" parent="." instance=ExtResource("3_ohbsu")]
+position = Vector2(-69, -67)

@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://bhu5hq8kx8pov"]
+[gd_scene load_steps=5 format=3 uid="uid://rnu65vkjhemj"]
 
 [ext_resource type="Script" path="res://addons/inventory_example/inventories/simple/InventoryUI.gd" id="1_x28gn"]
-[ext_resource type="PackedScene" uid="uid://do5m1vbsy45nd" path="res://UI/Inv/ItemNarta.tscn" id="2_chjke"]
+[ext_resource type="PackedScene" uid="uid://do5m1vbsy45nd" path="res://Spawner/ItemNarta.tscn" id="2_chjke"]
 
 [sub_resource type="Gradient" id="Gradient_d6a7w"]
 offsets = PackedFloat32Array(0.0528455, 1)

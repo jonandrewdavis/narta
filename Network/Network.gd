@@ -4,6 +4,7 @@ extends Node
 @onready var username = $MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer/user
 @onready var address_entry = $MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer/address
 @onready var join_button = $MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer/Join
+@onready var host_button = $MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer/Host
 
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
@@ -12,6 +13,7 @@ var Player = preload('res://Characters/Player/Player.tscn')
 var MobSpawner = preload("res://Spawner/MobSpawner.tscn")
 
 func _ready():
+	# NOTE: Could do this in features, but the sever is more flexible this way
 	var args = OS.get_cmdline_user_args()
 	print('DEBUG: STARTING')
 	for arg in args:
@@ -21,11 +23,17 @@ func _ready():
 				print('DEBUG: SERVER TIME -- server found')
 				await get_tree().create_timer(2).timeout
 				_on_host_pressed()
+	if OS.has_feature('client'):
+		host_button.hide()
+
 
 func _on_join_pressed():
 	main_menu.hide()
 	if username.text != '': SavedData.username = username.text
-	enet_peer.create_client('34.203.42.244', PORT)
+	if OS.has_feature('client'):
+		enet_peer.create_client('34.203.42.244', PORT)
+	else:
+		enet_peer.create_client('',PORT)
 	multiplayer.multiplayer_peer = enet_peer
 
 

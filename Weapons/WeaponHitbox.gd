@@ -8,6 +8,6 @@ func _ready():
 	pass
 
 # this is meant to clear our bushes and stuff.
-func _on_Hitbox_area_entered(area: Area2D) -> void:
+func _on_Hitbox_area_entered(_area: Area2D) -> void:
 	pass
 	# area.queue_free()

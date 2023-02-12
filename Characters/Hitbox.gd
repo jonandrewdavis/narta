@@ -45,5 +45,5 @@ func _on_body_exited(_body: CharacterBody2D) -> void:
 	
 func _on_body_entered(body: CharacterBody2D) -> void:
 	if body != null and body.has_method("take_damage"):
-		# print('collide calling damage, d: ', knockback_direction, 'f: ', knockback_force)
+		# print('_body_entered, calling take_damage, d: ', knockback_direction, 'f: ', knockback_force)
 		body.take_damage(damage, knockback_direction, knockback_force)

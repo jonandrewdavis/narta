@@ -22,7 +22,6 @@ func _get_transition() -> int:
 	return -1
 	
 func _enter_state(_previous_state: int, new_state: int) -> void:
-	print('state', new_state)
 	match new_state:
 		states.chase:
 			animation_player.play("fly")

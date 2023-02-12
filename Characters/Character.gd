@@ -42,7 +42,7 @@ func take_damage(dam: int, dir: Vector2, force: int) -> void:
 		_spawn_hit_effect()		
 		_update_health_bar()
 
-func take_knockback(dam: int, dir: Vector2, force: int) -> void:
+func take_knockback(_dam: int, dir: Vector2, force: int) -> void:
 		velocity += dir * force
 
 func _spawn_hit_effect() -> void:

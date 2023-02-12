@@ -2,8 +2,8 @@
 
 [ext_resource type="Script" path="res://Network/Network.gd" id="1_63yud"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_e0ibl"]
-bg_color = Color(0.219608, 0.219608, 0.45098, 1)
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_mtm5q"]
+bg_color = Color(0.352941, 0.211765, 0.352941, 1)
 
 [node name="Network" type="Node2D"]
 script = ExtResource("1_63yud")
@@ -17,7 +17,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 0
-theme_override_styles/panel = SubResource("StyleBoxFlat_e0ibl")
+theme_override_styles/panel = SubResource("StyleBoxFlat_mtm5q")
 metadata/_edit_use_anchors_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="MainMenuCanvas/MainMenu"]
@@ -31,11 +31,21 @@ theme_override_constants/margin_bottom = 15
 layout_mode = 2
 theme_override_constants/separation = 15
 
-[node name="Username" type="Label" parent="MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="Narta" type="Label" parent="MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer/VBoxContainer"]
 layout_mode = 2
 text = "narta"
 horizontal_alignment = 1
 uppercase = true
+
+[node name="Label2" type="Label" parent="MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer/VBoxContainer"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 8
+text = "an adventure game"
+horizontal_alignment = 1
 
 [node name="user" type="LineEdit" parent="MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
@@ -50,11 +60,6 @@ layout_mode = 2
 placeholder_text = "Enter Address (optional)"
 caret_blink = true
 caret_blink_interval = 0.5
-
-[node name="Label" type="Label" parent="MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer"]
-visible = false
-layout_mode = 2
-text = "Choose:"
 
 [node name="Join" type="Button" parent="MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer"]
 layout_mode = 2
