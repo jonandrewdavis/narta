@@ -16,12 +16,11 @@ const questManagerName = "QuestManager"
 @export var remove_collected: bool = true
 @export var autosave: bool = true
 
-@rpc('any_peer')
 func _ready() -> void:
-	print('ready coal')
+	print('remove_collected')
+	if not is_multiplayer_authority(): return
 	if get_tree().get_root().has_node(InventoryManagerName):
 		_inventoryManager = get_tree().get_root().get_node(InventoryManagerName)
-		print('manager:',_inventoryManager)
 		if has_node("InventoryItem_" + item_put + "/Area2D"):
 			var area = get_node("InventoryItem_" + item_put + "/Area2D")
 			if not area.body_entered.is_connected(_on_body_entered):
@@ -34,6 +33,10 @@ func _ready() -> void:
 @rpc('any_peer')
 func _on_body_entered(body: Node) -> void:
 	print('body entered')
+	# if _inventoryManager.player != body:
+		# return
+	if not body.has_method('is_player'):
+		return
 	inside = true
 	var remainder = _inventoryManager.add_item(to_inventory, item_put, quantity)
 	print('remove_collected')
@@ -43,6 +46,7 @@ func _on_body_entered(body: Node) -> void:
 			var quest = questManager.started_quest()
 			var task = questManager.get_task_and_update_quest_state(quest, item_put, quantity, autosave)
 
+@rpc('any_peer')
 func _on_body_exited(body: Node) -> void:
 	inside = false
 
@@ -66,7 +70,7 @@ func _process(delta: float) -> void:
 						scene.set_owner(get_tree().edited_scene_root)
 				root.remove_child(manager)
 				manager.queue_free()
-@rpc('any_peer')
+
 func _remove_old_childs() -> void:
 	for child in get_children():
 		if str(child.name).begins_with("InventoryItem_"):

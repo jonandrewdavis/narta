@@ -25,7 +25,7 @@ func _ready():
 func _on_join_pressed():
 	main_menu.hide()
 	if username.text != '': SavedData.username = username.text
-	enet_peer.create_client(address_entry.text, PORT)
+	enet_peer.create_client('34.203.42.244', PORT)
 	multiplayer.multiplayer_peer = enet_peer
 
 
