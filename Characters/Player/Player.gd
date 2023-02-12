@@ -165,7 +165,8 @@ func _drop_weapon() -> void:
 		
 		
 func cancel_attack() -> void:
-	current_weapon.cancel_attack()
+	pass
+#	current_weapon.cancel_attack()
 	
 func respawn() -> void:
 	_restore_previous_state()

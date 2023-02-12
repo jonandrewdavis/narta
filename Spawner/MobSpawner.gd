@@ -23,11 +23,9 @@ func _on_timer_timeout():
 	add_enemy()
 
 func add_enemy():
-	#var newDemon = DemonSmall.instantiate()
-	# newDemon.global_position = gen_random_pos()
-	# get_parent().add_child(newDemon, true)
-	pass	
-
+	var newDemon = DemonSmall.instantiate()
+	newDemon.global_position = gen_random_pos()
+	get_parent().add_child(newDemon, true)
 
 func get_random_position(up = true, down = true, left = true, right = true):
 	var vpr = get_viewport_rect().size * randf_range(1.1, 1.4)

@@ -13,7 +13,7 @@ size = Vector2(1788, 450.25)
 script = ExtResource("1_khojc")
 
 [node name="Timer" type="Timer" parent="."]
-wait_time = 3.0
+wait_time = 2.0
 autostart = true
 
 [node name="Spawn1" type="Area2D" parent="."]

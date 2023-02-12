@@ -27,10 +27,9 @@ func _get_transition() -> int:
 func _enter_state(_previous_state: int, new_state: int) -> void:
 	match new_state:
 		states.chase:
-			if animation_player.has_animation("walk"):
-				animation_player.play("walk")
+			animation_player.play("DemonSmallAnimations/walk")
 		states.hurt:
-			animation_player.play("hurt")
+			animation_player.play("DemonSmallAnimations/hurt")
 		states.dead:
-			animation_player.play("dead")
+			animation_player.play("DemonSmallAnimations/dead")
 			parent.max_speed = 0

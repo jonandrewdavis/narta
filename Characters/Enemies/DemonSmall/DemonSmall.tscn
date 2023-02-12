@@ -1,19 +1,13 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0hmrybyykito"]
+[gd_scene load_steps=6 format=3 uid="uid://d0hmrybyykito"]
 
 [ext_resource type="PackedScene" uid="uid://d1ieqk72dudgf" path="res://Characters/Enemies/Enemy.tscn" id="1_u1ea2"]
 [ext_resource type="Script" path="res://Characters/Enemies/DemonSmall/DemonSmallFSM.gd" id="2_0wvdk"]
-[ext_resource type="SpriteFrames" uid="uid://ix3xq83w5k2n" path="res://Characters/Enemies/DemonSmall/DemonSmallFrames.tres" id="3_6bay0"]
+[ext_resource type="AnimationLibrary" uid="uid://dg33xg8bw3lb2" path="res://Characters/Enemies/DemonSmall/DemonSmallAnimations.res" id="3_vc7v0"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_a348w"]
 radius = 5.09902
 
-[sub_resource type="Animation" id="Animation_4rnhb"]
-resource_name = "new_animation"
-
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_urmov"]
-_data = {
-"new_animation": SubResource("Animation_4rnhb")
-}
 
 [node name="DemonSmall" instance=ExtResource("1_u1ea2")]
 safe_margin = 0.1
@@ -22,7 +16,6 @@ safe_margin = 0.1
 script = ExtResource("2_0wvdk")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
-sprite_frames = ExtResource("3_6bay0")
 animation = &"idle"
 autoplay = "idle"
 
@@ -31,8 +24,10 @@ shape = SubResource("CircleShape2D_a348w")
 
 [node name="AnimationPlayer" parent="." index="3"]
 autoplay = "DemonSmallAnimations/idle"
+reset_on_save = true
 libraries = {
-"": SubResource("AnimationLibrary_urmov")
+"": SubResource("AnimationLibrary_urmov"),
+"DemonSmallAnimations": ExtResource("3_vc7v0")
 }
 
 [node name="PathTimer" parent="." index="5"]
