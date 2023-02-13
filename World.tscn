@@ -1,4 +1,4 @@
-[gd_scene load_steps=24 format=3 uid="uid://bkd34gv2qo74h"]
+[gd_scene load_steps=25 format=3 uid="uid://bkd34gv2qo74h"]
 
 [ext_resource type="Script" path="res://World.gd" id="1_uyt4d"]
 [ext_resource type="Texture2D" uid="uid://cg7jhiwq2h2sq" path="res://Assets/Texture/TX Tileset Grass.png" id="2_gs5ly"]
@@ -11,6 +11,7 @@
 [ext_resource type="Texture2D" uid="uid://pg3uyri5gn78" path="res://Assets/Texture/TX Shadow.png" id="8_locdx"]
 [ext_resource type="Texture2D" uid="uid://bdtmtlqskrnyb" path="res://Assets/TilesA2.png" id="9_g5gr6"]
 [ext_resource type="Texture2D" uid="uid://dg65on8miox0v" path="res://Assets/FE8 - Snowy Bern.png" id="11_8evff"]
+[ext_resource type="PackedScene" uid="uid://cgr0tpl8igbu" path="res://Characters/Enemies/DemonLarge/DemonLarge.tscn" id="12_51sst"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oero3"]
 texture = ExtResource("2_gs5ly")
@@ -2932,3 +2933,6 @@ collision_mask = 128
 [node name="ForceShape" type="CollisionShape2D" parent="Force"]
 shape = SubResource("CircleShape2D_rg1iu")
 debug_color = Color(0.584314, 0.541176, 0.262745, 0.419608)
+
+[node name="DemonLarge" parent="." instance=ExtResource("12_51sst")]
+position = Vector2(-230, -101)

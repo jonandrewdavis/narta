@@ -6,7 +6,7 @@ var path = 0
 @onready var path_timer: Timer = $PathTimer
 @onready var playerDetectionZone = $PlayerDetectionZone
 @onready var PZ = playerDetectionZone
-@onready var hitbox: Area2D = $Hitbox
+@onready var enemy_hitbox: Area2D = $EnemyHitbox
 
 var CoalItem = preload("res://Items/CoalItem.tscn")
 
@@ -23,7 +23,7 @@ func _ready() -> void:
 
 # NOTE: THIS IS FOR OFFENSIVE PURPOSES. This dir is the direction the enemy is moving.
 func _process(_delta: float) -> void:
-	hitbox.knockback_direction = velocity.normalized()
+	enemy_hitbox.knockback_direction = velocity.normalized()
 
 func _physics_process(delta):
 			if PZ.player != null:

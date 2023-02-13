@@ -1,14 +1,17 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0hmrybyykito"]
+[gd_scene load_steps=8 format=3 uid="uid://d0hmrybyykito"]
 
 [ext_resource type="PackedScene" uid="uid://d1ieqk72dudgf" path="res://Characters/Enemies/Enemy.tscn" id="1_u1ea2"]
 [ext_resource type="Script" path="res://Characters/Enemies/DemonSmall/DemonSmallFSM.gd" id="2_0wvdk"]
 [ext_resource type="SpriteFrames" uid="uid://bum5ebg0vu8j8" path="res://Characters/Enemies/DemonSmall/DemonSmall.tres" id="3_6b3yc"]
 [ext_resource type="AnimationLibrary" uid="uid://dg33xg8bw3lb2" path="res://Characters/Enemies/DemonSmall/DemonSmallAnimations.res" id="3_vc7v0"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_tkra5"]
-radius = 5.09902
+[sub_resource type="CircleShape2D" id="CircleShape2D_ibok6"]
+radius = 5.0
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_v8mv3"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_rpy5u"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_j5xgo"]
+radius = 6.08276
 
 [node name="DemonSmall" instance=ExtResource("1_u1ea2")]
 safe_margin = 0.1
@@ -21,18 +24,18 @@ sprite_frames = ExtResource("3_6b3yc")
 animation = &"hurt"
 
 [node name="CollisionShape2D" parent="." index="2"]
-shape = SubResource("CircleShape2D_tkra5")
+shape = SubResource("CircleShape2D_ibok6")
 
 [node name="AnimationPlayer" parent="." index="3"]
 autoplay = "DemonSmallAnimations/idle"
 reset_on_save = true
 libraries = {
-"": SubResource("AnimationLibrary_v8mv3"),
+"": SubResource("AnimationLibrary_rpy5u"),
 "DemonSmallAnimations": ExtResource("3_vc7v0")
 }
 
 [node name="PathTimer" parent="." index="5"]
 wait_time = 0.8
 
-[node name="Hitbox" parent="." index="7"]
-metadata/_edit_lock_ = true
+[node name="CollisionShape2D" parent="EnemyHitbox" index="0"]
+shape = SubResource("CircleShape2D_j5xgo")

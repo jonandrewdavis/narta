@@ -33,8 +33,6 @@ func _on_inventory_button_pressed() -> void:
 		_inv.show()
 
 func _on_open_menu():
-	if OS.is_debug_build():
-		_on_quit_pressed()
 	if (multiplayer.get_peers()): 
 		var count = multiplayer.get_peers().size()
 		conLabel.text = "Connected players: " + str(count)
