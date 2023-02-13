@@ -1,0 +1,61 @@
+[gd_scene load_steps=9 format=3 uid="uid://cgr0tpl8igbu"]
+
+[ext_resource type="PackedScene" uid="uid://d1ieqk72dudgf" path="res://Characters/Enemies/Enemy.tscn" id="1_cktqj"]
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8scfd"]
+animations = [{
+"frames": [],
+"loop": true,
+"name": &"attack",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [],
+"loop": true,
+"name": &"move",
+"speed": 5.0
+}]
+
+[sub_resource type="Animation" id="Animation_gt51y"]
+
+[sub_resource type="Animation" id="Animation_q5y7k"]
+
+[sub_resource type="Animation" id="Animation_3irdv"]
+
+[sub_resource type="Animation" id="Animation_ufu0w"]
+
+[sub_resource type="Animation" id="Animation_u22w3"]
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_f5rp2"]
+_data = {
+"attack": SubResource("Animation_gt51y"),
+"dead": SubResource("Animation_q5y7k"),
+"hurt": SubResource("Animation_3irdv"),
+"idle": SubResource("Animation_ufu0w"),
+"move": SubResource("Animation_u22w3")
+}
+
+[node name="DemonLarge" instance=ExtResource("1_cktqj")]
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_8scfd")
+animation = &"dead"
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+"DemonLarge": SubResource("AnimationLibrary_f5rp2")
+}

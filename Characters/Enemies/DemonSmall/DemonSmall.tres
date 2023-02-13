@@ -1,0 +1,63 @@
+[gd_resource type="SpriteFrames" load_steps=9 format=3 uid="uid://bum5ebg0vu8j8"]
+
+[ext_resource type="Texture2D" uid="uid://7dhvfd2bsc0a" path="res://Art/DungeonTilesetFrames/imp_idle_anim_f2.png" id="1_m0s6t"]
+[ext_resource type="Texture2D" uid="uid://ce2tgchhj6sso" path="res://Art/DungeonTilesetFrames/imp_idle_anim_f3.png" id="2_h5tf8"]
+[ext_resource type="Texture2D" uid="uid://dmu3cp3gfb6pl" path="res://Art/DungeonTilesetFrames/imp_idle_anim_f0.png" id="3_c887l"]
+[ext_resource type="Texture2D" uid="uid://cmgg31i0465v2" path="res://Art/DungeonTilesetFrames/imp_idle_anim_f1.png" id="4_meedv"]
+[ext_resource type="Texture2D" uid="uid://ddepf5ul7qdsk" path="res://Art/DungeonTilesetFrames/imp_run_anim_f0.png" id="5_rv4sy"]
+[ext_resource type="Texture2D" uid="uid://coiv5reg82stv" path="res://Art/DungeonTilesetFrames/imp_run_anim_f1.png" id="6_qhe7q"]
+[ext_resource type="Texture2D" uid="uid://c3t2siraabwch" path="res://Art/DungeonTilesetFrames/imp_run_anim_f2.png" id="7_dpgpf"]
+[ext_resource type="Texture2D" uid="uid://btqhreoujer78" path="res://Art/DungeonTilesetFrames/imp_run_anim_f3.png" id="8_bq85y"]
+
+[resource]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("1_m0s6t")
+}],
+"loop": true,
+"name": &"dead",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("2_h5tf8")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("3_c887l")
+}, {
+"duration": 1.0,
+"texture": ExtResource("4_meedv")
+}, {
+"duration": 1.0,
+"texture": ExtResource("1_m0s6t")
+}, {
+"duration": 1.0,
+"texture": ExtResource("2_h5tf8")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": ExtResource("5_rv4sy")
+}, {
+"duration": 1.0,
+"texture": ExtResource("6_qhe7q")
+}, {
+"duration": 1.0,
+"texture": ExtResource("7_dpgpf")
+}, {
+"duration": 1.0,
+"texture": ExtResource("8_bq85y")
+}],
+"loop": true,
+"name": &"walk",
+"speed": 5.0
+}]

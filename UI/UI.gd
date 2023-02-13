@@ -11,7 +11,8 @@ var inventoryManager
 var connectedPlayers: int = 0
 var player = null
 
-# UI includes Inventory code, like clearing
+# UI includes Inventory logic, like setting & clearing. Only runs on the client.
+# The /Inv folder he is just for rendering.
 func _ready():
 	_prepare_inventory()
 	_inv.hide()
