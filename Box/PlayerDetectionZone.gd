@@ -9,5 +9,5 @@ func _on_body_entered(body):
 	# print('PlayerZone, See player: ', body)
 	player = body
 
-func _on_body_exited(body):
+func _on_body_exited(_body):
 	player = null

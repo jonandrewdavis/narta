@@ -7,12 +7,16 @@ extends InventoryUI
 
 @export var Item: PackedScene
 
+
+# NOT CURRENTLY USED
 func set_inventory_manager(inv_uuid, manager) -> void:
+	print('NARTA CUSTOM INVENTROY: Not used ', inv_uuid)
 	inventory = inv_uuid
 	_inventoryManager = manager
 	_update_view()
 
 func _ready() -> void:
+	print('Ready Narta Inventory: Not used')
 	if get_tree().get_root().has_node(InventoryManagerName):
 		_inventoryManager = get_tree().get_root().get_node(InventoryManagerName)
 	_update_view()

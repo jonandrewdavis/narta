@@ -121,7 +121,7 @@ inventory={
 
 [inventory_editor]
 
-inventories_split_offset=595
+inventories_split_offset=515
 craft_split_offset=441
 types_split_offset=603
 items_split_offset=579

@@ -23,11 +23,16 @@ func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 
 func _ready() -> void:
+	# NOTE: This `not is_multiplayer_authority()` check 
+	# assures that code runs only on the client.
+	# All nodes within these are LOCAL only. Camera, Inventory, UI, etc.
+	# TODO: Move `userlabel.text` above this line and remove from sync
 	if not is_multiplayer_authority(): return
 	var newCamera = Camera2D.new()
 	var newUI = UI.instantiate()
+	userlabel.text = SavedData.username
+	# All local. Weapons are in /Weapons, so those exist on server, and need to.
 	emit_signal("weapon_picked_up", weapons.get_child(0).get_texture())
-	userlabel.text = SavedData.username		
 	_restore_previous_state()
 	newCamera.ignore_rotation = true
 	newCamera.limit_smoothed = true

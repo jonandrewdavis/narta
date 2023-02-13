@@ -1,8 +1,10 @@
 # Example implementation for inventory item to demonstrate functionality of InventoryEditor : MIT License
 # @author Vladimir Petrenko
+
 @tool
 extends ItemUI
 
+# This is just the Visuals
 func set_index(index) -> void:
 	if not _item_ui_icon:
 		_item_ui_icon = $ItemUIIcon

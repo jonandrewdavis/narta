@@ -15,7 +15,6 @@ offset_left = 26.6667
 offset_top = 23.3333
 offset_right = 326.667
 offset_bottom = 323.333
-inventory = "cbc0ed38-7550-4d01-a07a-8b9f11c0a9dd"
 
 [node name="NartaMenu" type="Control" parent="UICanvas"]
 layout_mode = 3

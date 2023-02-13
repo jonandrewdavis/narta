@@ -1,3 +1,5 @@
+# NARTA, CUSTOM EDIT!!!!
+
 # Item2D as custom type for InventoryEditor : MIT License
 # @author Vladimir Petrenko
 @tool
@@ -16,9 +18,7 @@ const questManagerName = "QuestManager"
 @export var remove_collected: bool = true
 @export var autosave: bool = true
 
-@rpc('any_peer')
 func _ready() -> void:
-	print('Ready coal')
 	if get_tree().get_root().has_node(InventoryManagerName):
 		_inventoryManager = get_tree().get_root().get_node(InventoryManagerName)
 		if has_node("InventoryItem_" + item_put + "/Area2D"):
@@ -31,21 +31,26 @@ func _ready() -> void:
 		questManager = get_tree().get_root().get_node(questManagerName)
 
 func _on_body_entered(body: Node) -> void:
-	print('WHO IS IT', body, _inventoryManager.player)
-	if _inventoryManager.player != body:
-		pass
 	if not body.has_method('is_player'):
-		pass
+		return
+	# NOTE: This is the multiplayer check!!!
+	# The way this works is that all players see a 'puppet' that makes contact.
+	# EVERYONE gets an item. 
+	# Only trigger the gather if the Player multiplayer 'name' matches ==
+	# This is a shortcut to run on only on the client.
+	if body.name == _inventoryManager.player.name:
+		_on_local_gather()
 	inside = true
-	print('About to remove_collected', body, remove_collected)
-	var remainder = _inventoryManager.add_item(to_inventory, item_put, quantity)
-	print('remainder', remainder)
+	var remainder = 0
 	if remove_collected and remainder == 0:
 		queue_free()
 		if questManager and questManager.is_quest_started():
 			var quest = questManager.started_quest()
 			var task = questManager.get_task_and_update_quest_state(quest, item_put, quantity, autosave)
 
+func _on_local_gather():
+	_inventoryManager.add_item(to_inventory, item_put, quantity)
+	
 func _on_body_exited(body: Node) -> void:
 	inside = false
 
