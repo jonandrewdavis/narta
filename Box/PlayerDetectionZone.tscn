@@ -1,9 +1,6 @@
-[gd_scene load_steps=3 format=3 uid="uid://c30k35ly7ca0q"]
+[gd_scene load_steps=2 format=3 uid="uid://c30k35ly7ca0q"]
 
 [ext_resource type="Script" path="res://Box/PlayerDetectionZone.gd" id="1_vh0aj"]
-
-[sub_resource type="CircleShape2D" id="CircleShape2D_f0sqp"]
-radius = 175.003
 
 [node name="PlayerDetectionZone" type="Area2D"]
 collision_layer = 0
@@ -11,7 +8,6 @@ collision_mask = 2
 script = ExtResource("1_vh0aj")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
-shape = SubResource("CircleShape2D_f0sqp")
 debug_color = Color(0.709804, 0.294118, 0.960784, 0.0705882)
 
 [connection signal="body_entered" from="." to="." method="_on_body_entered"]

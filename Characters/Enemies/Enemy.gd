@@ -3,9 +3,11 @@ extends Character
 
 var path = 0
 
+@onready var attack_timer: Timer = $AttackTimer
 @onready var path_timer: Timer = $PathTimer
 @onready var PZ =  $PlayerDetectionZone
 @onready var enemy_hitbox: Area2D = $EnemyHitbox
+
 
 var CoalItem = preload("res://Items/CoalItem.tscn")
 
@@ -14,7 +16,7 @@ func _enter_tree():
 	set_multiplayer_authority(1)
 
 func _ready() -> void:
-	max_speed = 35
+	max_speed = 30
 	state_machine.set_state(0)
 
 # NOTE: THIS IS FOR OFFENSIVE PURPOSES. This dir is the direction the enemy is moving.
@@ -58,3 +60,6 @@ func _die():
 		var newCoal = CoalItem.instantiate()
 		newCoal.position = global_position
 		world.add_child(newCoal, true)
+
+func _launch():
+	take_knockback(0, velocity, 4)

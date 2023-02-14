@@ -16,10 +16,14 @@ func _state_logic(_delta: float) -> void:
 	if state == states.chase:
 		parent.chase()
 		parent.move()
+	if states == states.dead:
+		parent.move()
 
-		
 func _get_transition() -> int:
 	match state:
+		states.chase:
+			if parent.PZ.player == null:
+				return states.idle
 		states.idle:
 			if parent.PZ.player != null:
 				return states.chase

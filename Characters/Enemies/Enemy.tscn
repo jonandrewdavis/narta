@@ -27,17 +27,18 @@ texture_filter = 1
 [node name="PathTimer" type="Timer" parent="." index="5"]
 wait_time = 0.2
 
-[node name="PlayerDetectionZone" parent="." index="6" instance=ExtResource("3_2a6ox")]
-visible = false
+[node name="AttackTimer" type="Timer" parent="." index="6"]
 
-[node name="EnemyHitbox" type="Area2D" parent="." index="7"]
+[node name="PlayerDetectionZone" parent="." index="7" instance=ExtResource("3_2a6ox")]
+
+[node name="EnemyHitbox" type="Area2D" parent="." index="8"]
 collision_mask = 2
 script = ExtResource("4_m278j")
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="EnemyHitbox" index="0"]
 debug_color = Color(0.694118, 0, 0.231373, 0.160784)
 
-[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="8"]
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="9"]
 replication_config = SubResource("SceneReplicationConfig_okc3a")
 
-[connection signal="timeout" from="PathTimer" to="." method="_on_path_timer_timeout"]
+[editable path="PlayerDetectionZone"]
