@@ -1,4 +1,4 @@
-[gd_scene load_steps=25 format=3 uid="uid://bkd34gv2qo74h"]
+[gd_scene load_steps=26 format=3 uid="uid://bkd34gv2qo74h"]
 
 [ext_resource type="Script" path="res://World.gd" id="1_uyt4d"]
 [ext_resource type="Texture2D" uid="uid://cg7jhiwq2h2sq" path="res://Assets/Texture/TX Tileset Grass.png" id="2_gs5ly"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bdtmtlqskrnyb" path="res://Assets/TilesA2.png" id="9_g5gr6"]
 [ext_resource type="Texture2D" uid="uid://dg65on8miox0v" path="res://Assets/FE8 - Snowy Bern.png" id="11_8evff"]
 [ext_resource type="PackedScene" uid="uid://cgr0tpl8igbu" path="res://Characters/Enemies/DemonLarge/DemonLarge.tscn" id="12_51sst"]
+[ext_resource type="PackedScene" uid="uid://d0hmrybyykito" path="res://Characters/Enemies/DemonSmall/DemonSmall.tscn" id="13_677ge"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oero3"]
 texture = ExtResource("2_gs5ly")
@@ -2936,3 +2937,6 @@ debug_color = Color(0.584314, 0.541176, 0.262745, 0.419608)
 
 [node name="DemonLarge" parent="." instance=ExtResource("12_51sst")]
 position = Vector2(-230, -101)
+
+[node name="DemonSmall" parent="." instance=ExtResource("13_677ge")]
+position = Vector2(-252, -37)

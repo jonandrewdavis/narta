@@ -5,12 +5,12 @@
 [ext_resource type="SpriteFrames" uid="uid://bum5ebg0vu8j8" path="res://Characters/Enemies/DemonSmall/DemonSmall.tres" id="3_6b3yc"]
 [ext_resource type="AnimationLibrary" uid="uid://dg33xg8bw3lb2" path="res://Characters/Enemies/DemonSmall/DemonSmallAnimations.res" id="3_vc7v0"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_ibok6"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_0dc4f"]
 radius = 5.0
 
-[sub_resource type="AnimationLibrary" id="AnimationLibrary_rpy5u"]
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_m5s0d"]
 
-[sub_resource type="CircleShape2D" id="CircleShape2D_j5xgo"]
+[sub_resource type="CircleShape2D" id="CircleShape2D_y2i51"]
 radius = 6.08276
 
 [node name="DemonSmall" instance=ExtResource("1_u1ea2")]
@@ -21,16 +21,17 @@ script = ExtResource("2_0wvdk")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = ExtResource("3_6b3yc")
-animation = &"hurt"
+animation = &"idle"
+frame = 1
 
 [node name="CollisionShape2D" parent="." index="2"]
-shape = SubResource("CircleShape2D_ibok6")
+shape = SubResource("CircleShape2D_0dc4f")
 
 [node name="AnimationPlayer" parent="." index="3"]
 autoplay = "DemonSmallAnimations/idle"
 reset_on_save = true
 libraries = {
-"": SubResource("AnimationLibrary_rpy5u"),
+"": SubResource("AnimationLibrary_m5s0d"),
 "DemonSmallAnimations": ExtResource("3_vc7v0")
 }
 
@@ -38,4 +39,4 @@ libraries = {
 wait_time = 0.8
 
 [node name="CollisionShape2D" parent="EnemyHitbox" index="0"]
-shape = SubResource("CircleShape2D_j5xgo")
+shape = SubResource("CircleShape2D_y2i51")

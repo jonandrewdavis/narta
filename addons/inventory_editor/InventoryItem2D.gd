@@ -64,14 +64,18 @@ func _process(delta: float) -> void:
 				var manager = Node2D.new()
 				manager.name = InventoryManagerName
 				manager.set_script(load("res://addons/inventory_editor/InventoryManager.gd"))
-				root.add_child(manager)
+				# NOTE: 
+				# We're adding 'true' to add_child calls to help with networkning errors like 
+				# ANND: fixed the bug!! true here and to the add_child below!!
+				# E 0:00:21:0547   on_spawn_receive: Condition "parent->has_node(name)" is true. Returning: ERR_INVALID_DATA
+				root.add_child(manager, true)
 				manager.set_owner(get_tree().edited_scene_root)
 				var item_db = manager.get_item_db(item_put)
 				if item_db and not item_db.scene.is_empty():
 					var scene = load(item_db.scene).instantiate()
 					if scene:
 						scene.name = "InventoryItem_" + item_db.uuid
-						add_child(scene)
+						add_child(scene, true)
 						scene.set_owner(get_tree().edited_scene_root)
 				root.remove_child(manager)
 				manager.queue_free()

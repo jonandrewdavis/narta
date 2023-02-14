@@ -45,7 +45,6 @@ func is_player():
 	return true
 
 func _restore_previous_state() -> void:
-	max_speed = 100
 	max_hp = 5
 	hp = 5
 	if randi() % 2 == 0:

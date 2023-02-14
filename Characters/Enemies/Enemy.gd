@@ -4,20 +4,16 @@ extends Character
 var path = 0
 
 @onready var path_timer: Timer = $PathTimer
-@onready var playerDetectionZone = $PlayerDetectionZone
-@onready var PZ = playerDetectionZone
+@onready var PZ =  $PlayerDetectionZone
 @onready var enemy_hitbox: Area2D = $EnemyHitbox
 
 var CoalItem = preload("res://Items/CoalItem.tscn")
 
 # TODO: explode packed scene or shader destroy
-
-# on enter, they're controlled by the server.
 func _enter_tree():
 	set_multiplayer_authority(1)
 
 func _ready() -> void:
-	print('DEBUG: Mob Ready')
 	max_speed = 35
 	state_machine.set_state(0)
 
@@ -25,23 +21,14 @@ func _ready() -> void:
 func _process(_delta: float) -> void:
 	enemy_hitbox.knockback_direction = velocity.normalized()
 
-func _physics_process(delta):
-			if PZ.player != null:
-				accelerate_towards_point(PZ.player.global_position, delta)
-			else:
-				pass
-	# if softCollision.is_colliding():
-	#	velocity += softCollision.get_push_vector() * delta * 400
-	# velocity = move_and_slide(velocity).
-
 func chase():
-	pass
+	if PZ.player != null:
+		accelerate_towards_point(PZ.player.global_position)
 
-func accelerate_towards_point(point, delta):
-	var direction = global_position.direction_to(point)
-	velocity = velocity.move_toward(direction * max_speed, acceleration * delta)
+func accelerate_towards_point(point):
+	mov_direction = global_position.direction_to(point)
 	$AnimatedSprite2D.flip_h = velocity.x < 0
-	move_and_slide()
+
 	
 func _on_path_timer_timeout():
 	# if is_instance_valid(PZ.player):
@@ -63,7 +50,8 @@ func _get_path_to_move_away_from_player() -> void:
 	# spath = navigation.get_simple_path(global_position, global_position + dir * 100)
 	pass
 
-@rpc('any_peer')
+# TODO: Determine if loot should be an RPC. I think it should be.
+@rpc
 func _die():
 	var world = get_tree().get_root().get_node("Main").get_node("World")
 	if world != null:

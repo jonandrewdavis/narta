@@ -1,7 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://rnu65vkjhemj"]
+[gd_scene load_steps=5 format=3 uid="uid://d3rd4w04e0tnr"]
 
 [ext_resource type="Script" path="res://addons/inventory_example/inventories/simple/InventoryUI.gd" id="1_x28gn"]
-[ext_resource type="PackedScene" uid="uid://do5m1vbsy45nd" path="res://Spawner/ItemNarta.tscn" id="2_chjke"]
+[ext_resource type="PackedScene" uid="uid://do5m1vbsy45nd" path="res://UI/Inv/ItemNarta.tscn" id="2_t8kvj"]
 
 [sub_resource type="Gradient" id="Gradient_d6a7w"]
 offsets = PackedFloat32Array(0.0528455, 1)
@@ -17,7 +17,7 @@ anchors_preset = 0
 offset_right = 300.0
 offset_bottom = 300.0
 script = ExtResource("1_x28gn")
-Item = ExtResource("2_chjke")
+Item = ExtResource("2_t8kvj")
 inventory = "cbc0ed38-7550-4d01-a07a-8b9f11c0a9dd"
 
 [node name="NinePatchRect" type="NinePatchRect" parent="."]

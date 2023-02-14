@@ -9,6 +9,6 @@ script = ExtResource("1_jimg5")
 [node name="World" parent="." instance=ExtResource("1_y72ed")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Characters/Player/Player.tscn", "res://Characters/HitEffect.tscn", "res://Items/CoalItem.tscn", "res://Items/Coal.tscn", "res://Characters/Enemies/DemonSmall/DemonSmall.tscn")
+_spawnable_scenes = PackedStringArray("res://Characters/Player/Player.tscn", "res://Items/CoalItem.tscn", "res://Items/Coal.tscn", "res://Characters/Enemies/DemonSmall/DemonSmall.tscn", "res://Characters/HitEffect.tscn")
 spawn_path = NodePath("../World")
 spawn_limit = 300

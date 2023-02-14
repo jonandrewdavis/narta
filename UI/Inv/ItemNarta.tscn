@@ -1,0 +1,22 @@
+[gd_scene load_steps=4 format=3 uid="uid://do5m1vbsy45nd"]
+
+[ext_resource type="Texture2D" uid="uid://c6w8yf24vtcwj" path="res://addons/inventory_example/textures/inventories/InventoryBackgroundItem.png" id="1_lb2gd"]
+[ext_resource type="Script" path="res://addons/inventory_example/inventories/simple/ItemUI.gd" id="2_yt2il"]
+[ext_resource type="PackedScene" uid="uid://1txirr45vbrf" path="res://addons/inventory_editor/ui/InventoryItemUIIcon.tscn" id="3_bc334"]
+
+[node name="ItemBg" type="TextureRect"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+texture = ExtResource("1_lb2gd")
+expand_mode = 1
+stretch_mode = 5
+script = ExtResource("2_yt2il")
+
+[node name="ItemUIIcon" parent="." instance=ExtResource("3_bc334")]
+layout_mode = 1
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
