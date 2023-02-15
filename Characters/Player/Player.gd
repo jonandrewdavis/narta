@@ -9,7 +9,7 @@ signal weapon_picked_up(weapon_texture)
 signal weapon_droped(index)
 
 @onready var userlabel = $Label
-@onready var parent: Node2D = get_parent()
+@onready var parent = get_parent()
 @onready var weapons: Node2D = $Weapons
 
 var UI = preload("res://UI/UI.tscn")

@@ -104,12 +104,6 @@ frame = 3
 position = Vector2(1, 2)
 shape = SubResource("CircleShape2D_rv72e")
 
-[node name="AimRayCast" type="RayCast2D" parent="." index="6"]
-
-[node name="AttackTimer" parent="." index="7"]
-wait_time = 1.5
-one_shot = true
-
-[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[node name="AimRayCast" type="RayCast2D" parent="." index="7"]
 
 [editable path="PlayerDetectionZone"]

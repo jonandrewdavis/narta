@@ -5,14 +5,14 @@
 [ext_resource type="PackedScene" uid="uid://c30k35ly7ca0q" path="res://Box/PlayerDetectionZone.tscn" id="3_2a6ox"]
 [ext_resource type="Script" path="res://Characters/Enemies/HitboxEnemy.gd" id="4_m278j"]
 
-[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_okc3a"]
-properties/0/path = NodePath(".:position")
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3m537"]
+properties/0/path = NodePath("AnimationPlayer:current_animation")
 properties/0/spawn = true
 properties/0/sync = true
 properties/1/path = NodePath(".:hp")
 properties/1/spawn = true
 properties/1/sync = true
-properties/2/path = NodePath("AnimationPlayer:current_animation")
+properties/2/path = NodePath(".:position")
 properties/2/spawn = true
 properties/2/sync = true
 
@@ -24,10 +24,10 @@ script = ExtResource("2")
 [node name="AnimatedSprite2D" parent="." index="1"]
 texture_filter = 1
 
-[node name="PathTimer" type="Timer" parent="." index="5"]
-wait_time = 0.2
+[node name="AttackTimer" type="Timer" parent="." index="5"]
 
-[node name="AttackTimer" type="Timer" parent="." index="6"]
+[node name="PathTimer" type="Timer" parent="." index="6"]
+wait_time = 0.2
 
 [node name="PlayerDetectionZone" parent="." index="7" instance=ExtResource("3_2a6ox")]
 
@@ -39,6 +39,6 @@ script = ExtResource("4_m278j")
 debug_color = Color(0.694118, 0, 0.231373, 0.160784)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="9"]
-replication_config = SubResource("SceneReplicationConfig_okc3a")
+replication_config = SubResource("SceneReplicationConfig_3m537")
 
 [editable path="PlayerDetectionZone"]

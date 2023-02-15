@@ -28,7 +28,7 @@ shader_parameter/active = false
 
 [sub_resource type="CapsuleShape2D" id="1"]
 radius = 2.0
-height = 48.6875
+height = 41.0
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4214f"]
 properties/0/path = NodePath("AnimationPlayer:current_animation")

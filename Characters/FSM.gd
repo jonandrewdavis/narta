@@ -8,7 +8,6 @@ var state: int = -1 : set = set_state
 @onready var parent = get_parent()
 @onready var animation_player: AnimationPlayer = parent.get_node("AnimationPlayer")
 
-
 func _physics_process(delta: float) -> void:
 	if state != -1:
 		_state_logic(delta)

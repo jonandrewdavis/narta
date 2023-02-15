@@ -1,6 +1,5 @@
-[gd_scene load_steps=26 format=3 uid="uid://bkd34gv2qo74h"]
+[gd_scene load_steps=22 format=3 uid="uid://bkd34gv2qo74h"]
 
-[ext_resource type="Script" path="res://World.gd" id="1_uyt4d"]
 [ext_resource type="Texture2D" uid="uid://cg7jhiwq2h2sq" path="res://Assets/Texture/TX Tileset Grass.png" id="2_gs5ly"]
 [ext_resource type="PackedScene" uid="uid://3s30xhs7xn4c" path="res://Network/Network.tscn" id="3_q7ekw"]
 [ext_resource type="Texture2D" uid="uid://c432uxfa3ism1" path="res://Assets/Texture/TX Tileset Stone Ground.png" id="3_wgnad"]
@@ -11,8 +10,6 @@
 [ext_resource type="Texture2D" uid="uid://pg3uyri5gn78" path="res://Assets/Texture/TX Shadow.png" id="8_locdx"]
 [ext_resource type="Texture2D" uid="uid://bdtmtlqskrnyb" path="res://Assets/TilesA2.png" id="9_g5gr6"]
 [ext_resource type="Texture2D" uid="uid://dg65on8miox0v" path="res://Assets/FE8 - Snowy Bern.png" id="11_8evff"]
-[ext_resource type="PackedScene" uid="uid://cgr0tpl8igbu" path="res://Characters/Enemies/DemonLarge/DemonLarge.tscn" id="12_51sst"]
-[ext_resource type="PackedScene" uid="uid://d0hmrybyykito" path="res://Characters/Enemies/DemonSmall/DemonSmall.tscn" id="13_677ge"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oero3"]
 texture = ExtResource("2_gs5ly")
@@ -2893,13 +2890,10 @@ sources/7 = SubResource("TileSetAtlasSource_ha40k")
 sources/6 = SubResource("TileSetAtlasSource_iyhgh")
 sources/8 = SubResource("TileSetAtlasSource_xut66")
 
-[sub_resource type="Environment" id="Environment_r3r3x"]
-
 [sub_resource type="CircleShape2D" id="CircleShape2D_rg1iu"]
 radius = 225.08
 
 [node name="World" type="Node2D"]
-script = ExtResource("1_uyt4d")
 
 [node name="Network" parent="." instance=ExtResource("3_q7ekw")]
 
@@ -2924,9 +2918,6 @@ layer_2/y_sort_origin = 0
 layer_2/z_index = 0
 layer_2/tile_data = PackedInt32Array(-65539, 1441797, 17, -3, 1441797, 18, 65533, 1441797, 19, 131069, 1441797, 20, -65538, 1507333, 17, -2, 1507333, 18, 65534, 1507333, 19, 131070, 1507333, 20, 196606, 1507333, 21, -131073, 1572869, 16, -65537, 1572869, 17, -1, 1572869, 18, 65535, 1572869, 19, 131071, 1572869, 20, 196607, 1572869, 21, -196608, 1638405, 16, -131072, 1638405, 17, -65536, 1638405, 18, 0, 1638405, 19, 65536, 1638405, 20, 131072, 1638405, 21, -131071, 1703941, 17, -65535, 1703941, 18, 1, 1703941, 19, 65537, 1703941, 20, 131073, 1703941, 21, -131070, 1769477, 17, -65534, 1769477, 18, 2, 1769477, 19, 65538, 1769477, 20, -458753, 917509, 5, -393217, 917509, 6, -327681, 917509, 7, -262145, 917509, 8, -196609, 917509, 9, -524288, 983045, 5, -458752, 983045, 6, -393216, 983045, 7, -327680, 983045, 8, -262144, 983045, 9, -786442, 1441797, 10, -720906, 1441797, 11, -655370, 1441797, 12, -589834, 1441797, 13, -524298, 1441797, 14, -458762, 1441797, 15, -786441, 1507333, 10, -720905, 1507333, 11, -655369, 1507333, 12, -589833, 1507333, 13, -524297, 1507333, 14, -458761, 1507333, 15, -1048577, 1441797, 10, -983041, 1441797, 11, -917505, 1441797, 12, -851969, 1441797, 13, -786433, 1441797, 14, -720897, 1441797, 15, -1114112, 1507333, 10, -1048576, 1507333, 11, -983040, 1507333, 12, -917504, 1507333, 13, -851968, 1507333, 14, -786432, 1507333, 15, -720888, 1703941, 12, -655352, 1703941, 13, -589816, 1703941, 14, -524280, 1703941, 15, -720887, 1769477, 12, -655351, 1769477, 13, -589815, 1769477, 14, -524279, 1769477, 15, 196598, 131077, 30, 262134, 131077, 31, 196599, 196613, 30, 262135, 196613, 31, 1179639, 5, 27, 1245175, 5, 28, 1114104, 65541, 26, 1179640, 65541, 27, 1245176, 65541, 28, 1310712, 65541, 29, 1114105, 131077, 26, 1179641, 131077, 27, 1245177, 131077, 28, 1310713, 131077, 29, 1179642, 196613, 27, 1245178, 196613, 28, 1310714, 196613, 29, -524282, 1179653, 30, -458746, 1179653, 31, -524281, 1245189, 30, -458745, 1245189, 31, -655367, 917509, 30, -589831, 917509, 31, -655366, 983045, 30, -589830, 983045, 31, -131034, 1703941, 22, -65498, 1703941, 23, 38, 1703941, 24, 65574, 1703941, 25, -131033, 1769477, 22, -65497, 1769477, 23, 39, 1769477, 24, 65575, 1769477, 25, -131032, 1835013, 22, -65496, 1835013, 23, 40, 1835013, 24, 65576, 1835013, 25, -131031, 1900549, 22, -65495, 1900549, 23, 41, 1900549, 24, 65577, 1900549, 25, 3538943, 917509, 11, 3604479, 917509, 12, 3670015, 917509, 13, 3473408, 983045, 11, 3538944, 983045, 12, 3604480, 983045, 13, -65607, 917509, 11, -71, 917509, 12, 65465, 917509, 13, -65606, 983045, 11, -70, 983045, 12, 65466, 983045, 13, -130998, 917509, 11, -65462, 917509, 12, 74, 917509, 13, -130997, 983045, 11, -65461, 983045, 12, 75, 983045, 13, -2752513, 917509, 11, -2686977, 917509, 12, -2621441, 917509, 13, -2818048, 983045, 11, -2752512, 983045, 12, -2686976, 983045, 13)
 
-[node name="WorldEnvironment" type="WorldEnvironment" parent="."]
-environment = SubResource("Environment_r3r3x")
-
 [node name="Force" type="StaticBody2D" parent="."]
 collision_layer = 128
 collision_mask = 128
@@ -2935,8 +2926,9 @@ collision_mask = 128
 shape = SubResource("CircleShape2D_rg1iu")
 debug_color = Color(0.584314, 0.541176, 0.262745, 0.419608)
 
-[node name="DemonLarge" parent="." instance=ExtResource("12_51sst")]
-position = Vector2(-230, -101)
+[node name="StaticBody2D" type="StaticBody2D" parent="."]
 
-[node name="DemonSmall" parent="." instance=ExtResource("13_677ge")]
-position = Vector2(-252, -37)
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="StaticBody2D"]
+position = Vector2(0, -5)
+build_mode = 1
+polygon = PackedVector2Array(1573, -757, 1586, 1239, -1489, 1239, -1487, -735, 1556, -739, 1541, -772, -1535, -775, -1513, 1267, 1633, 1267, 1614, -761)

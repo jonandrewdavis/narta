@@ -3,7 +3,6 @@ extends Character
 
 var path = 0
 
-@onready var attack_timer: Timer = $AttackTimer
 @onready var path_timer: Timer = $PathTimer
 @onready var PZ =  $PlayerDetectionZone
 @onready var enemy_hitbox: Area2D = $EnemyHitbox

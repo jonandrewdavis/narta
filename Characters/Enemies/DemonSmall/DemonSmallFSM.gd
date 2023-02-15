@@ -16,7 +16,7 @@ func _state_logic(_delta: float) -> void:
 	if state == states.chase:
 		parent.chase()
 		parent.move()
-	if states == states.dead:
+	if state == states.dead:
 		parent.move()
 
 func _get_transition() -> int:
