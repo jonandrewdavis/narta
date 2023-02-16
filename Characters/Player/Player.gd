@@ -17,7 +17,8 @@ var UIref = null
 
 var mouse_direction: Vector2
 
-const RESPAWN_RADIUS = 200
+const RESPAWN_RADIUS = 75
+var PLAYER_START: Vector2 = Vector2(-950, 10)
 
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
@@ -47,10 +48,12 @@ func is_player():
 func _restore_previous_state() -> void:
 	max_hp = 5
 	hp = 5
+	if OS.is_debug_build():
+		PLAYER_START = Vector2.ZERO
 	if randi() % 2 == 0:
-		position = Vector2(0 + randf() * RESPAWN_RADIUS, 0 + randf() * RESPAWN_RADIUS)
+		position = Vector2(PLAYER_START.x + randf() * RESPAWN_RADIUS, PLAYER_START.y + randf() * RESPAWN_RADIUS)
 	else: 
-		position = Vector2(0 - randf() * RESPAWN_RADIUS, 0 - randf() * RESPAWN_RADIUS)
+		position = Vector2(PLAYER_START.x - randf() * RESPAWN_RADIUS, PLAYER_START.y - randf() * RESPAWN_RADIUS)
 	state_machine.set_state(state_machine.states.idle)
 	_update_health_bar()
 	

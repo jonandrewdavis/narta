@@ -1,5 +1,5 @@
-class_name Character
 extends CharacterBody2D
+class_name Character
 
 # TODO: Should Enemy extend this at all. 
 # TODO: Hit effect should be packed with a lot of effects.

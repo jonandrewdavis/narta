@@ -82,16 +82,5 @@ func interpolate_pos(_initial_pos: Vector2, _final_pos: Vector2) -> void:
 func _on_CoolDownTimer_timeout() -> void:
 	can_active_ability = true
 	
-	
-func show() -> void:
-	# ability_icon.show()
-	super.show()
-	
-	
-func hide() -> void:
-	# ability_icon.hide()
-	super.hide()
-	
-	
 func get_texture() -> Texture2D:
 	return get_node("Node2D/Sprite2D").texture

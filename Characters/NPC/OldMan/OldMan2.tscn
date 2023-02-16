@@ -1,0 +1,66 @@
+[gd_scene load_steps=5 format=3 uid="uid://cl4pk6ly4coss"]
+
+[ext_resource type="PackedScene" uid="uid://cblskg81tssib" path="res://Characters/NPC/NPC.tscn" id="1_28kdm"]
+[ext_resource type="Texture2D" uid="uid://xqlnphllt26k" path="res://Art/sensei.png" id="2_0yoyl"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_pdm2c"]
+radius = 37.1214
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_hw1kd"]
+radius = 7.0
+
+[node name="OldMan" instance=ExtResource("1_28kdm")]
+
+[node name="Interact" parent="." index="0"]
+collision_mask = 7
+
+[node name="CollisionShape2D" parent="Interact" index="0"]
+shape = SubResource("CircleShape2D_pdm2c")
+
+[node name="CollisionShape2D" parent="." index="1"]
+position = Vector2(0, 1)
+shape = SubResource("CircleShape2D_hw1kd")
+
+[node name="Sprite2D" type="Sprite2D" parent="." index="2"]
+scale = Vector2(0.9, 0.9)
+texture = ExtResource("2_0yoyl")
+
+[node name="Textbox" type="Control" parent="." index="3"]
+custom_minimum_size = Vector2(80, 30)
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -40.0
+offset_top = -44.0
+offset_right = 40.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 2
+metadata/_edit_group_ = true
+
+[node name="Panel" type="Panel" parent="Textbox" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="MarginContainer" type="MarginContainer" parent="Textbox/Panel" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 0
+
+[node name="Label" type="Label" parent="Textbox/Panel/MarginContainer" index="0"]
+layout_mode = 2
+theme_override_font_sizes/font_size = 4
+text = "Thank you traveller, but all hope is lost. We will soon be overrun. Our story ends here."
+autowrap_mode = 2
