@@ -1,0 +1,71 @@
+[gd_scene load_steps=9 format=3 uid="uid://kk1lcmhf8c4h"]
+
+[ext_resource type="PackedScene" uid="uid://df12c6rmklpqr" path="res://Weapons/Weapon.tscn" id="1_nak2h"]
+[ext_resource type="Script" path="res://Weapons/Tools/Pickaxe.gd" id="2_63gna"]
+[ext_resource type="Texture2D" uid="uid://cmgm8q5t7suft" path="res://Art/DungeonTilesetFrames/weapon_big_hammer.png" id="3_4yddt"]
+
+[sub_resource type="Shader" id="Shader_ps0v4"]
+code = "shader_type canvas_item;
+
+uniform bool active = false;
+
+void fragment() {
+	vec4 previous_color = texture(TEXTURE, UV);
+	vec4 white_color = vec4(1.0, 1.0, 1.0, previous_color.a);
+	vec4 new_color = previous_color;
+	if (active == true)
+	{
+		new_color = white_color;
+	}
+	COLOR = new_color;
+}"
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_x061h"]
+resource_local_to_scene = true
+shader = SubResource("Shader_ps0v4")
+shader_parameter/active = false
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_746ds"]
+radius = 5.97992
+height = 15.0352
+
+[sub_resource type="Animation" id="Animation_77dra"]
+resource_name = "swing"
+loop_mode = 1
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D:rotation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0.00134945, 0.110655),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [2.0944, -1.5708]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_ikmbq"]
+_data = {
+"swing": SubResource("Animation_77dra")
+}
+
+[node name="Pickaxe" instance=ExtResource("1_nak2h")]
+script = ExtResource("2_63gna")
+
+[node name="Node2D" parent="." index="0"]
+rotation = -0.877026
+
+[node name="Sprite2D" parent="Node2D" index="0"]
+visible = false
+material = SubResource("ShaderMaterial_x061h")
+texture = ExtResource("3_4yddt")
+
+[node name="CollisionShape2D" parent="Node2D/Sprite2D/Hitbox" index="0"]
+position = Vector2(4.72591, -18.6458)
+shape = SubResource("CapsuleShape2D_746ds")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_ikmbq")
+}

@@ -8,6 +8,8 @@ var inventoryManager
 @onready var _menu = $UICanvas/NartaMenu
 @onready var conLabel = $UICanvas/NartaMenu/Control/MarginContainer/VBoxContainer/VBoxContainer/connectedPlayersLabel
 
+@onready var panels = $UICanvas/Weapons/Control/WeaponContainer/WeaponPanels
+
 var connectedPlayers: int = 0
 var player = null
 
@@ -47,10 +49,14 @@ func _on_open_menu():
 		_menu.show()
 
 
-
 func _on_quit_pressed():
 	get_tree().quit()
 	
 func _on_resume_pressed():
 	if _menu.visible:
 		_menu.hide()
+
+func _on_weapon_picked_up(sprite, index):
+	var childPanels = panels.get_children()
+	childPanels[index].get_node("TextureRect").texture = sprite
+	print('picked up!!', sprite)

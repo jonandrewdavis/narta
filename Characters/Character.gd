@@ -12,6 +12,7 @@ const HIT_EFFECT_SCENE: PackedScene = preload("res://Characters/HitEffect.tscn")
 @export var max_speed = 100
 @export var flying: bool = false
 
+@onready var sprite: AnimatedSprite2D = $AnimatedSprite2D
 @onready var state_machine: Node = get_node("FiniteStateMachine")
 @onready var animated_sprite: AnimatedSprite2D = get_node("AnimatedSprite2D")
 @onready var health_bar = $HealthBar

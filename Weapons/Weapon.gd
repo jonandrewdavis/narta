@@ -2,7 +2,6 @@ extends Node2D
 class_name Weapon
 
 @export var on_floor: bool = false
-
 @export var ranged_weapon: bool = false
 @export var rotation_offset: int = 0
 
@@ -16,48 +15,16 @@ var can_active_ability: bool = true
 @onready var playerBody: CharacterBody2D = get_parent().get_parent();
 
 func _ready() -> void:
-	if not on_floor:
-		# player_detector.set_collision_mask_value(0, false)
-		player_detector.set_collision_mask_value(1, false)
-	hitbox.knockback_force = 215
+	pass
 
-# TODO: Force & Damage on animations, to remove them from weapons generics... easier here for now
 func get_input() -> void:
-	if not is_multiplayer_authority(): return
-	if Input.is_action_just_pressed("attack") and not animation_player.is_playing():
-		playerBody.max_speed = 35
-		animation_player.play("SwordBase/charge")
-	elif Input.is_action_just_released("attack"):
-		playerBody.max_speed = 100		
-		if animation_player.is_playing() and animation_player.current_animation == "SwordBase/charge":
-			hitbox.knockback_force = 215
-			animation_player.play("SwordBase/attack")
-		elif charge_particles.emitting:
-			hitbox.knockback_force = 280
-			animation_player.play("SwordBase/strong_attack")
-	elif Input.is_action_just_pressed("attack3") and animation_player.has_animation("SwordBase/active_ability") and not is_busy() and can_active_ability:
-		can_active_ability = false
-		cool_down_timer.start()
-		animation_player.play("SwordBase/active_ability")
-			
-			
-func move(mouse_direction: Vector2) -> void:
-	if not is_multiplayer_authority(): return
-	
-	if ranged_weapon:
-		rotation_degrees = rad_to_deg(mouse_direction.angle()) + rotation_offset
-	else:
-		if not animation_player.is_playing() or animation_player.current_animation == "SwordBase/charge":
-			rotation = mouse_direction.angle()
-			hitbox.knockback_direction = mouse_direction
-			if scale.y == 1 and mouse_direction.x < 0:
-				scale.y = -1
-			elif scale.y == -1 and mouse_direction.x > 0:
-				scale.y = 1
-			
-			
+	pass
+
+func move(_mouse_direction: Vector2) -> void:
+	pass
+
 func cancel_attack() -> void:
-	animation_player.play("SwordBase/cancel_attack")
+	pass
 	
 	
 func is_busy() -> bool:
@@ -84,3 +51,11 @@ func _on_CoolDownTimer_timeout() -> void:
 	
 func get_texture() -> Texture2D:
 	return get_node("Node2D/Sprite2D").texture
+
+
+func apply_slow():
+	playerBody.max_speed = playerBody.max_speed / 3
+
+func remove_slow():
+	playerBody.max_speed = playerBody.PLAYER_MAX_CONST
+	

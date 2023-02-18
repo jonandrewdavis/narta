@@ -1,4 +1,4 @@
-[gd_scene load_steps=17 format=3 uid="uid://cgr0tpl8igbu"]
+[gd_scene load_steps=19 format=3 uid="uid://cgr0tpl8igbu"]
 
 [ext_resource type="PackedScene" uid="uid://d1ieqk72dudgf" path="res://Characters/Enemies/Enemy.tscn" id="1_cktqj"]
 [ext_resource type="Script" path="res://Characters/Enemies/DemonLarge/DemonLargeScript.gd" id="2_ate8h"]
@@ -8,10 +8,17 @@
 [ext_resource type="AnimationLibrary" uid="uid://snvq8voa27pv" path="res://Characters/Enemies/DemonLarge/DemonLarge.res" id="3_d0p1w"]
 [ext_resource type="Texture2D" uid="uid://de0fwdfyoc683" path="res://Art/DungeonTilesetFrames/chort_idle_anim_f1.png" id="3_kdsuk"]
 [ext_resource type="Texture2D" uid="uid://drvlerxr6mvea" path="res://Art/DungeonTilesetFrames/chort_run_anim_f1.png" id="3_wv268"]
+[ext_resource type="Shader" path="res://Characters/Enemies/white.gdshader" id="4_7ex6c"]
 [ext_resource type="Texture2D" uid="uid://1h7vtwphe1pj" path="res://Art/DungeonTilesetFrames/chort_run_anim_f2.png" id="4_158ay"]
 [ext_resource type="Texture2D" uid="uid://dm5atpqo117ki" path="res://Art/DungeonTilesetFrames/chort_idle_anim_f2.png" id="4_m6acw"]
 [ext_resource type="Texture2D" uid="uid://cugxu1mrs2dcg" path="res://Art/DungeonTilesetFrames/chort_run_anim_f3.png" id="5_acj5j"]
 [ext_resource type="Texture2D" uid="uid://ugbhjmbsout1" path="res://Art/DungeonTilesetFrames/chort_idle_anim_f3.png" id="5_ad3m5"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_trxmt"]
+resource_local_to_scene = true
+shader = ExtResource("4_7ex6c")
+shader_parameter/solid_color = Color(1, 1, 1, 1)
+shader_parameter/active = false
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_hup4e"]
 animations = [{
@@ -92,14 +99,16 @@ radius = 5.0
 height = 16.0
 
 [node name="DemonLarge" instance=ExtResource("1_cktqj")]
+modulate = Color(0.996078, 0.839216, 1, 1)
 script = ExtResource("2_ate8h")
 
 [node name="FiniteStateMachine" parent="." index="0"]
 script = ExtResource("2_eau1g")
 
 [node name="AnimatedSprite2D" parent="." index="1"]
+material = SubResource("ShaderMaterial_trxmt")
 sprite_frames = SubResource("SpriteFrames_hup4e")
-animation = &"dead"
+animation = &"attack"
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, 3)

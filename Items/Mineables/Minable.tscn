@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bvttvre0fcouq"]
+
+[ext_resource type="Script" path="res://Items/Mineables/Minable.gd" id="1_7r4ne"]
+
+[node name="Minable" type="StaticBody2D"]
+script = ExtResource("1_7r4ne")
+
+[node name="Sprite2D" type="Sprite2D" parent="."]
+
+[node name="InteractArea" type="Area2D" parent="."]
+
+[node name="InteractShape" type="CollisionShape2D" parent="InteractArea"]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]

@@ -11,12 +11,14 @@ signal weapon_droped(index)
 @onready var userlabel = $Label
 @onready var parent = get_parent()
 @onready var weapons: Node2D = $Weapons
+@onready var interactArea: Area2D = $InteractArea
 
 var UI = preload("res://UI/UI.tscn")
 var UIref = null
 
 var mouse_direction: Vector2
 
+const PLAYER_MAX_CONST = 80
 const RESPAWN_RADIUS = 75
 var PLAYER_START: Vector2 = Vector2(-950, 10)
 
@@ -34,13 +36,13 @@ func _ready() -> void:
 	userlabel.text = SavedData.username
 	# All local. Weapons are in /Weapons, so those exist on server, and need to.
 	emit_signal("weapon_picked_up", weapons.get_child(0).get_texture())
-	_restore_previous_state()
 	newCamera.ignore_rotation = true
 	newCamera.limit_smoothed = true
 	add_child(newCamera)
 	newUI.player = self
 	add_child(newUI)
 	UIref = newUI
+	_restore_previous_state()
 	
 func is_player():
 	return true
@@ -48,6 +50,7 @@ func is_player():
 func _restore_previous_state() -> void:
 	max_hp = 5
 	hp = 5
+	max_speed = PLAYER_MAX_CONST
 	if OS.is_debug_build():
 		PLAYER_START = Vector2.ZERO
 	if randi() % 2 == 0:
@@ -57,14 +60,14 @@ func _restore_previous_state() -> void:
 	state_machine.set_state(state_machine.states.idle)
 	_update_health_bar()
 	
-	for weapon in SavedData.weapons:
-		weapon = weapon.duplicate()
-		weapon.position = Vector2.ZERO
-		weapons.add_child(weapon)
+	var i = 0
+	for weapon in weapons.get_children():
 		weapon.hide()
-		
-		emit_signal("weapon_picked_up", weapon.get_texture())
+		emit_signal("weapon_picked_up", )
 		emit_signal("weapon_switched", weapons.get_child_count() - 2, weapons.get_child_count() - 1)
+		print(weapons.get_child_count() - 1)
+		UIref._on_weapon_picked_up(weapon.get_texture(), i)
+		i += 1
 		
 	current_weapon = weapons.get_child(SavedData.equipped_weapon_index)
 	current_weapon.show()
@@ -92,7 +95,8 @@ func _unhandled_input(_event):
 		return
 	if Input.is_action_just_pressed("ui_escape"):
 		UIref._on_open_menu()
-
+	if Input.is_action_just_pressed("interact"):
+		interact()
 
 func get_input() -> void:
 	if not is_multiplayer_authority(): return
@@ -177,3 +181,12 @@ func cancel_attack() -> void:
 	
 func respawn() -> void:
 	_restore_previous_state()
+
+
+func interact(): 
+	# Look for interactable bodies,
+	# pick closest
+	var objs = interactArea.get_overlapping_areas()
+	if objs.size() > 0:
+		if objs[0].get_parent().has_method('_on_interact'):
+			objs[0].get_parent()._on_interact(self)

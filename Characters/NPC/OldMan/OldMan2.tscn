@@ -1,13 +1,43 @@
-[gd_scene load_steps=5 format=3 uid="uid://cl4pk6ly4coss"]
+[gd_scene load_steps=10 format=3 uid="uid://cl4pk6ly4coss"]
 
 [ext_resource type="PackedScene" uid="uid://cblskg81tssib" path="res://Characters/NPC/NPC.tscn" id="1_28kdm"]
 [ext_resource type="Texture2D" uid="uid://xqlnphllt26k" path="res://Art/sensei.png" id="2_0yoyl"]
+[ext_resource type="Texture2D" uid="uid://q54eh2a4d1iy" path="res://Art/E.png" id="3_qd8wj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pdm2c"]
 radius = 37.1214
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hw1kd"]
 radius = 7.0
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_854r7"]
+atlas = ExtResource("3_qd8wj")
+region = Rect2(0, 0, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4fup0"]
+atlas = ExtResource("3_qd8wj")
+region = Rect2(19, 0, 19, 21)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_8ryti"]
+atlas = ExtResource("3_qd8wj")
+region = Rect2(38, 0, 19, 21)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ow18t"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_854r7")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4fup0")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_8ryti")
+}],
+"loop": true,
+"name": &"default",
+"speed": 4.0
+}]
 
 [node name="OldMan" instance=ExtResource("1_28kdm")]
 
@@ -64,3 +94,11 @@ layout_mode = 2
 theme_override_font_sizes/font_size = 4
 text = "Thank you traveller, but all hope is lost. We will soon be overrun. Our story ends here."
 autowrap_mode = 2
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="." index="4"]
+visible = false
+position = Vector2(0, -18)
+scale = Vector2(0.4, 0.4)
+sprite_frames = SubResource("SpriteFrames_ow18t")
+autoplay = "default"
+frame_progress = 0.0102531

@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0l61mjed78g0"]
+[gd_scene load_steps=10 format=3 uid="uid://d0l61mjed78g0"]
 
 [ext_resource type="PackedScene" uid="uid://df12c6rmklpqr" path="res://Weapons/Weapon.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://c1xnjlxdy7dn6" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/effects (new)/slash_effect_anim_spritesheet.png" id="2"]
+[ext_resource type="Script" path="res://Weapons/Sword.gd" id="2_vikmg"]
 [ext_resource type="Texture2D" uid="uid://2xvicwxlw305" path="res://Art/DungeonTilesetFrames/weapon_red_gem_sword.png" id="2_yrgo2"]
 [ext_resource type="AnimationLibrary" uid="uid://dh16f0shjytcj" path="res://Weapons/SwordBase.res" id="5_dikn0"]
 
@@ -28,7 +29,7 @@ shader_parameter/active = false
 
 [sub_resource type="CapsuleShape2D" id="1"]
 radius = 2.0
-height = 41.0
+height = 37.1667
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4214f"]
 properties/0/path = NodePath("AnimationPlayer:current_animation")
@@ -63,8 +64,10 @@ properties/9/spawn = true
 properties/9/sync = true
 
 [node name="Sword" instance=ExtResource("1")]
+script = ExtResource("2_vikmg")
 
 [node name="Sprite2D" parent="Node2D" index="0"]
+visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_31vbw")
 position = Vector2(7, 3)
@@ -74,16 +77,19 @@ texture = ExtResource("2_yrgo2")
 [node name="CollisionShape2D" parent="Node2D/Sprite2D/Hitbox" index="0"]
 position = Vector2(14.8492, -10.6066)
 shape = SubResource("1")
+disabled = true
 
 [node name="ChargeParticles" parent="Node2D" index="1"]
 texture_filter = 2
 amount = 1
 
 [node name="SlashSprite" type="Sprite2D" parent="." index="1"]
+visible = false
 texture_filter = 1
-position = Vector2(26, 0)
+position = Vector2(18, 0)
 texture = ExtResource("2")
 hframes = 3
+frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 autoplay = "SwordBase/cancel_attack"

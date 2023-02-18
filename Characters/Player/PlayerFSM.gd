@@ -14,7 +14,8 @@ func _state_logic(_delta: float) -> void:
 	if state == states.idle or state == states.move:
 		parent.get_input()
 		parent.move()
-	
+	if state == states.hurt:
+		parent.move()
 	
 func _get_transition() -> int:
 	match state:
@@ -37,9 +38,8 @@ func _enter_state(_previous_state: int, new_state: int) -> void:
 		states.move:
 			animation_player.play("move")
 		states.hurt:
-			animation_player.play("hurt")
 			parent.cancel_attack()
+			animation_player.play("hurt")
 		states.dead:
 			animation_player.play("dead")
-			parent.max_speed = 0
 			parent.cancel_attack()

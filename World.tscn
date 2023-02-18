@@ -1,4 +1,4 @@
-[gd_scene load_steps=26 format=3 uid="uid://b50he6aocwyvc"]
+[gd_scene load_steps=28 format=3 uid="uid://b50he6aocwyvc"]
 
 [ext_resource type="Script" path="res://World.gd" id="1_7snni"]
 [ext_resource type="Texture2D" uid="uid://cg7jhiwq2h2sq" path="res://Assets/Texture/TX Tileset Grass.png" id="2_gs5ly"]
@@ -12,6 +12,8 @@
 [ext_resource type="Texture2D" uid="uid://bdtmtlqskrnyb" path="res://Assets/TilesA2.png" id="9_g5gr6"]
 [ext_resource type="PackedScene" uid="uid://cl4pk6ly4coss" path="res://Characters/NPC/OldMan/OldMan2.tscn" id="11_5mfw5"]
 [ext_resource type="Texture2D" uid="uid://dg65on8miox0v" path="res://Assets/FE8 - Snowy Bern.png" id="11_8evff"]
+[ext_resource type="PackedScene" uid="uid://cgulmgcb075uk" path="res://Items/Mineables/Iron/Iron.tscn" id="13_a4cw6"]
+[ext_resource type="PackedScene" uid="uid://cgr0tpl8igbu" path="res://Characters/Enemies/DemonLarge/DemonLarge.tscn" id="14_4uigd"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oero3"]
 texture = ExtResource("2_gs5ly")
@@ -2961,5 +2963,11 @@ shape = SubResource("CircleShape2D_n8e2c")
 
 [node name="OldMan" parent="." instance=ExtResource("11_5mfw5")]
 position = Vector2(66, -55)
+
+[node name="Iron" parent="." instance=ExtResource("13_a4cw6")]
+position = Vector2(-206, -199)
+
+[node name="DemonLarge" parent="." instance=ExtResource("14_4uigd")]
+position = Vector2(-243, -56)
 
 [connection signal="body_entered" from="Area2D" to="." method="_on_area_2d_body_entered"]

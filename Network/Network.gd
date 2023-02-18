@@ -47,6 +47,7 @@ func _on_host_pressed():
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
+	
 	print('DEBUG: SEVER IS READY:', multiplayer.get_unique_id())
 	var spawner = MobSpawner.instantiate()
 	get_parent().add_child(spawner, true)

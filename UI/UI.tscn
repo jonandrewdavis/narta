@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://gd1ardnmwmme"]
+[gd_scene load_steps=4 format=3 uid="uid://gd1ardnmwmme"]
 
-[ext_resource type="PackedScene" uid="uid://rnu65vkjhemj" path="res://UI/Inv/InventoryNarta.tscn" id="1_jvdb5"]
+[ext_resource type="PackedScene" uid="uid://d3rd4w04e0tnr" path="res://UI/Inv/InventoryNarta.tscn" id="1_jvdb5"]
 [ext_resource type="Script" path="res://UI/UI.gd" id="1_n55c8"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bbijw"]
+bg_color = Color(0.6, 0.6, 0.6, 0.196078)
 
 [node name="UI" type="Node2D"]
 script = ExtResource("1_n55c8")
@@ -16,12 +19,101 @@ offset_top = 23.3333
 offset_right = 326.667
 offset_bottom = 323.333
 
+[node name="Weapons" type="Control" parent="UICanvas"]
+layout_mode = 3
+anchor_right = 3.331
+anchor_bottom = 3.333
+offset_right = -1065.88
+offset_bottom = -599.91
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(3, 3)
+
+[node name="Control" type="PanelContainer" parent="UICanvas/Weapons"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -52.5
+offset_top = -28.0
+offset_right = 72.5
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(0.8, 0.8)
+
+[node name="WeaponContainer" type="MarginContainer" parent="UICanvas/Weapons/Control"]
+layout_mode = 2
+theme_override_constants/margin_left = 4
+theme_override_constants/margin_top = 4
+theme_override_constants/margin_right = 4
+theme_override_constants/margin_bottom = 4
+
+[node name="WeaponPanels" type="HBoxContainer" parent="UICanvas/Weapons/Control/WeaponContainer"]
+layout_mode = 2
+
+[node name="Panel" type="Panel" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bbijw")
+
+[node name="TextureRect" type="TextureRect" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels/Panel"]
+layout_mode = 2
+offset_left = 4.0
+offset_right = 14.0
+offset_bottom = 21.0
+
+[node name="Panel5" type="Panel" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bbijw")
+
+[node name="TextureRect" type="TextureRect" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels/Panel5"]
+layout_mode = 2
+offset_left = 4.0
+offset_right = 14.0
+offset_bottom = 21.0
+
+[node name="Panel2" type="Panel" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bbijw")
+
+[node name="TextureRect" type="TextureRect" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels/Panel2"]
+layout_mode = 2
+offset_left = 4.0
+offset_right = 14.0
+offset_bottom = 21.0
+
+[node name="Panel3" type="Panel" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bbijw")
+
+[node name="TextureRect" type="TextureRect" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels/Panel3"]
+layout_mode = 2
+offset_left = 4.0
+offset_right = 14.0
+offset_bottom = 21.0
+
+[node name="Panel4" type="Panel" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels"]
+custom_minimum_size = Vector2(20, 20)
+layout_mode = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_bbijw")
+
+[node name="TextureRect" type="TextureRect" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels/Panel4"]
+layout_mode = 2
+offset_left = 4.0
+offset_right = 14.0
+offset_bottom = 21.0
+
 [node name="NartaMenu" type="Control" parent="UICanvas"]
 layout_mode = 3
-anchor_right = 3.0
-anchor_bottom = 3.0
-offset_right = -960.0
-offset_bottom = -540.0
+anchor_right = 3.331
+anchor_bottom = 3.333
+offset_right = -1065.88
+offset_bottom = -599.91
 grow_horizontal = 2
 grow_vertical = 2
 scale = Vector2(3, 3)
@@ -33,12 +125,13 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -45.0
-offset_top = -70.0
-offset_right = 103.0
-offset_bottom = 70.0
+offset_left = -73.1667
+offset_top = -78.8889
+offset_right = 74.8333
+offset_bottom = 61.1111
 grow_horizontal = 2
 grow_vertical = 2
+metadata/_edit_group_ = true
 
 [node name="MarginContainer" type="MarginContainer" parent="UICanvas/NartaMenu/Control"]
 custom_minimum_size = Vector2(90, 120)
