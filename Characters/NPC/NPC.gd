@@ -30,7 +30,7 @@ func _on_interact_body_exited(_body):
 	update_text()
 	update_key()
 
-func _on_interact(_body: CharacterBody2D) -> void:
+func on_interact(_body: CharacterBody2D) -> void:
 	if text.visible:
 		text.hide()
 		key.hide()

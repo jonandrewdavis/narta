@@ -69,7 +69,8 @@ func _restore_previous_state() -> void:
 		UIref._on_weapon_picked_up(weapon.get_texture(), i)
 		i += 1
 		
-	current_weapon = weapons.get_child(SavedData.equipped_weapon_index)
+	current_weapon = weapons.get_child(0)
+	UIref.on_switch_weapon(0)
 	current_weapon.show()
 	
 	emit_signal("weapon_switched", weapons.get_child_count() - 1, SavedData.equipped_weapon_index)
@@ -114,9 +115,9 @@ func get_input() -> void:
 	
 	if not current_weapon.is_busy():
 		if Input.is_action_just_released("one"):
-			_switch_weapon(UP)
+			change_weapon(0)
 		elif Input.is_action_just_released("two"):
-			_switch_weapon(DOWN)
+			change_weapon(1)
 		
 	current_weapon.get_input()
 	
@@ -141,7 +142,15 @@ func _switch_weapon(direction: int) -> void:
 	UIref.on_switch_weapon(index)
 	
 	emit_signal("weapon_switched", prev_index, index)
-	
+
+func change_weapon(new_index):
+	var prev_index: int = current_weapon.get_index()
+	var index: int = new_index
+	if index != prev_index:
+		current_weapon = weapons.get_child(index)
+		current_weapon.show()	
+		UIref.on_switch_weapon(index)
+		emit_signal("weapon_switched", prev_index, index)
 	
 func pick_up_weapon(weapon: Node2D) -> void:
 	SavedData.weapons.append(weapon.duplicate())
@@ -188,5 +197,5 @@ func interact():
 	# pick closest
 	var objs = interactArea.get_overlapping_areas()
 	if objs.size() > 0:
-		if objs[0].get_parent().has_method('_on_interact'):
-			objs[0].get_parent()._on_interact(self)
+		if objs[0].get_parent().has_method('on_interact'):
+			objs[0].get_parent().on_interact(self)

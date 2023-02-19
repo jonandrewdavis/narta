@@ -3,7 +3,7 @@
 [ext_resource type="PackedScene" uid="uid://bvttvre0fcouq" path="res://Items/Mineables/Minable.tscn" id="1_qsil0"]
 [ext_resource type="Texture2D" uid="uid://cps4iwc3sbc3t" path="res://Art/iron.png" id="2_373n5"]
 
-[sub_resource type="Shader" id="Shader_hksnb"]
+[sub_resource type="Shader" id="Shader_0xtjb"]
 code = "shader_type canvas_item;
 
 uniform vec4 solid_color : source_color;
@@ -19,7 +19,7 @@ void fragment() {
 }"
 
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_fkgaw"]
-shader = SubResource("Shader_hksnb")
+shader = SubResource("Shader_0xtjb")
 shader_parameter/solid_color = null
 shader_parameter/active = false
 

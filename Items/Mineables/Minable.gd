@@ -1,7 +1,8 @@
 extends Node2D
 
 @onready var ap = get_node("AnimationPlayer")
-@onready var sprite = $Sprite2D
+@onready var sprite = get_node("Sprite2D")
+
 
 var IronOre = preload("res://Items/Mineables/Iron/IronOreItem.tscn")
 
