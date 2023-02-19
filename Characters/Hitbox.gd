@@ -13,6 +13,7 @@ extends Area2D
 @export var damage = 1
 @export var knockback_direction: Vector2 = Vector2.ZERO
 @export var knockback_force: int = 200
+@export var gather_force = 1
 
 var body_inside: bool = false
 
@@ -43,6 +44,7 @@ func _on_body_exited(_body: CharacterBody2D) -> void:
 	body_inside = false
 #	timer.stop()
 	
+# This func could really be ... I dunno. Hitbox.gd is a problem waiting to happen.
 func _on_body_entered(body: CharacterBody2D) -> void:
 	if body != null and body.has_method("take_damage"):
 		# print('_body_entered, calling take_damage, d: ', knockback_direction, 'f: ', knockback_force)

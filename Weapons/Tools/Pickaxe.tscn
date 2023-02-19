@@ -1,8 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://kk1lcmhf8c4h"]
+[gd_scene load_steps=10 format=3 uid="uid://kk1lcmhf8c4h"]
 
 [ext_resource type="PackedScene" uid="uid://df12c6rmklpqr" path="res://Weapons/Weapon.tscn" id="1_nak2h"]
 [ext_resource type="Script" path="res://Weapons/Tools/Pickaxe.gd" id="2_63gna"]
-[ext_resource type="Texture2D" uid="uid://cmgm8q5t7suft" path="res://Art/DungeonTilesetFrames/weapon_big_hammer.png" id="3_4yddt"]
+[ext_resource type="Texture2D" uid="uid://b4rgblq5ekmd" path="res://Art/pickaxe.png" id="3_gel0s"]
 
 [sub_resource type="Shader" id="Shader_ps0v4"]
 code = "shader_type canvas_item;
@@ -26,12 +26,40 @@ shader = SubResource("Shader_ps0v4")
 shader_parameter/active = false
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_746ds"]
-radius = 5.97992
-height = 15.0352
+radius = 11.641
+height = 25.9779
+
+[sub_resource type="Animation" id="Animation_p2vmf"]
+resource_name = "idle"
+length = 0.5
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Node2D/Sprite2D:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Sprite2D/Hitbox/CollisionShape2D:disabled")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [true]
+}
 
 [sub_resource type="Animation" id="Animation_77dra"]
 resource_name = "swing"
-loop_mode = 1
+length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -39,14 +67,53 @@ tracks/0/path = NodePath("Node2D:rotation")
 tracks/0/interp = 1
 tracks/0/loop_wrap = true
 tracks/0/keys = {
-"times": PackedFloat32Array(0.00134945, 0.110655),
-"transitions": PackedFloat32Array(1, 1),
+"times": PackedFloat32Array(0, 0.1, 0.5, 1.1),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 0,
-"values": [2.0944, -1.5708]
+"values": [-1.57086, 1.39626, 1.39626, -0.349066]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("Node2D/Sprite2D:visible")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0.000207608, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+tracks/2/type = "method"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath(".")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(1),
+"transitions": PackedFloat32Array(1),
+"values": [{
+"args": [],
+"method": &"remove_slow"
+}]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Node2D/Sprite2D/Hitbox/CollisionShape2D:disabled")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 1.1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [false, true]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_ikmbq"]
 _data = {
+"idle": SubResource("Animation_p2vmf"),
 "swing": SubResource("Animation_77dra")
 }
 
@@ -54,18 +121,37 @@ _data = {
 script = ExtResource("2_63gna")
 
 [node name="Node2D" parent="." index="0"]
-rotation = -0.877026
+position = Vector2(0, -7)
+rotation = -1.57086
 
 [node name="Sprite2D" parent="Node2D" index="0"]
 visible = false
 material = SubResource("ShaderMaterial_x061h")
-texture = ExtResource("3_4yddt")
+position = Vector2(3.99988, -12)
+rotation = 0.0
+scale = Vector2(0.8, 0.8)
+texture = ExtResource("3_gel0s")
+offset = Vector2(0.105813, -0.188242)
+
+[node name="Hitbox" parent="Node2D/Sprite2D" index="0"]
+visible = false
+position = Vector2(0.745575, -8.34787)
+rotation = -2.44365
+collision_mask = 28
 
 [node name="CollisionShape2D" parent="Node2D/Sprite2D/Hitbox" index="0"]
-position = Vector2(4.72591, -18.6458)
+position = Vector2(-2.38472, -4.00129)
+rotation = 0.855211
 shape = SubResource("CapsuleShape2D_746ds")
 
+[node name="ChargeParticles" parent="Node2D" index="1"]
+position = Vector2(-9.53674e-07, -1.19209e-07)
+
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
+autoplay = "idle"
+reset_on_save = false
 libraries = {
 "": SubResource("AnimationLibrary_ikmbq")
 }
+
+[connection signal="area_entered" from="Node2D/Sprite2D/Hitbox" to="." method="_on_hitbox_area_entered"]

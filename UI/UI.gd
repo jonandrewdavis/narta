@@ -60,3 +60,9 @@ func _on_weapon_picked_up(sprite, index):
 	var childPanels = panels.get_children()
 	childPanels[index].get_node("TextureRect").texture = sprite
 	print('picked up!!', sprite)
+
+func on_switch_weapon(index):
+	var childPanels = panels.get_children()
+	for panel in childPanels:
+		panel.get_node("ColorRect").visible = false
+	childPanels[index].get_node("ColorRect").visible = true

@@ -113,12 +113,10 @@ func get_input() -> void:
 	#	mov_direction =	mov_direction + mouse_direction / 4
 	
 	if not current_weapon.is_busy():
-		if Input.is_action_just_released("ui_previous_weapon"):
+		if Input.is_action_just_released("one"):
 			_switch_weapon(UP)
-		elif Input.is_action_just_released("ui_next_weapon"):
+		elif Input.is_action_just_released("two"):
 			_switch_weapon(DOWN)
-		elif Input.is_action_just_pressed("attack3") and current_weapon.get_index() != 0:
-			_drop_weapon()
 		
 	current_weapon.get_input()
 	
@@ -139,6 +137,8 @@ func _switch_weapon(direction: int) -> void:
 	current_weapon = weapons.get_child(index)
 	current_weapon.show()
 	SavedData.equipped_weapon_index = index
+	
+	UIref.on_switch_weapon(index)
 	
 	emit_signal("weapon_switched", prev_index, index)
 	

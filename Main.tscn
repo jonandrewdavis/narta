@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dom0ubhrhtma0"]
 
 [ext_resource type="Script" path="res://Main.gd" id="1_jimg5"]
-[ext_resource type="PackedScene" uid="uid://b50he6aocwyvc" path="res://World.tscn" id="1_y72ed"]
+[ext_resource type="PackedScene" uid="uid://b0gonj0bmwcrw" path="res://World.tscn" id="1_y72ed"]
 [ext_resource type="Texture2D" uid="uid://m0vcgmlxghmm" path="res://Art/stars.png" id="2_2rqq2"]
 
 [node name="Main" type="Node2D"]

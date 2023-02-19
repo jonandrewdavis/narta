@@ -67,29 +67,27 @@ properties/9/sync = true
 script = ExtResource("2_vikmg")
 
 [node name="Sprite2D" parent="Node2D" index="0"]
-visible = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_31vbw")
 position = Vector2(7, 3)
-scale = Vector2(1, 1.2)
 texture = ExtResource("2_yrgo2")
+
+[node name="Hitbox" parent="Node2D/Sprite2D" index="0"]
+damage = 3
 
 [node name="CollisionShape2D" parent="Node2D/Sprite2D/Hitbox" index="0"]
 position = Vector2(14.8492, -10.6066)
 shape = SubResource("1")
-disabled = true
 
 [node name="ChargeParticles" parent="Node2D" index="1"]
 texture_filter = 2
 amount = 1
 
 [node name="SlashSprite" type="Sprite2D" parent="." index="1"]
-visible = false
 texture_filter = 1
 position = Vector2(18, 0)
 texture = ExtResource("2")
 hframes = 3
-frame = 2
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="4"]
 autoplay = "SwordBase/cancel_attack"

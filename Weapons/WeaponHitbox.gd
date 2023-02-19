@@ -1,4 +1,4 @@
-# This hitbox is a lot more complicated. See Hitbox.gd
+# This hitbox is a lot more complicated. See Hitbox.gd in Characters/
 extends Hitbox
 
 # NOTE: See real logic in Hitbox.gd
@@ -6,8 +6,3 @@ extends Hitbox
 func _ready():
 	knockback_force = 215
 	pass
-
-# this is meant to clear our bushes and stuff.
-func _on_Hitbox_area_entered(_area: Area2D) -> void:
-	pass
-	# area.queue_free()

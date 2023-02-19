@@ -6,6 +6,7 @@
 script = ExtResource("1_7r4ne")
 
 [node name="Sprite2D" type="Sprite2D" parent="."]
+position = Vector2(-2, 0)
 
 [node name="InteractArea" type="Area2D" parent="."]
 

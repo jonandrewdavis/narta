@@ -4,7 +4,7 @@
 class_name InventoryManagerItem
 
 
-enum ItemEnum { NONE,  HealthNormal, HealthBig, ManaNormal, ManaBig, HealthNormal3D, HealthBig3D, ManaNormal3D, ManaBig3D, SwordDestroyer, SwordDragonhunter, SwordDestroyer3D, SwordDragonhunter3D, HelmetKnight, HelmetViking, ArmorKnight, ArmorViking, GlovesLeftKnight, GlovesLeftViking, GlovesRightKnight, GlovesRightViking, BootsKnight, BootsViking, ShieldKnight, ShieldViking, Gold2D, Metal2D, Horn2D, Coal, RecipeHelmetKnight2D, RecipeHelmetViking2D}
+enum ItemEnum { NONE,  HealthNormal, HealthBig, ManaNormal, ManaBig, HealthNormal3D, HealthBig3D, ManaNormal3D, ManaBig3D, SwordDestroyer, SwordDragonhunter, SwordDestroyer3D, SwordDragonhunter3D, HelmetKnight, HelmetViking, ArmorKnight, ArmorViking, GlovesLeftKnight, GlovesLeftViking, GlovesRightKnight, GlovesRightViking, BootsKnight, BootsViking, ShieldKnight, ShieldViking, Gold2D, Metal2D, Horn2D, Coal, IronOre, RecipeHelmetKnight2D, RecipeHelmetViking2D}
 
 const HEALTHNORMAL = "f4352b3f-8500-419f-9617-9da134d822f5"
 const HEALTHBIG = "63015407-55c9-4729-887f-493fe2a624b7"
@@ -34,6 +34,7 @@ const GOLD2D = "f468cddf-638f-4b2f-9147-a1ceaa0f5c53"
 const METAL2D = "424be528-8960-4c74-a96f-229724ebd870"
 const HORN2D = "bbbbfd43-1f98-4b1a-bf3e-9f7383204803"
 const COAL = "c9054497-3242-4056-8230-a21d891c916f"
+const IRONORE = "b913e55a-3bab-4a28-8886-45881f3ce486"
 const RECIPEHELMETKNIGHT2D = "97b7c8ba-3c27-4158-9633-11dbd4fefd21"
 const RECIPEHELMETVIKING2D = "73cbb965-26a5-4867-9849-9909c096641f"
 
@@ -66,6 +67,7 @@ const ITEMS = [
  "Metal2D",
  "Horn2D",
  "Coal",
+ "IronOre",
  "RecipeHelmetKnight2D",
  "RecipeHelmetViking2D"
 ]
@@ -128,6 +130,8 @@ static func item_by_enum(item_enum: ItemEnum) -> String:
 			return InventoryManagerItem.HORN2D
 		ItemEnum.Coal:
 			return InventoryManagerItem.COAL
+		ItemEnum.IronOre:
+			return InventoryManagerItem.IRONORE
 		ItemEnum.RecipeHelmetKnight2D:
 			return InventoryManagerItem.RECIPEHELMETKNIGHT2D
 		ItemEnum.RecipeHelmetViking2D:
