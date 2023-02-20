@@ -19,6 +19,7 @@ func _ready():
 	# NOTE: Could do this in features, but the sever is more flexible this way
 	var args = OS.get_cmdline_user_args()
 	print('DEBUG: STARTING')
+	$MainMenuCanvas.show()
 	for arg in args:
 		var key_value = arg.rsplit("=")
 		match key_value[0]:

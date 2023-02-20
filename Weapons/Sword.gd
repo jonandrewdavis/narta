@@ -4,10 +4,10 @@ extends Weapon
 func get_input() -> void:
 	if not is_multiplayer_authority(): return
 	if Input.is_action_just_pressed("attack") and not animation_player.is_playing():
-		apply_slow()
+		# apply_slow()
 		animation_player.play("SwordBase/charge")
 	elif Input.is_action_just_released("attack"):
-		remove_slow()
+		# remove_slow()
 		if animation_player.is_playing() and animation_player.current_animation == "SwordBase/charge":
 			hitbox.knockback_force = 215
 			animation_player.play("SwordBase/attack")

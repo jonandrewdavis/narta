@@ -1,27 +1,7 @@
-[gd_scene load_steps=10 format=3 uid="uid://cgulmgcb075uk"]
+[gd_scene load_steps=8 format=3 uid="uid://cgulmgcb075uk"]
 
 [ext_resource type="PackedScene" uid="uid://bvttvre0fcouq" path="res://Items/Mineables/Minable.tscn" id="1_qsil0"]
 [ext_resource type="Texture2D" uid="uid://cps4iwc3sbc3t" path="res://Art/iron.png" id="2_373n5"]
-
-[sub_resource type="Shader" id="Shader_0xtjb"]
-code = "shader_type canvas_item;
-
-uniform vec4 solid_color : source_color;
-
-uniform bool active = false;
-
-void fragment() {
-    vec4 texture_color = texture(TEXTURE, UV);
-	if (active == true)
-	{
-	    COLOR = vec4(mix(texture_color.rgb, solid_color.rgb, solid_color.a), texture_color.a);
-	}
-}"
-
-[sub_resource type="ShaderMaterial" id="ShaderMaterial_fkgaw"]
-shader = SubResource("Shader_0xtjb")
-shader_parameter/solid_color = null
-shader_parameter/active = false
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_5xo6a"]
 radius = 14.0357
@@ -71,7 +51,6 @@ _data = {
 [node name="Iron" instance=ExtResource("1_qsil0")]
 
 [node name="Sprite2D" parent="." index="0"]
-material = SubResource("ShaderMaterial_fkgaw")
 position = Vector2(-1, 0)
 texture = ExtResource("2_373n5")
 

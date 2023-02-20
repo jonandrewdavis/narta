@@ -67,7 +67,7 @@ func clear_inventory(inventory_uuid: String) -> void:
 
 func add_item_by_name(inventory_name: String, item_name: String, quantity: int = 1) -> int:
 	var inventory = _db.get_inventory_by_name(inventory_name)
-	var item = _db.get_inventory_by_name(item_name)
+	var item = _db.get_item_by_name(item_name)
 	return add_item(inventory.uuid, item.uuid, quantity)
 
 func add_item(inventory_uuid: String, item_uuid: String, quantity: int = 1, do_save = true) -> int:
@@ -148,7 +148,7 @@ func get_inventory_db(inventory_uuid: String) -> InventoryInventory:
 
 func remove_item_by_name(inventory_name: String, item_name: String, quantity: int = 1) -> void:
 	var inventory = _db.get_inventory_by_name(inventory_name)
-	var item = _db.get_inventory_by_name(item_name)
+	var item = _db.get_item_by_name(item_name)
 	remove_item(inventory.uuid, item.uuid, quantity)
 
 func remove_item(inventory_uuid: String, item_uuid: String, quantity: int = 1, do_save = true) -> int:
@@ -229,7 +229,7 @@ func inventory_has_item(inventory_uuid: String, item_uuid: String) -> bool:
 
 func inventory_item_quantity_by_name(inventory_name: String, item_name: String) -> int:
 	var inventory = _db.get_inventory_by_name(inventory_name)
-	var item = _db.get_inventory_by_name(item_name)
+	var item = _db.get_item_by_name(item_name)
 	return inventory_item_quantity(inventory.uuid, item.uuid)
 
 func inventory_item_quantity(inventory_uuid: String, item_uuid: String) -> int:
@@ -246,14 +246,15 @@ func inventory_item_quantity(inventory_uuid: String, item_uuid: String) -> int:
 	return quantity
 
 func has_item_by_name(item_name: String) -> bool:
-	var item = _db.get_inventory_by_name(item_name)
+	var item = _db.get_item_by_name(item_name)
+	if not item: return false
 	return has_item_quantity(item.uuid) > 0
 
 func has_item(item_uuid: String) -> bool:
 	return has_item_quantity(item_uuid) > 0
 
 func has_item_quantity_by_name(item_name: String) -> int:
-	var item = _db.get_inventory_by_name(item_name)
+	var item = _db.get_item_by_name(item_name)
 	return has_item_quantity(item.uuid)
 
 func has_item_quantity(item_uuid: String) -> int:

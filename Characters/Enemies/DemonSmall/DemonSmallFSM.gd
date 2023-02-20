@@ -16,6 +16,9 @@ func _state_logic(_delta: float) -> void:
 	if state == states.chase:
 		parent.chase()
 		parent.move()
+	if state == states.dead:
+		parent.move()
+		parent.mov_direction = Vector2.ZERO
 
 func _get_transition() -> int:
 	match state:

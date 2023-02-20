@@ -40,12 +40,12 @@ func _ready() -> void:
 	#	_collide(body)
 	#	await timer.timeout
 	
-func _on_body_exited(_body: CharacterBody2D) -> void:
+func _on_body_exited(_body) -> void:
 	body_inside = false
 #	timer.stop()
 	
 # This func could really be ... I dunno. Hitbox.gd is a problem waiting to happen.
-func _on_body_entered(body: CharacterBody2D) -> void:
+func _on_body_entered(body) -> void:
 	if body != null and body.has_method("take_damage"):
 		# print('_body_entered, calling take_damage, d: ', knockback_direction, 'f: ', knockback_force)
 		body.take_damage(damage, knockback_direction, knockback_force)

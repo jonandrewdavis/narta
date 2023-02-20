@@ -9,6 +9,7 @@ bg_color = Color(0.352941, 0.211765, 0.352941, 1)
 script = ExtResource("1_63yud")
 
 [node name="MainMenuCanvas" type="CanvasLayer" parent="."]
+visible = false
 
 [node name="MainMenu" type="PanelContainer" parent="MainMenuCanvas"]
 anchors_preset = 15

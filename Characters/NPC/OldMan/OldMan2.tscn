@@ -5,7 +5,7 @@
 [ext_resource type="Texture2D" uid="uid://q54eh2a4d1iy" path="res://Art/E.png" id="3_qd8wj"]
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_pdm2c"]
-radius = 37.1214
+radius = 40.0125
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_hw1kd"]
 radius = 7.0

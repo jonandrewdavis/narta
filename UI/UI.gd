@@ -66,3 +66,11 @@ func on_switch_weapon(index):
 	for panel in childPanels:
 		panel.get_node("ColorRect").visible = false
 	childPanels[index].get_node("ColorRect").visible = true
+
+func on_furnace_feed():
+	_inv.show()
+	if inventoryManager.inventory_has_item_by_name('Narta', 'Coal'):
+		inventoryManager.remove_item_by_name('Narta', 'Coal', 1)
+		return true
+	else:
+		return false

@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://kk1lcmhf8c4h"]
+[gd_scene load_steps=11 format=3 uid="uid://kk1lcmhf8c4h"]
 
 [ext_resource type="PackedScene" uid="uid://df12c6rmklpqr" path="res://Weapons/Weapon.tscn" id="1_nak2h"]
 [ext_resource type="Script" path="res://Weapons/Tools/Pickaxe.gd" id="2_63gna"]
@@ -117,6 +117,17 @@ _data = {
 "swing": SubResource("Animation_77dra")
 }
 
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_3qopm"]
+properties/0/path = NodePath("AnimationPlayer:current_animation")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath(".:rotation")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("Node2D/Sprite2D:visible")
+properties/2/spawn = true
+properties/2/sync = true
+
 [node name="Pickaxe" instance=ExtResource("1_nak2h")]
 script = ExtResource("2_63gna")
 
@@ -153,5 +164,8 @@ reset_on_save = false
 libraries = {
 "": SubResource("AnimationLibrary_ikmbq")
 }
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="4"]
+replication_config = SubResource("SceneReplicationConfig_3qopm")
 
 [connection signal="area_entered" from="Node2D/Sprite2D/Hitbox" to="." method="_on_hitbox_area_entered"]

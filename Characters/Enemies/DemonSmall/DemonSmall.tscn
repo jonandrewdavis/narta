@@ -18,6 +18,7 @@ radius = 113.04
 radius = 6.08276
 
 [node name="DemonSmall" instance=ExtResource("1_u1ea2")]
+visible = false
 safe_margin = 0.1
 script = ExtResource("2_j48s8")
 
@@ -47,5 +48,6 @@ shape = SubResource("CircleShape2D_hpin1")
 
 [node name="CollisionShape2D" parent="EnemyHitbox" index="0"]
 shape = SubResource("CircleShape2D_k56f8")
+disabled = true
 
 [editable path="PlayerDetectionZone"]
