@@ -13,7 +13,7 @@ var enet_peer = ENetMultiplayerPeer.new()
 var Player = preload('res://Characters/Player/Player.tscn')
 var MobSpawner = preload("res://Spawner/MobSpawner.tscn")
 
-const ip = '52.87.176.112'
+const ip = '44.202.245.201'
 
 func _ready():
 	# NOTE: Could do this in features, but the sever is more flexible this way
@@ -48,13 +48,10 @@ func _on_host_pressed():
 	multiplayer.multiplayer_peer = enet_peer
 	multiplayer.peer_connected.connect(add_player)
 	multiplayer.peer_disconnected.connect(remove_player)
-	
 	print('DEBUG: SEVER IS READY:', multiplayer.get_unique_id())
 	var spawner = MobSpawner.instantiate()
 	get_parent().add_child(spawner, true)
-
-	if OS.is_debug_build():
-		add_player(multiplayer.get_unique_id())	
+	# add_player(multiplayer.get_unique_id())	
 	if toggle_upnp == true:
 		upnp_setup()
 

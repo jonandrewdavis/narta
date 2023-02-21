@@ -3,9 +3,6 @@ extends Weapon
 
 var mining_strength = 1;
 
-func _ready():
-	print('pickaxe time')
-	
 func get_input() -> void:
 	if not is_multiplayer_authority(): return
 	if Input.is_action_just_released("attack") and not animation_player.is_playing():

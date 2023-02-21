@@ -52,13 +52,17 @@ func _get_path_to_move_away_from_player() -> void:
 	pass
 
 # TODO: Determine if loot should be an RPC. I think it should be.
-@rpc
+
 func _die():
 	var world = get_tree().get_root().get_node("Main").get_node("World")
 	if world != null:
 		var newCoal = CoalItem.instantiate()
 		newCoal.position = global_position
 		world.add_child(newCoal, true)
+	hide()
+	await get_tree().create_timer(0.2).timeout
+	queue_free()
 
+	
 func _launch():
 	take_knockback(0, velocity, 4)

@@ -39,9 +39,8 @@ func _ready() -> void:
 	newCamera.ignore_rotation = true
 	newCamera.limit_smoothed = true
 	add_child(newCamera)
-	newUI.player = self
 	add_child(newUI)
-	UIref = newUI
+	UIref = get_node("UI")
 	_restore_previous_state()
 	
 func is_player():
@@ -51,7 +50,7 @@ func _restore_previous_state() -> void:
 	max_hp = 5
 	hp = 5
 	max_speed = PLAYER_MAX_CONST
-	if OS.is_debug_build():
+	if self.name == str(1):
 		PLAYER_START = Vector2.ZERO
 	if randi() % 2 == 0:
 		position = Vector2(PLAYER_START.x + randf() * RESPAWN_RADIUS, PLAYER_START.y + randf() * RESPAWN_RADIUS)
@@ -59,6 +58,7 @@ func _restore_previous_state() -> void:
 		position = Vector2(PLAYER_START.x - randf() * RESPAWN_RADIUS, PLAYER_START.y - randf() * RESPAWN_RADIUS)
 	state_machine.set_state(state_machine.states.idle)
 	_update_health_bar()
+	UIref.player_clear_inventory()
 	
 	var i = 0
 	for weapon in weapons.get_children():

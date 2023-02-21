@@ -6,6 +6,7 @@ const MIN_DISTANCE_TO_PLAYER = 52
 
 func _ready() -> void:
 	hp = 10
+	max_hp = 10
 	max_speed = 40
 	state_machine.set_state(0)
 	

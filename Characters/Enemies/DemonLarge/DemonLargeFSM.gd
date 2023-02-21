@@ -66,6 +66,7 @@ func _enter_state(_previous_state: int, new_state: int) -> void:
 		states.chase:
 			animation_player.play(animationLibrary + "move")
 		states.hurt:
+			parent._reset_shader()
 			animation_player.play(animationLibrary + "hurt")
 		states.dead:
 			animation_player.play(animationLibrary + "dead")

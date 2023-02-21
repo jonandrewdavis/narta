@@ -7,7 +7,7 @@
 [node name="Main" type="Node2D"]
 script = ExtResource("1_jimg5")
 
-[node name="TextureRect" type="TextureRect" parent="."]
+[node name="Space" type="TextureRect" parent="."]
 texture_filter = 1
 offset_left = -1863.0
 offset_top = -1070.0

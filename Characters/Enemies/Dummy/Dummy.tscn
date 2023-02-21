@@ -1,0 +1,162 @@
+[gd_scene load_steps=11 format=3 uid="uid://c27pwifjrpanw"]
+
+[ext_resource type="PackedScene" uid="uid://d1ieqk72dudgf" path="res://Characters/Enemies/Enemy.tscn" id="1_jlb6f"]
+[ext_resource type="Script" path="res://Characters/Enemies/Dummy/Dummy.gd" id="2_12hhu"]
+[ext_resource type="Texture2D" uid="uid://bs8yjpy4iop15" path="res://Assets/TX Props.png" id="3_monm8"]
+[ext_resource type="Script" path="res://Characters/Enemies/Dummy/DummyFSM.gd" id="3_rcram"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_yynhk"]
+atlas = ExtResource("3_monm8")
+region = Rect2(96, 153, 32, 51)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_nuoxi"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yynhk")
+}],
+"loop": true,
+"name": &"hurt",
+"speed": 5.0
+}, {
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_yynhk")
+}],
+"loop": true,
+"name": &"idle",
+"speed": 5.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_46pka"]
+size = Vector2(16, 30.1429)
+
+[sub_resource type="Animation" id="Animation_d8mar"]
+resource_name = "hurt"
+length = 0.45
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("AnimatedSprite2D:animation")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [&"hurt"]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("AnimatedSprite2D:position")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 0.1, 0.2),
+"transitions": PackedFloat32Array(1, 1, 1),
+"update": 0,
+"values": [Vector2(0, 0), Vector2(-2, 0), Vector2(0, 0)]
+}
+tracks/2/type = "value"
+tracks/2/imported = false
+tracks/2/enabled = true
+tracks/2/path = NodePath("AnimatedSprite2D:frame")
+tracks/2/interp = 1
+tracks/2/loop_wrap = true
+tracks/2/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [0]
+}
+tracks/3/type = "value"
+tracks/3/imported = false
+tracks/3/enabled = true
+tracks/3/path = NodePath("Numbers:position")
+tracks/3/interp = 1
+tracks/3/loop_wrap = true
+tracks/3/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(-2.85714, -30), Vector2(-2.857, -40)]
+}
+tracks/4/type = "value"
+tracks/4/imported = false
+tracks/4/enabled = true
+tracks/4/path = NodePath("Numbers:modulate:a")
+tracks/4/interp = 1
+tracks/4/loop_wrap = true
+tracks/4/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [1.0, 0.0]
+}
+tracks/5/type = "value"
+tracks/5/imported = false
+tracks/5/enabled = true
+tracks/5/path = NodePath("Numbers:visible")
+tracks/5/interp = 1
+tracks/5/loop_wrap = true
+tracks/5/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [true, false]
+}
+
+[sub_resource type="Animation" id="Animation_bt87t"]
+resource_name = "idle"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("Numbers:visible")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0),
+"transitions": PackedFloat32Array(1),
+"update": 1,
+"values": [false]
+}
+
+[sub_resource type="AnimationLibrary" id="AnimationLibrary_1qkon"]
+_data = {
+"hurt": SubResource("Animation_d8mar"),
+"idle": SubResource("Animation_bt87t")
+}
+
+[node name="Dummy" instance=ExtResource("1_jlb6f")]
+scale = Vector2(0.7, 0.7)
+script = ExtResource("2_12hhu")
+
+[node name="FiniteStateMachine" parent="." index="0"]
+script = ExtResource("3_rcram")
+
+[node name="AnimatedSprite2D" parent="." index="1"]
+sprite_frames = SubResource("SpriteFrames_nuoxi")
+animation = &"hurt"
+
+[node name="CollisionShape2D" parent="." index="2"]
+position = Vector2(-1, -2.07143)
+scale = Vector2(1, 1)
+shape = SubResource("RectangleShape2D_46pka")
+
+[node name="AnimationPlayer" parent="." index="3"]
+libraries = {
+"": SubResource("AnimationLibrary_1qkon")
+}
+
+[node name="Numbers" type="Label" parent="." index="10"]
+modulate = Color(1, 1, 1, 0.5)
+offset_left = -2.85707
+offset_top = -35.0
+offset_right = 37.1429
+offset_bottom = -9.0
+theme_override_font_sizes/font_size = 5
+text = "1
+"
+
+[editable path="PlayerDetectionZone"]

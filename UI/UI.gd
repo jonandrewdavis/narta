@@ -21,8 +21,11 @@ func _ready():
 	_menu.hide()
 
 func _prepare_inventory() -> void:
+	print(get_parent())
+	player = get_parent()
+	print('player')
 	if player == null: return
-	print ('DEBUG: _prepare_inventory for name: ', player.name)
+	print ('DEBUG: _prepare_inventory for name: ', player.name, ' ', get_parent().name)
 	if get_tree().get_root().has_node("InventoryManager"):
 		inventoryManager = get_tree().get_root().get_node("InventoryManager")
 		inventoryManager.player = player
@@ -59,7 +62,6 @@ func _on_resume_pressed():
 func _on_weapon_picked_up(sprite, index):
 	var childPanels = panels.get_children()
 	childPanels[index].get_node("TextureRect").texture = sprite
-	print('picked up!!', sprite)
 
 func on_switch_weapon(index):
 	var childPanels = panels.get_children()
@@ -74,3 +76,9 @@ func on_furnace_feed():
 		return true
 	else:
 		return false
+
+func player_drop_inventory():
+	print(inventoryManager.get_inventory_by_name_items())
+
+func player_clear_inventory():
+	inventoryManager.clear_inventory(_inv.inventory)

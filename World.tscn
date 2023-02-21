@@ -1,4 +1,4 @@
-[gd_scene load_steps=27 format=3 uid="uid://b0gonj0bmwcrw"]
+[gd_scene load_steps=28 format=3 uid="uid://b0gonj0bmwcrw"]
 
 [ext_resource type="Script" path="res://World.gd" id="1_7snni"]
 [ext_resource type="Texture2D" uid="uid://cg7jhiwq2h2sq" path="res://Assets/Texture/TX Tileset Grass.png" id="2_gs5ly"]
@@ -12,6 +12,7 @@
 [ext_resource type="Texture2D" uid="uid://bdtmtlqskrnyb" path="res://Assets/TilesA2.png" id="9_g5gr6"]
 [ext_resource type="PackedScene" uid="uid://cl4pk6ly4coss" path="res://Characters/NPC/OldMan/OldMan2.tscn" id="11_5mfw5"]
 [ext_resource type="Texture2D" uid="uid://dg65on8miox0v" path="res://Assets/FE8 - Snowy Bern.png" id="11_8evff"]
+[ext_resource type="PackedScene" uid="uid://c27pwifjrpanw" path="res://Characters/Enemies/Dummy/Dummy.tscn" id="13_deqwq"]
 [ext_resource type="PackedScene" uid="uid://cgulmgcb075uk" path="res://Items/Mineables/Iron/IronRock.tscn" id="14_hwqki"]
 [ext_resource type="PackedScene" uid="uid://c4yeic7ku2k3o" path="res://Items/Furnace.tscn" id="15_1bnr2"]
 [ext_resource type="PackedScene" uid="uid://d0hmrybyykito" path="res://Characters/Enemies/DemonSmall/DemonSmall.tscn" id="15_jjbl3"]
@@ -2939,10 +2940,13 @@ position = Vector2(0, -61)
 metadata/_edit_lock_ = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="."]
-color = Color(0.356863, 0.513726, 0.803922, 1)
+color = Color(0.607843, 0.737255, 0.917647, 1)
+
+[node name="Dummy" parent="CanvasModulate" instance=ExtResource("13_deqwq")]
+position = Vector2(136, -32)
 
 [node name="OldMan" parent="." instance=ExtResource("11_5mfw5")]
-position = Vector2(102, -28)
+position = Vector2(-105, -27)
 
 [node name="Iron" parent="." instance=ExtResource("14_hwqki")]
 position = Vector2(-46, 100)
@@ -2951,5 +2955,4 @@ position = Vector2(-46, 100)
 position = Vector2(-123, 78)
 
 [node name="DemonSmall" parent="." instance=ExtResource("15_jjbl3")]
-visible = true
 position = Vector2(-539, -4)
