@@ -20,5 +20,5 @@ stretch_mode = 1
 [node name="World" parent="." instance=ExtResource("1_y72ed")]
 
 [node name="MultiplayerSpawner" type="MultiplayerSpawner" parent="."]
-_spawnable_scenes = PackedStringArray("res://Characters/Player/Player.tscn", "res://Items/CoalItem.tscn", "res://Items/Coal.tscn", "res://Characters/Enemies/DemonSmall/DemonSmall.tscn", "res://Characters/HitEffect.tscn", "res://Characters/Enemies/DemonLarge/DemonLarge.tscn")
+_spawnable_scenes = PackedStringArray("res://Characters/Player/Player.tscn", "res://Characters/Enemies/DemonSmall/DemonSmall.tscn", "res://Characters/Enemies/DemonLarge/DemonLarge.tscn", "res://Characters/Enemies/Goblin/Goblin.tscn")
 spawn_path = NodePath("../World")

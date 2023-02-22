@@ -52,19 +52,19 @@ func check_furnace():
 		# a config object
 		if fuel > 40:
 			ap.play('loop1')
-			pointLight.energy = 1
-			pointLight.texture_scale = 2
+			pointLight.energy = 0.7
+			pointLight.texture_scale = 2.3
 			radius = 200
 			forceShape.shape.radius = 200 + fuel
 		elif fuel > 15:
 			ap.play('loop2')
-			pointLight.energy = 0.8
+			pointLight.energy = 0.6
 			pointLight.texture_scale = 1.2
 			radius = 120
 			forceShape.shape.radius = 120 + fuel
 		else:		
 			ap.play('loop3')
-			pointLight.energy = 0.6
+			pointLight.energy = 0.5
 			pointLight.texture_scale = 0.8
 			radius = 80
 			forceShape.shape.radius = 80 + fuel
@@ -88,10 +88,9 @@ func draw_circle_arc():
 	var nb_points = 32
 	var points_arc = PackedVector2Array()
 	var loc_radius = radius + fuel
-
 	
 	for i in range(nb_points + 1):
-		var angle_point = deg_to_rad(angle_from + i * (angle_to-angle_from) / nb_points - 90)
+		var angle_point = deg_to_rad(angle_from + i * (angle_to - angle_from) / nb_points - 90) 
 		points_arc.push_back(center + Vector2(cos(angle_point), sin(angle_point)) * loc_radius)
 
 	for index_point in range(nb_points):

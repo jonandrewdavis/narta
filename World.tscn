@@ -1,4 +1,4 @@
-[gd_scene load_steps=28 format=3 uid="uid://b0gonj0bmwcrw"]
+[gd_scene load_steps=27 format=3 uid="uid://b0gonj0bmwcrw"]
 
 [ext_resource type="Script" path="res://World.gd" id="1_7snni"]
 [ext_resource type="Texture2D" uid="uid://cg7jhiwq2h2sq" path="res://Assets/Texture/TX Tileset Grass.png" id="2_gs5ly"]
@@ -15,7 +15,6 @@
 [ext_resource type="PackedScene" uid="uid://c27pwifjrpanw" path="res://Characters/Enemies/Dummy/Dummy.tscn" id="13_deqwq"]
 [ext_resource type="PackedScene" uid="uid://cgulmgcb075uk" path="res://Items/Mineables/Iron/IronRock.tscn" id="14_hwqki"]
 [ext_resource type="PackedScene" uid="uid://c4yeic7ku2k3o" path="res://Items/Furnace.tscn" id="15_1bnr2"]
-[ext_resource type="PackedScene" uid="uid://d0hmrybyykito" path="res://Characters/Enemies/DemonSmall/DemonSmall.tscn" id="15_jjbl3"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_oero3"]
 texture = ExtResource("2_gs5ly")
@@ -2953,6 +2952,3 @@ position = Vector2(-46, 100)
 
 [node name="Iron2" parent="." instance=ExtResource("14_hwqki")]
 position = Vector2(-123, 78)
-
-[node name="DemonSmall" parent="." instance=ExtResource("15_jjbl3")]
-position = Vector2(-539, -4)

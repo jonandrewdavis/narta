@@ -2,6 +2,7 @@ extends Node2D
 
 var DemonSmall = preload("res://Characters/Enemies/DemonSmall/DemonSmall.tscn")
 var DemonLarge = preload("res://Characters/Enemies/DemonLarge/DemonLarge.tscn")
+var Goblin = preload("res://Characters/Enemies/Goblin/Goblin.tscn")
 
 @onready var spawnBoundary1 =  $Spawn1/SpawnShape.shape.extents
 @onready var spawnOrigin1 = $Spawn1/SpawnShape.global_position
@@ -21,22 +22,19 @@ func gen_random_pos():
 	return Vector2(x, y)
 
 func _on_timer_timeout():
-	if randi() % 4 == 0:
-		add_large_demon()
-	else:
-		add_small_demon()
+	var modulo = randi() % 10
+	match modulo:
+		1, 2:
+			add_enemy(Goblin)
+		3, 4:
+			add_enemy(DemonLarge)
+		_:
+			add_enemy(DemonSmall)
 
-func add_small_demon():
-	var newDemon = DemonSmall.instantiate()
-	newDemon.global_position = gen_random_pos()
-	get_parent().add_child(newDemon, true)
-	
-
-func add_large_demon():
-	var newLarge = DemonLarge.instantiate()
-	newLarge.global_position = gen_random_pos()
-	get_parent().add_child(newLarge, true)
-	
+func add_enemy(enemy):
+	var newEntity = enemy.instantiate()
+	newEntity.global_position = gen_random_pos()
+	get_parent().add_child(newEntity, true)
 
 func get_random_position(up = true, down = true, left = true, right = true):
 	var vpr = get_viewport_rect().size * randf_range(1.1, 1.4)

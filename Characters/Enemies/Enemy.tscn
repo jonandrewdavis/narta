@@ -24,10 +24,13 @@ script = ExtResource("2")
 [node name="AnimatedSprite2D" parent="." index="1"]
 texture_filter = 1
 
+[node name="AnimationPlayer" parent="." index="3"]
+reset_on_save = true
+
 [node name="AttackTimer" type="Timer" parent="." index="5"]
 
 [node name="PathTimer" type="Timer" parent="." index="6"]
-wait_time = 0.2
+wait_time = 0.1
 
 [node name="PlayerDetectionZone" parent="." index="7" instance=ExtResource("3_2a6ox")]
 
@@ -40,5 +43,8 @@ debug_color = Color(0.694118, 0, 0.231373, 0.160784)
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="9"]
 replication_config = SubResource("SceneReplicationConfig_3m537")
+
+[connection signal="timeout" from="AttackTimer" to="." method="_on_attack_timer_timeout"]
+[connection signal="timeout" from="PathTimer" to="." method="_on_path_timer_timeout"]
 
 [editable path="PlayerDetectionZone"]

@@ -21,11 +21,9 @@ func _ready():
 	_menu.hide()
 
 func _prepare_inventory() -> void:
-	print(get_parent())
 	player = get_parent()
-	print('player')
 	if player == null: return
-	print ('DEBUG: _prepare_inventory for name: ', player.name, ' ', get_parent().name)
+	print ('DEBUG (LOCAL): _prepare_inventory for name: ', player.name, ' ', get_parent().name)
 	if get_tree().get_root().has_node("InventoryManager"):
 		inventoryManager = get_tree().get_root().get_node("InventoryManager")
 		inventoryManager.player = player
@@ -79,6 +77,7 @@ func on_furnace_feed():
 
 func player_drop_inventory():
 	print(inventoryManager.get_inventory_by_name_items())
+	pass
 
 func player_clear_inventory():
 	inventoryManager.clear_inventory(_inv.inventory)

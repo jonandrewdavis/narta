@@ -9,7 +9,6 @@ func _init():
 func _ready() -> void:
 	set_state(states.move)
 	
-# NOTE: it's a little confusing rthat "move" is a state, but, but also a func, Chase is a func.
 func _state_logic(_delta: float) -> void:
 	if state == states.move:
 		parent.move()
@@ -18,9 +17,12 @@ func _get_transition() -> int:
 	match state:
 		states.idle:
 			if parent.distance_to_player > parent.MAX_DISTANCE_TO_PLAYER or parent.distance_to_player < parent.MIN_DISTANCE_TO_PLAYER:
+				parent.can_attack = false
 				return states.move
 		states.move:
 			if parent.distance_to_player < parent.MAX_DISTANCE_TO_PLAYER and parent.distance_to_player > parent.MIN_DISTANCE_TO_PLAYER:
+				parent.can_attack = false
+				parent.attack_timer.start(2)
 				return states.idle
 		states.hurt:
 			if not animation_player.is_playing():
@@ -33,9 +35,8 @@ func _enter_state(_previous_state: int, new_state: int) -> void:
 		states.idle:
 			animation_player.play("idle")
 		states.move:
-			animation_player.play("idle")
+			animation_player.play("move")
 		states.hurt:
 			animation_player.play("hurt")
 		states.dead:
 			animation_player.play("dead")
-

@@ -1,13 +1,33 @@
 @tool
-extends VBoxContainer
+extends DialogicEditor
 
 enum LayoutModes {Preset, Custom, None}
 
 var layouts_info := {}
 var customization_editor_info := {}
 
+
+################################################################################
+##						EDITOR REGISTERING
+################################################################################
+## Overwrite. Register to the editor manager in here.
+func _register() -> void:
+	editors_manager.register_simple_editor(self)
+	alternative_text = "Change the look of the dialog in your game"
+
+func _open(argument:Variant = null) -> void:
+	%LayoutMode.select(DialogicUtil.get_project_setting('dialogic/layout/mode', 0))
+	_on_layout_mode_item_selected(%LayoutMode.selected)
+	%MakeCustomPanel.hide()
+
+
+################################################################################
+##							EDITOR FUNCTIONALITY
+################################################################################
 func _ready() -> void:
-	get_parent().set_tab_title(get_index(), 'Layout')
+	
+	
+	
 	for indexer in DialogicUtil.get_indexers():
 		for layout in indexer._get_layout_scenes():
 			layouts_info[layout['path']] = layout
@@ -28,10 +48,12 @@ func _ready() -> void:
 
 	get_theme_icon("NodeInfo", "EditorIcons")
 	get_theme_icon("Unlinked", "EditorIcons")
+	
+	await get_tree().process_frame
+	get_parent().set_tab_title(get_index(), 'Layout')
+	get_parent().set_tab_icon(get_index(), get_theme_icon("MatchCase", "EditorIcons"))
+	#Alternative icon: get_theme_icon("MeshTexture", "EditorIcons")
 
-func refresh() -> void:
-	%LayoutMode.select(DialogicUtil.get_project_setting('dialogic/layout/mode', 0))
-	_on_layout_mode_item_selected(%LayoutMode.selected)
 
 func _on_layout_mode_item_selected(index:int) -> void:
 	ProjectSettings.set_setting('dialogic/layout/mode', index)
@@ -83,8 +105,8 @@ func update_presets_list() -> void:
 	%LayoutItemList.clear()
 
 	var current_path :String = DialogicUtil.get_project_setting(
-	    'dialogic/layout_scene',
-	    DialogicUtil.get_default_layout()
+		'dialogic/layout_scene',
+		DialogicUtil.get_default_layout()
 	)
 	var index := 0
 	for indexer in DialogicUtil.get_indexers():
@@ -140,6 +162,7 @@ func _on_activate_button_pressed() -> void:
 func _on_close_preset_selection_pressed():
 	%PresetSelection.hide()
 	%PresetCustomization.show()
+	%PresetSelectionButton.text = "Change"
 
 
 ################################################################################
@@ -157,6 +180,7 @@ func _on_make_custom_button_pressed() -> void:
 
 func _on_close_make_custom_button_pressed() -> void:
 	%MakeCustomPanel.hide()
+	%MakeCustomButton.text = "Make Custom"
 
 
 func _on_create_custom_copy_pressed() -> void:
@@ -220,7 +244,8 @@ func load_layout_scene_customization(custom_scene_path:String = "") -> void:
 	label_bg_style.content_margin_left = 5
 	label_bg_style.content_margin_right = 5
 	label_bg_style.content_margin_top = 5
-
+	
+	var current_group_name := ""
 	customization_editor_info = {}
 	for i in scene.script.get_script_property_list():
 		if i['usage'] & PROPERTY_USAGE_CATEGORY:
@@ -246,20 +271,22 @@ func load_layout_scene_customization(custom_scene_path:String = "") -> void:
 		if i['usage'] & PROPERTY_USAGE_SUBGROUP:
 			var v_scroll := ScrollContainer.new()
 			v_scroll.horizontal_scroll_mode = ScrollContainer.SCROLL_MODE_DISABLED
+			v_scroll.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			if current_hbox.get_child_count():
 				current_hbox.add_child(VSeparator.new())
 			current_hbox.add_child(v_scroll, true)
 			var v_box := VBoxContainer.new()
+			v_box.size_flags_horizontal = Control.SIZE_EXPAND_FILL
 			v_scroll.add_child(v_box, true)
-			if i['usage'] & PROPERTY_USAGE_SUBGROUP:
-				var title_label := Label.new()
-				title_label.text = i['name']
-				title_label.add_theme_stylebox_override('normal', label_bg_style)
-				title_label.size_flags_horizontal = SIZE_EXPAND_FILL
-				v_box.add_child(title_label, true)
+			var title_label := Label.new()
+			title_label.text = i['name']
+			title_label.add_theme_stylebox_override('normal', label_bg_style)
+			title_label.size_flags_horizontal = SIZE_EXPAND_FILL
+			v_box.add_child(title_label, true)
 			current_grid = GridContainer.new()
 			current_grid.columns = 3
 			v_box.add_child(current_grid, true)
+			current_group_name = i['name'].to_snake_case()
 
 		if current_grid == null:
 			var v_scroll := ScrollContainer.new()
@@ -271,16 +298,16 @@ func load_layout_scene_customization(custom_scene_path:String = "") -> void:
 
 		if i['usage'] & PROPERTY_USAGE_EDITOR:
 			var label := Label.new()
-			label.text = str(i['name']).capitalize()
+			label.text = str(i['name'].trim_prefix(current_group_name)).capitalize()
 			current_grid.add_child(label, true)
 
 			var current_value = scene.get(i['name'])
 			customization_editor_info[i['name']] = {}
 			customization_editor_info[i['name']]['orig'] = current_value
-
+			
 			if export_overrides.has(i['name']):
 				current_value = str_to_var(export_overrides[i['name']])
-
+			
 			var input :Node = DialogicUtil.setup_script_property_edit_node(
 				i, current_value,
 				{'bool':_on_export_bool_submitted, 'color':_on_export_color_submitted, 'enum':_on_export_int_enum_submitted,
@@ -292,7 +319,8 @@ func load_layout_scene_customization(custom_scene_path:String = "") -> void:
 
 			var reset := Button.new()
 			reset.flat = true
-			reset.icon = get_theme_icon('Clear', 'EditorIcons')
+			reset.icon = get_theme_icon("Reload", "EditorIcons")
+			reset.tooltip_text = "Remove customization"
 			customization_editor_info[i['name']]['reset'] = reset
 			reset.disabled = current_value == customization_editor_info[i['name']]['orig']
 			current_grid.add_child(reset)
@@ -351,10 +379,10 @@ func _on_export_number_submitted(value:float, property_name:String) -> void:
 	set_export_override(property_name, var_to_str(value))
 
 func _on_export_file_submitted(property_name:String, value:String) -> void:
-	set_export_override(property_name, value)
+	set_export_override(property_name, var_to_str(value))
 
 func _on_export_string_enum_submitted(value:int, property_name:String, list:PackedStringArray):
-	set_export_override(property_name, list[value])
+	set_export_override(property_name, var_to_str(list[value]))
 
 func _on_clear_customization_pressed():
 	%CustomizationResetPopup.show()

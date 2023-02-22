@@ -31,6 +31,9 @@ func _ready() -> void:
 #	timer.autostart = true
 #	add_child(timer)
 
+# NOTE: DO NOT USE the _collide.
+# TODO: Refactor ALL HITBOXes, possibly at the same time we do damage...
+
 # NOTE: I need to better understand on body entered here, and collide
 # func _on_body_entered(body: PhysicsBody2D) -> void:
 	# print('body entered', body)
@@ -45,7 +48,7 @@ func _on_body_exited(_body) -> void:
 #	timer.stop()
 	
 # This func could really be ... I dunno. Hitbox.gd is a problem waiting to happen.
-func _on_body_entered(body) -> void:
+func _on_body_entered(body: PhysicsBody2D) -> void:
 	if body != null and body.has_method("take_damage"):
 		# print('_body_entered, calling take_damage, d: ', knockback_direction, 'f: ', knockback_force)
 		body.take_damage(damage, knockback_direction, knockback_force)

@@ -12,8 +12,9 @@ var enet_peer = ENetMultiplayerPeer.new()
 
 var Player = preload('res://Characters/Player/Player.tscn')
 var MobSpawner = preload("res://Spawner/MobSpawner.tscn")
+var DemonSmall =  preload("res://Characters/Enemies/DemonSmall/DemonSmall.tscn")
 
-const ip = '44.202.245.201'
+const ip = ''
 
 func _ready():
 	# NOTE: Could do this in features, but the sever is more flexible this way
@@ -51,20 +52,23 @@ func _on_host_pressed():
 	print('DEBUG: SEVER IS READY:', multiplayer.get_unique_id())
 	var spawner = MobSpawner.instantiate()
 	get_parent().add_child(spawner, true)
-	# add_player(multiplayer.get_unique_id())	
+	add_player(multiplayer.get_unique_id())	
 	if toggle_upnp == true:
 		upnp_setup()
 
 
 func add_player(peer_id):
+	var playerDemon = DemonSmall.instantiate()
 	var player = Player.instantiate()
+	playerDemon.global_position = Vector2(-650, randi_range(0,20))
 	player.name = str(peer_id)
-	print('DEBUG: Add player', peer_id)
+	print('DEBUG: Add player: ', peer_id)
 	get_parent().add_child(player)
+	get_parent().add_child(playerDemon, true)
 
 	
 func remove_player(peer_id):
-	var player = get_node_or_null(str(peer_id))
+	var player = get_parent().get_node_or_null(str(peer_id))
 	if player:
 		player.queue_free()
 		

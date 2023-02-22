@@ -146,6 +146,7 @@ height = 16.0
 [node name="DemonLarge" instance=ExtResource("1_cktqj")]
 modulate = Color(0.996078, 0.839216, 1, 1)
 script = ExtResource("2_ate8h")
+max_speed = 40
 
 [node name="FiniteStateMachine" parent="." index="0"]
 script = ExtResource("2_eau1g")

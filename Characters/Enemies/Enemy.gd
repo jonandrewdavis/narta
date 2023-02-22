@@ -3,20 +3,16 @@ extends Character
 
 var path = 0
 
-@onready var path_timer: Timer = $PathTimer
+@onready var attack_timer = $AttackTimer
+@onready var path_timer = $PathTimer
 @onready var PZ =  $PlayerDetectionZone
 @onready var enemy_hitbox: Area2D = $EnemyHitbox
-
 
 var CoalItem = preload("res://Items/CoalItem.tscn")
 
 # TODO: explode packed scene or shader destroy
 func _enter_tree():
 	set_multiplayer_authority(1)
-
-func _ready() -> void:
-	max_speed = 30
-	state_machine.set_state(0)
 
 # NOTE: THIS IS FOR OFFENSIVE PURPOSES. This dir is the direction the enemy is moving.
 func _process(_delta: float) -> void:
@@ -30,29 +26,26 @@ func accelerate_towards_point(point):
 	mov_direction = global_position.direction_to(point)
 	$AnimatedSprite2D.flip_h = velocity.x < 0
 
-	
-func _on_path_timer_timeout():
-	# if is_instance_valid(PZ.player):
-	#	chase()
-	# else:
-	#	path_timer.stop()
-	#	mov_direction = Vector2.ZERO
-	pass
-		
 func _get_path_to_player() -> void:
-	# print(' i want to move towards')
+	print(' i want to move towards')
 	# if player != null:
 	#	path = NavigationServer2D.map_get_path(map, global_position, player.position, false, 1)
+	if PZ.player != null:
+		accelerate_towards_point(PZ.player.global_position)
 	pass
 
 func _get_path_to_move_away_from_player() -> void:
-	# print(' i want to move away but i have no path')
 	# var dir: Vector2 = (global_position - PZ.player.position).normalized()
 	# spath = navigation.get_simple_path(global_position, global_position + dir * 100)
-	pass
+	if PZ.player != null:
+		var dir: Vector2 = (global_position - PZ.player.position).normalized()
+		accelerate_towards_point(global_position + dir)
 
-# TODO: Determine if loot should be an RPC. I think it should be.
 
+# There are a number of bugs with Multiplayer Spawner
+# that can happen here, between queuefree & dropping loot
+# so far, no coal in the MultiplayerSpawner, still spawns all loot, for all players
+#
 func _die():
 	var world = get_tree().get_root().get_node("Main").get_node("World")
 	if world != null:
@@ -60,9 +53,19 @@ func _die():
 		newCoal.position = global_position
 		world.add_child(newCoal, true)
 	hide()
+	if not is_multiplayer_authority(): return
 	await get_tree().create_timer(0.2).timeout
 	queue_free()
-
 	
+	
+# TODO: this is an attack, called from animation, should likely be in state machine
+# in the future
 func _launch():
 	take_knockback(0, velocity, 4)
+
+
+func _on_attack_timer_timeout():
+	pass # Replace with function body.
+
+func _on_path_timer_timeout():
+	pass # Replace with function body.

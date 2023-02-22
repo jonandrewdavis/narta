@@ -15,7 +15,6 @@ func set_inventory_manager(inv_uuid, manager) -> void:
 func _ready() -> void:
 	if get_tree().get_root().has_node(InventoryManagerName):
 		_inventoryManager = get_tree().get_root().get_node(InventoryManagerName)
-		print('READY IN UI: ')
 	_update_view()
 
 func _update_view() -> void:

@@ -65,7 +65,6 @@ func _restore_previous_state() -> void:
 		weapon.hide()
 		emit_signal("weapon_picked_up", )
 		emit_signal("weapon_switched", weapons.get_child_count() - 2, weapons.get_child_count() - 1)
-		print(weapons.get_child_count() - 1)
 		UIref._on_weapon_picked_up(weapon.get_texture(), i)
 		i += 1
 		
