@@ -33,9 +33,9 @@ func _on_body_exited(_body):
 	set_collision_mask_value(3, true)
 
 # This is weapon blcok projectiles, 
-func _on_area_entered(area):
-	if 'damage' in area:
+func _on_area_entered(_area):
+	if 'damage' in _area:
 		queue_free()
 
-func _on_area_exited(area):
+func _on_area_exited(_area):
 	pass # Replace with function body.

@@ -22,7 +22,7 @@ func _get_transition() -> int:
 		states.move:
 			if parent.distance_to_player < parent.MAX_DISTANCE_TO_PLAYER and parent.distance_to_player > parent.MIN_DISTANCE_TO_PLAYER:
 				parent.can_attack = false
-				parent.attack_timer.start(2)
+				parent.attack_timer.start(1.8)
 				return states.idle
 		states.hurt:
 			if not animation_player.is_playing():

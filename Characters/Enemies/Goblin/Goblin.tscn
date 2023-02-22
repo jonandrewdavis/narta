@@ -307,7 +307,7 @@ libraries = {
 }
 
 [node name="AttackTimer" parent="." index="5"]
-wait_time = 2.0
+wait_time = 1.8
 
 [node name="PathTimer" parent="." index="6"]
 autostart = true

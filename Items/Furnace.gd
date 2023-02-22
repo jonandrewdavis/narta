@@ -29,7 +29,9 @@ func _ready():
 
 # TODO: this ain't right either, beacause any peer only sort of works for the server player, for some reason
 # so, we're calling it locally as well...
+# ALSO: sets the spawn point if people interact with it.
 func on_interact(body):
+	body.PLAYER_START = Vector2(-10, 10)
 	if body.UIref.on_furnace_feed():
 		rpc('add_fuel')
 		rpc('check_furnace')

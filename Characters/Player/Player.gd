@@ -58,7 +58,8 @@ func _restore_previous_state() -> void:
 		position = Vector2(PLAYER_START.x - randf() * RESPAWN_RADIUS, PLAYER_START.y - randf() * RESPAWN_RADIUS)
 	state_machine.set_state(state_machine.states.idle)
 	_update_health_bar()
-	UIref.player_clear_inventory()
+	if UIref != null:
+		UIref.player_clear_inventory()
 	
 	var i = 0
 	for weapon in weapons.get_children():
