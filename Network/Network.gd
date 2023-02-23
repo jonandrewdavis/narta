@@ -12,7 +12,6 @@ var enet_peer = ENetMultiplayerPeer.new()
 
 var Player = preload('res://Characters/Player/Player.tscn')
 var MobSpawner = preload("res://Spawner/MobSpawner.tscn")
-var DemonSmall =  preload("res://Characters/Enemies/DemonSmall/DemonSmall.tscn")
 
 const ip = '44.202.245.201'
 
@@ -57,13 +56,11 @@ func _on_host_pressed():
 		upnp_setup()
 
 func add_player(peer_id):
-	var playerDemon = DemonSmall.instantiate()
 	var player = Player.instantiate()
-	playerDemon.global_position = Vector2(randi_range(-650, -590), randi_range(0,50))
 	player.name = str(peer_id)
 	print('DEBUG: Add player: ', peer_id)
 	get_parent().add_child(player)
-	get_parent().add_child(playerDemon, true)
+
 
 func remove_player(peer_id):
 	var player = get_parent().get_node_or_null(str(peer_id))

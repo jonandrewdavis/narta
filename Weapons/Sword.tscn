@@ -1,4 +1,4 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0l61mjed78g0"]
+[gd_scene load_steps=12 format=3 uid="uid://d0l61mjed78g0"]
 
 [ext_resource type="PackedScene" uid="uid://df12c6rmklpqr" path="res://Weapons/Weapon.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://c1xnjlxdy7dn6" path="res://Art/v1.1 dungeon crawler 16x16 pixel pack/effects (new)/slash_effect_anim_spritesheet.png" id="2"]
@@ -16,7 +16,13 @@ shader_parameter/active = false
 radius = 3.0
 height = 44.0
 
+[sub_resource type="Animation" id="Animation_r3r5f"]
+resource_name = "RESET"
+
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_vr3b2"]
+_data = {
+"RESET": SubResource("Animation_r3r5f")
+}
 
 [sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_4214f"]
 properties/0/path = NodePath("AnimationPlayer:current_animation")
@@ -49,6 +55,9 @@ properties/8/sync = true
 properties/9/path = NodePath("Node2D/Sprite2D/Hitbox:damage")
 properties/9/spawn = true
 properties/9/sync = true
+properties/10/path = NodePath("Node2D/Sprite2D/Hitbox:collision_mask")
+properties/10/spawn = true
+properties/10/sync = true
 
 [node name="Sword" instance=ExtResource("1")]
 script = ExtResource("2_vikmg")
@@ -58,7 +67,6 @@ combo = false
 texture_filter = 1
 material = SubResource("ShaderMaterial_al65o")
 position = Vector2(7, 5)
-rotation = 0.872665
 texture = ExtResource("2_yrgo2")
 
 [node name="Hitbox" parent="Node2D/Sprite2D" index="0"]
@@ -68,7 +76,6 @@ knockback_force = 150
 [node name="CollisionShape2D" parent="Node2D/Sprite2D/Hitbox" index="0"]
 position = Vector2(12.0208, -10.6066)
 shape = SubResource("CapsuleShape2D_jb2aw")
-disabled = true
 
 [node name="ChargeParticles" parent="Node2D" index="1"]
 amount = 90
@@ -78,7 +85,6 @@ texture_filter = 1
 position = Vector2(26, 0)
 texture = ExtResource("2")
 hframes = 3
-frame = 1
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." index="3"]
 autoplay = "SwordBase/cancel_attack"

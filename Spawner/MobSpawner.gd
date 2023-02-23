@@ -1,6 +1,5 @@
 extends Node2D
 
-var DemonSmall = preload("res://Characters/Enemies/DemonSmall/DemonSmall.tscn")
 var DemonLarge = preload("res://Characters/Enemies/DemonLarge/DemonLarge.tscn")
 var Goblin = preload("res://Characters/Enemies/Goblin/Goblin.tscn")
 
@@ -29,8 +28,8 @@ func _on_timer_timeout():
 		3, 4:
 			add_enemy(DemonLarge)
 		_:
-			add_enemy(DemonSmall)
-
+			pass
+			
 func add_enemy(enemy):
 	var newEntity = enemy.instantiate()
 	newEntity.global_position = gen_random_pos()

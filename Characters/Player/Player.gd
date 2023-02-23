@@ -22,8 +22,6 @@ const PLAYER_MAX_CONST = 80
 const RESPAWN_RADIUS = 75
 var PLAYER_START: Vector2 = Vector2(-950, 10)
 
-var pvp = false
-
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 
@@ -68,12 +66,13 @@ func _restore_previous_state() -> void:
 		weapon.hide()
 		emit_signal("weapon_picked_up", )
 		emit_signal("weapon_switched", weapons.get_child_count() - 2, weapons.get_child_count() - 1)
-		if weapon != null:
+		if UIref != null:
 			UIref._on_weapon_picked_up(weapon.get_texture(), i)
 		i += 1
 		
 	current_weapon = weapons.get_child(0)
-	UIref.on_switch_weapon(0)
+	if UIref != null:
+		UIref.on_switch_weapon(0)
 	current_weapon.show()
 	
 	emit_signal("weapon_switched", weapons.get_child_count() - 1, SavedData.equipped_weapon_index)
@@ -208,3 +207,22 @@ func interact():
 	if objs.size() > 0:
 		if objs[0].get_parent().has_method('on_interact'):
 			objs[0].get_parent().on_interact(self)
+
+# TODO: This should be emit, (signal up)
+func player_pvp(value):
+	self.set_collision_layer_value(6, value)
+	print('player layer',self.get_collision_layer_value(6))
+	for weapon in weapons.get_children():
+		weapon.toggle_pvp(value)
+
+
+func take_damage(dam: int, dir: Vector2, force: int) -> void:
+	if state_machine.state != state_machine.states.dead and state_machine.state != state_machine.states.hurt:
+		hp -= dam
+		velocity += dir * force
+		if hp > 0:
+			state_machine.set_state(state_machine.states.hurt)
+		else:
+			state_machine.set_state(state_machine.states.dead)
+		_spawn_hit_effect()
+		_update_health_bar()

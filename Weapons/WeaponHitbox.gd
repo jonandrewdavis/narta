@@ -9,6 +9,7 @@ func _ready():
 
 
 func _on_body_entered(body: PhysicsBody2D) -> void:
-	if get_parent().get_parent().get_parent().playerBody.name == body.name: return
+	var parentBody = get_parent().get_parent().get_parent().playerBody.name
+	if parentBody == body.name: return
 	if body != null and body.has_method("take_damage"):
 		body.take_damage(damage, knockback_direction, knockback_force)

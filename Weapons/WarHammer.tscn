@@ -1,4 +1,4 @@
-[gd_scene load_steps=10 format=3 uid="uid://bm5v8h2n7fvf5"]
+[gd_scene load_steps=11 format=3 uid="uid://bm5v8h2n7fvf5"]
 
 [ext_resource type="PackedScene" uid="uid://df12c6rmklpqr" path="res://Weapons/Weapon.tscn" id="1"]
 [ext_resource type="Texture2D" uid="uid://lo2afyw8e00u" path="res://Art/ALL-10.png" id="2_jvgo1"]
@@ -26,8 +26,8 @@ shader = SubResource("Shader_ps0v4")
 shader_parameter/active = false
 
 [sub_resource type="CapsuleShape2D" id="CapsuleShape2D_1ysrt"]
-radius = 9.919
-height = 33.9375
+radius = 14.3258
+height = 35.7227
 
 [sub_resource type="Animation" id="Animation_2j1va"]
 resource_name = "RESET"
@@ -240,12 +240,41 @@ tracks/8/keys = {
 "update": 1,
 "values": [2]
 }
+tracks/9/type = "value"
+tracks/9/imported = false
+tracks/9/enabled = true
+tracks/9/path = NodePath("Node2D/Sprite2D/Hitbox:knockback_force")
+tracks/9/interp = 1
+tracks/9/loop_wrap = true
+tracks/9/keys = {
+"times": PackedFloat32Array(0, 1.5),
+"transitions": PackedFloat32Array(1, 1),
+"update": 1,
+"values": [280, 200]
+}
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j2k2e"]
 _data = {
 "RESET": SubResource("Animation_2j1va"),
 "swing": SubResource("Animation_ot3v8")
 }
+
+[sub_resource type="SceneReplicationConfig" id="SceneReplicationConfig_say3a"]
+properties/0/path = NodePath("Node2D/Sprite2D/Hitbox:knockback_direction")
+properties/0/spawn = true
+properties/0/sync = true
+properties/1/path = NodePath("Node2D/Sprite2D/Hitbox:knockback_force")
+properties/1/spawn = true
+properties/1/sync = true
+properties/2/path = NodePath("AnimationPlayer:current_animation")
+properties/2/spawn = true
+properties/2/sync = true
+properties/3/path = NodePath("Node2D/Sprite2D/Hitbox:collision_mask")
+properties/3/spawn = true
+properties/3/sync = true
+properties/4/path = NodePath("Node2D/Sprite2D/Hitbox:damage")
+properties/4/spawn = true
+properties/4/sync = true
 
 [node name="WarHammer" instance=ExtResource("1")]
 script = ExtResource("2_lu22n")
@@ -263,6 +292,7 @@ metadata/_edit_group_ = true
 [node name="Hitbox" parent="Node2D/Sprite2D" index="0"]
 position = Vector2(13.6865, -14.8037)
 damage = 2
+knockback_force = 280
 
 [node name="CollisionShape2D" parent="Node2D/Sprite2D/Hitbox" index="0"]
 position = Vector2(8, -8)
@@ -277,3 +307,6 @@ position = Vector2(2.38419e-07, 9.53674e-07)
 libraries = {
 "": SubResource("AnimationLibrary_j2k2e")
 }
+
+[node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="3"]
+replication_config = SubResource("SceneReplicationConfig_say3a")

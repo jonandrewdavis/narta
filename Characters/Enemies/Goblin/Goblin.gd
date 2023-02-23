@@ -17,7 +17,8 @@ func ready():
 
 func _throw_knife() -> void:
 	var projectile: Area2D = THROWABLE_KNIFE_SCENE.instantiate()
-	projectile.launch(self, global_position, (PZ.player.position - global_position).normalized(), projectile_speed)
+	if PZ.player != null:
+		projectile.launch(self, global_position, (PZ.player.position - global_position).normalized(), projectile_speed)
 	get_tree().current_scene.add_child(projectile)
 
 func _on_path_timer_timeout():

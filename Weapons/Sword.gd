@@ -2,7 +2,6 @@ extends Weapon
 
 @export var combo = false
 
-
 func _ready():
 	hitbox.knockback_force = 200
 

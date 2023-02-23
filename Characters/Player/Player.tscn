@@ -319,6 +319,15 @@ properties/3/sync = true
 properties/4/path = NodePath("Label:text")
 properties/4/spawn = true
 properties/4/sync = true
+properties/5/path = NodePath("HealthBar:max_value")
+properties/5/spawn = true
+properties/5/sync = true
+properties/6/path = NodePath("HealthBar:value")
+properties/6/spawn = true
+properties/6/sync = true
+properties/7/path = NodePath(".:collision_layer")
+properties/7/spawn = true
+properties/7/sync = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0abgp"]
 radius = 11.7047

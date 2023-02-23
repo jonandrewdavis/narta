@@ -83,7 +83,6 @@ func player_clear_inventory():
 	inventoryManager.clear_inventory(_inv.inventory)
 
 func _on_check_button_toggled(button_pressed):
-	player.pvp = button_pressed
-	player.set_collision_layer(6)
-	player.get_node("Weapons").get_node('Sword').toggle_pvp(button_pressed)
+	print('passing button pressed', button_pressed )
+	player.player_pvp(button_pressed)
 	pass # Replace with function body.	
