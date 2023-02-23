@@ -154,7 +154,7 @@ script = ExtResource("2_eau1g")
 [node name="AnimatedSprite2D" parent="." index="1"]
 material = SubResource("ShaderMaterial_trxmt")
 sprite_frames = SubResource("SpriteFrames_hup4e")
-animation = &"dead"
+animation = &"idle"
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, 3)

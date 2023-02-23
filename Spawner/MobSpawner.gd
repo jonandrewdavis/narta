@@ -2,12 +2,15 @@ extends Node2D
 
 var DemonLarge = preload("res://Characters/Enemies/DemonLarge/DemonLarge.tscn")
 var Goblin = preload("res://Characters/Enemies/Goblin/Goblin.tscn")
+var ForestSprite = preload("res://Characters/Enemies/ForestSprite/ForestSprite.tscn")
 
 @onready var spawnBoundary1 =  $Spawn1/SpawnShape.shape.extents
 @onready var spawnOrigin1 = $Spawn1/SpawnShape.global_position
 
 @onready var spawnBoundary2 =  $Spawn2/SpawnShape2.shape.extents
 @onready var spawnOrigin2 = $Spawn2/SpawnShape2.global_position
+
+
 
 func gen_random_pos():
 	var x = 0
@@ -28,7 +31,7 @@ func _on_timer_timeout():
 		3, 4:
 			add_enemy(DemonLarge)
 		_:
-			pass
+			add_enemy(ForestSprite)
 			
 func add_enemy(enemy):
 	var newEntity = enemy.instantiate()
