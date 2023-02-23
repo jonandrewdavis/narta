@@ -22,6 +22,8 @@ const PLAYER_MAX_CONST = 80
 const RESPAWN_RADIUS = 75
 var PLAYER_START: Vector2 = Vector2(-950, 10)
 
+var pvp = false
+
 func _enter_tree():
 	set_multiplayer_authority(str(name).to_int())
 
@@ -66,7 +68,8 @@ func _restore_previous_state() -> void:
 		weapon.hide()
 		emit_signal("weapon_picked_up", )
 		emit_signal("weapon_switched", weapons.get_child_count() - 2, weapons.get_child_count() - 1)
-		UIref._on_weapon_picked_up(weapon.get_texture(), i)
+		if weapon != null:
+			UIref._on_weapon_picked_up(weapon.get_texture(), i)
 		i += 1
 		
 	current_weapon = weapons.get_child(0)
@@ -118,6 +121,12 @@ func get_input() -> void:
 			change_weapon(0)
 		elif Input.is_action_just_released("two"):
 			change_weapon(1)
+		elif Input.is_action_just_released("three"):
+			change_weapon(2)
+		# elif Input.is_action_just_released("four"):
+			# change_weapon(3)
+		# elif Input.is_action_just_released("five"):
+			# change_weapon(4)
 		
 	current_weapon.get_input()
 	

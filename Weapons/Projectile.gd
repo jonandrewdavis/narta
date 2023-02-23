@@ -26,7 +26,6 @@ func _on_body_entered(body: PhysicsBody2D) -> void:
 		queue_free()
 
 func _on_body_exited(_body):
-	print(_body)
 	enemy_exited = true
 	set_collision_mask_value(1, true)
 	set_collision_mask_value(2, true)

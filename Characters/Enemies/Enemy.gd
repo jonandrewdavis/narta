@@ -27,7 +27,6 @@ func accelerate_towards_point(point):
 	$AnimatedSprite2D.flip_h = velocity.x < 0
 
 func _get_path_to_player() -> void:
-	print(' i want to move towards')
 	# if player != null:
 	#	path = NavigationServer2D.map_get_path(map, global_position, player.position, false, 1)
 	if PZ.player != null:

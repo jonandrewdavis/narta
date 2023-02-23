@@ -1,0 +1,14 @@
+[gd_scene load_steps=2 format=3 uid="uid://bxfoga6qpihve"]
+
+[ext_resource type="Script" path="res://Characters/Hitbox.gd" id="1_olbdr"]
+
+[node name="WeaponV2" type="Node2D"]
+
+[node name="Rotation" type="Node2D" parent="."]
+
+[node name="Sprite2D" type="Sprite2D" parent="Rotation"]
+
+[node name="Hitbox" type="Area2D" parent="Rotation"]
+script = ExtResource("1_olbdr")
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]

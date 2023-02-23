@@ -1,10 +1,11 @@
-[gd_scene load_steps=32 format=3 uid="uid://cldinnvk54gag"]
+[gd_scene load_steps=33 format=3 uid="uid://cldinnvk54gag"]
 
 [ext_resource type="PackedScene" uid="uid://yxn00wsmdix6" path="res://Characters/Character.tscn" id="1"]
 [ext_resource type="Script" path="res://Characters/Player/Player.gd" id="4"]
 [ext_resource type="Script" path="res://Characters/Player/PlayerFSM.gd" id="5"]
 [ext_resource type="PackedScene" uid="uid://d0l61mjed78g0" path="res://Weapons/Sword.tscn" id="6"]
 [ext_resource type="Texture2D" uid="uid://berprxv8rqehm" path="res://Art/spider.png" id="8_q31km"]
+[ext_resource type="PackedScene" uid="uid://bm5v8h2n7fvf5" path="res://Weapons/WarHammer.tscn" id="8_y0w37"]
 [ext_resource type="Texture2D" uid="uid://cagongntn61if" path="res://Art/purplehoodie.png" id="8_y6lt4"]
 [ext_resource type="PackedScene" uid="uid://kk1lcmhf8c4h" path="res://Weapons/Tools/Pickaxe.tscn" id="15_760is"]
 [ext_resource type="Texture2D" uid="uid://mwts1tnitayg" path="res://Art/light.png" id="16_7jlmj"]
@@ -366,6 +367,8 @@ libraries = {
 [node name="Sword" parent="Weapons" index="0" instance=ExtResource("6")]
 
 [node name="Pickaxe" parent="Weapons" index="1" instance=ExtResource("15_760is")]
+
+[node name="WarHammer" parent="Weapons" index="2" instance=ExtResource("8_y0w37")]
 
 [node name="MultiplayerSynchronizer" type="MultiplayerSynchronizer" parent="." index="7"]
 replication_config = SubResource("SceneReplicationConfig_8sw01")

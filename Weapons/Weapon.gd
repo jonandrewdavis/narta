@@ -6,11 +6,11 @@ class_name Weapon
 @export var rotation_offset: int = 0
 
 var can_active_ability: bool = true
+var pvp = false;
 
 @onready var animation_player: AnimationPlayer = get_node("AnimationPlayer")
 @onready var hitbox: Area2D = get_node("Node2D/Sprite2D/Hitbox")
 @onready var charge_particles: GPUParticles2D = get_node("Node2D/ChargeParticles")
-@onready var player_detector: Area2D = get_node("PlayerDetector")
 @onready var cool_down_timer: Timer = get_node("CoolDownTimer")
 @onready var playerBody: CharacterBody2D = get_parent().get_parent();
 
@@ -31,17 +31,6 @@ func is_busy() -> bool:
 	if animation_player.is_playing() or charge_particles.emitting:
 		return true
 	return false
-
-
-func _on_PlayerDetector_body_entered(body: CharacterBody2D) -> void:
-	if body != null:
-		player_detector.set_collision_mask_value(0, false)
-		player_detector.set_collision_mask_value(1, false)
-		body.pick_up_weapon(self)
-		position = Vector2.ZERO
-	else:
-		player_detector.set_collision_mask_value(1, true)
-		
 		
 func interpolate_pos(_initial_pos: Vector2, _final_pos: Vector2) -> void:
 	pass
@@ -52,10 +41,12 @@ func _on_CoolDownTimer_timeout() -> void:
 func get_texture() -> Texture2D:
 	return get_node("Node2D/Sprite2D").texture
 
-
 func apply_slow():
 	playerBody.max_speed = playerBody.max_speed / 3
 
 func remove_slow():
 	playerBody.max_speed = playerBody.PLAYER_MAX_CONST
 	
+func toggle_pvp(_value):
+	print('DEBUG: PVP Status:', _value)
+	hitbox.set_collision_mask_value(6, _value)	

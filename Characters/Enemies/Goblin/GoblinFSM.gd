@@ -12,6 +12,9 @@ func _ready() -> void:
 func _state_logic(_delta: float) -> void:
 	if state == states.move:
 		parent.move()
+	if state == states.hurt:	
+		parent.move()
+		
 		
 func _get_transition() -> int:
 	match state:
@@ -22,7 +25,7 @@ func _get_transition() -> int:
 		states.move:
 			if parent.distance_to_player < parent.MAX_DISTANCE_TO_PLAYER and parent.distance_to_player > parent.MIN_DISTANCE_TO_PLAYER:
 				parent.can_attack = false
-				parent.attack_timer.start(1.8)
+				parent.attack_timer.start(1.6)
 				return states.idle
 		states.hurt:
 			if not animation_player.is_playing():

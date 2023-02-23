@@ -44,15 +44,8 @@ amount = 15
 process_material = SubResource("2")
 lifetime = 0.3
 
-[node name="PlayerDetector" type="Area2D" parent="."]
-collision_layer = 0
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="PlayerDetector"]
-
 [node name="CoolDownTimer" type="Timer" parent="."]
 wait_time = 4.0
 one_shot = true
 
-[connection signal="body_entered" from="PlayerDetector" to="." method="_on_PlayerDetector_body_entered"]
 [connection signal="timeout" from="CoolDownTimer" to="." method="_on_CoolDownTimer_timeout"]
