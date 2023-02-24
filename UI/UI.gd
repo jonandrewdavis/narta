@@ -88,6 +88,5 @@ func player_clear_inventory():
 	inventoryManager.clear_inventory(_inv.inventory)
 
 func _on_check_button_toggled(button_pressed):
-	print('passing button pressed', button_pressed )
 	player.player_pvp(button_pressed)
 	pass # Replace with function body.	

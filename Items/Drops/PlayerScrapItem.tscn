@@ -1,0 +1,11 @@
+[gd_scene load_steps=3 format=3 uid="uid://d7avjg6bl4kk"]
+
+[ext_resource type="Script" path="res://addons/inventory_editor/InventoryItem2D.gd" id="1_onnaj"]
+[ext_resource type="PackedScene" uid="uid://dvfdt8j6j1lu1" path="res://Items/Drops/PlayerScrap.tscn" id="2_hy6qr"]
+
+[node name="PlayerScrapItem" type="Node2D"]
+script = ExtResource("1_onnaj")
+item_put = "9d19ecd4-3f7b-49ed-b548-e187db92e4cc"
+to_inventory = "cbc0ed38-7550-4d01-a07a-8b9f11c0a9dd"
+
+[node name="InventoryItem_9d19ecd4-3f7b-49ed-b548-e187db92e4cc" parent="." instance=ExtResource("2_hy6qr")]

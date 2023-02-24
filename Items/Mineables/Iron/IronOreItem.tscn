@@ -8,5 +8,4 @@ script = ExtResource("1_78es2")
 item_put = "b913e55a-3bab-4a28-8886-45881f3ce486"
 to_inventory = "cbc0ed38-7550-4d01-a07a-8b9f11c0a9dd"
 
-[node name="InventoryItem_b913e55a-3bab-4a28-8886-45881f3ce486" type="Node2D" parent="." instance=ExtResource("2_xgqv1")]
-scale = Vector2(0.4, 0.4)
+[node name="InventoryItem_b913e55a-3bab-4a28-8886-45881f3ce486" parent="." instance=ExtResource("2_xgqv1")]

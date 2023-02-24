@@ -190,7 +190,7 @@ dialogic_default_action={
 inventories_split_offset=515
 craft_split_offset=441
 types_split_offset=603
-items_split_offset=556
+items_split_offset=604
 
 [rendering]
 

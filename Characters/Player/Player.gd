@@ -9,10 +9,11 @@ signal weapon_picked_up(weapon_texture)
 signal weapon_droped(index)
 
 @onready var userlabel = $Label
-@onready var parent = get_parent()
+@onready var world = get_parent()
 @onready var weapons: Node2D = $Weapons
 @onready var interactArea: Area2D = $InteractArea
 
+@onready var PlayerScrap = preload("res://Items/Drops/PlayerScrapItem.tscn")
 var UI = preload("res://UI/UI.tscn")
 var UIref = null
 
@@ -184,7 +185,7 @@ func _drop_weapon() -> void:
 	emit_signal("weapon_droped", weapon_to_drop.get_index())
 	
 	weapons.call_deferred("remove_child", weapon_to_drop)
-	get_parent().call_deferred("add_child", weapon_to_drop)
+	world.call_deferred("add_child", weapon_to_drop)
 	weapon_to_drop.set_owner(get_parent())
 	weapon_to_drop.show()
 	
@@ -197,8 +198,14 @@ func cancel_attack() -> void:
 #	current_weapon.cancel_attack()
 	
 func respawn() -> void:
+	delay_loot(global_position)
 	_restore_previous_state()
 
+func delay_loot(new_pos):
+	await get_tree().create_timer(0.2).timeout
+	var newScrap = PlayerScrap.instantiate()
+	newScrap.position = new_pos
+	world.add_child(newScrap, true)
 
 func interact(): 
 	# Look for interactable bodies,
@@ -211,7 +218,6 @@ func interact():
 # TODO: This should be emit, (signal up)
 func player_pvp(value):
 	self.set_collision_layer_value(6, value)
-	print('player layer',self.get_collision_layer_value(6))
 	for weapon in weapons.get_children():
 		weapon.toggle_pvp(value)
 

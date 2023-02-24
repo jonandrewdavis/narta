@@ -3,12 +3,11 @@
 [ext_resource type="Script" path="res://addons/inventory_example/inventories/simple/InventoryUI.gd" id="1_x28gn"]
 [ext_resource type="PackedScene" uid="uid://do5m1vbsy45nd" path="res://UI/Inv/ItemNarta.tscn" id="2_t8kvj"]
 
-[sub_resource type="Gradient" id="Gradient_d6a7w"]
-offsets = PackedFloat32Array(0.0528455, 1)
-colors = PackedColorArray(0, 0, 0, 1, 0.26, 0.26, 0.26, 1)
+[sub_resource type="Gradient" id="Gradient_17yln"]
+colors = PackedColorArray(0, 0, 0, 0.737255, 0.207843, 0.207843, 0.207843, 0.843137)
 
 [sub_resource type="GradientTexture2D" id="GradientTexture2D_g5k3y"]
-gradient = SubResource("Gradient_d6a7w")
+gradient = SubResource("Gradient_17yln")
 fill_from = Vector2(1, 1)
 
 [node name="Inventory" type="Control"]
