@@ -24,6 +24,7 @@ config/windows_native_icon="res://n-fav.ico"
 InventoryManager="*res://addons/inventory_editor/InventoryManager.gd"
 SavedData="*res://Autoloads/SavedData.gd"
 Dialogic="*res://addons/dialogic/Other/DialogicGameHandler.gd"
+Global="*res://Global.gd"
 
 [debug]
 

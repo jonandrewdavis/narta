@@ -5,8 +5,9 @@ extends Node
 @onready var address_entry = $MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer/address
 @onready var join_button = $MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer/Join
 @onready var host_button = $MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer/Host
+@onready var check_button = $MainMenuCanvas/MainMenu/MarginContainer/VBoxContainer/CheckButton
 
-const toggle_upnp = false
+var toggle_upnp = false
 const PORT = 9999
 var enet_peer = ENetMultiplayerPeer.new()
 
@@ -29,13 +30,14 @@ func _ready():
 				_on_host_pressed()
 	if OS.has_feature('client'):
 		host_button.hide()
-	
+		check_button.hide()
+		address_entry.text = ip
 
 func _on_join_pressed():
 	main_menu.hide()
 	if username.text != '': SavedData.username = username.text
 	if OS.has_feature('client'):
-		enet_peer.create_client(ip, PORT)
+		enet_peer.create_client(address_entry.text, PORT)
 	else:
 		enet_peer.create_client('', PORT)
 	multiplayer.multiplayer_peer = enet_peer
@@ -88,4 +90,9 @@ func upnp_setup():
 	assert(map_result == UPNP.UPNP_RESULT_SUCCESS, \
 		"UPNP Port Mapping Failed! Error %s" % map_result)
 	
-	print("Success! Join Address: %s" % upnp.query_external_address())
+	var host_address = upnp.query_external_address()
+	print("UPNP: Success! Join Address: %s" % host_address)
+	SavedData.host_name = str(host_address)
+
+func _on_check_button_toggled(button_pressed):
+	toggle_upnp = button_pressed

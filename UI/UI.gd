@@ -7,6 +7,7 @@ var inventoryManager
 @onready var _inv = $UICanvas/Inventory
 @onready var _menu = $UICanvas/NartaMenu
 @onready var conLabel = $UICanvas/NartaMenu/Control/MarginContainer/VBoxContainer/VBoxContainer/connectedPlayersLabel
+@onready var hostnametextedit = $UICanvas/NartaMenu/Control/MarginContainer/VBoxContainer/VBoxContainer/hostnametextedit
 
 @onready var panels = $UICanvas/Weapons/Control/WeaponContainer/WeaponPanels
 
@@ -20,10 +21,11 @@ func _ready():
 	_inv.hide()
 	_menu.hide()
 
+	
 func _prepare_inventory() -> void:
 	player = get_parent()
 	if player == null: return
-	print ('DEBUG (LOCAL): _prepare_inventory for name: ', player.name, ' ', get_parent().name)
+	print('DEBUG (LOCAL): _prepare_inventory for name: ', player.name, ' ', get_parent().name)
 	if get_tree().get_root().has_node("InventoryManager"):
 		inventoryManager = get_tree().get_root().get_node("InventoryManager")
 		inventoryManager.player = player
@@ -48,6 +50,9 @@ func _on_open_menu():
 		_menu.hide()
 	else:
 		_menu.show()
+	if SavedData.host_name != '':
+		hostnametextedit.text = SavedData.host_name
+		hostnametextedit.show()
 
 
 func _on_quit_pressed():
