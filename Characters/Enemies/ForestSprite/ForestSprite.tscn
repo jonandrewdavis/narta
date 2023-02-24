@@ -1,69 +1,76 @@
-[gd_scene load_steps=19 format=3 uid="uid://f7j1e3juvemd"]
+[gd_scene load_steps=20 format=3 uid="uid://f7j1e3juvemd"]
 
 [ext_resource type="PackedScene" uid="uid://d1ieqk72dudgf" path="res://Characters/Enemies/Enemy.tscn" id="1_bk5o5"]
 [ext_resource type="Script" path="res://Characters/Enemies/ForestSprite/ForestSpriteFSM.gd" id="2_g0mmh"]
-[ext_resource type="Texture2D" uid="uid://cqr0n42vtn47g" path="res://Art/wood_demon/sprout-1.png" id="3_so2cy"]
+[ext_resource type="Texture2D" uid="uid://c6a556ww76m0u" path="res://Art/wood_demon/sprout-new.png" id="3_32vlf"]
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_l62to"]
-atlas = ExtResource("3_so2cy")
-region = Rect2(16, 0, 16, 16)
-
-[sub_resource type="AtlasTexture" id="AtlasTexture_tjith"]
-atlas = ExtResource("3_so2cy")
+[sub_resource type="AtlasTexture" id="AtlasTexture_o7v4d"]
+atlas = ExtResource("3_32vlf")
 region = Rect2(0, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_5durk"]
-atlas = ExtResource("3_so2cy")
+[sub_resource type="AtlasTexture" id="AtlasTexture_08267"]
+atlas = ExtResource("3_32vlf")
+region = Rect2(16, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_w2prv"]
+atlas = ExtResource("3_32vlf")
 region = Rect2(48, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_rxj6i"]
-atlas = ExtResource("3_so2cy")
+[sub_resource type="AtlasTexture" id="AtlasTexture_adwqx"]
+atlas = ExtResource("3_32vlf")
 region = Rect2(64, 0, 16, 16)
 
-[sub_resource type="AtlasTexture" id="AtlasTexture_eyhwd"]
-atlas = ExtResource("3_so2cy")
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdegk"]
+atlas = ExtResource("3_32vlf")
 region = Rect2(80, 0, 16, 16)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_o3te8"]
+atlas = ExtResource("3_32vlf")
+region = Rect2(32, 0, 16, 16)
 
 [sub_resource type="SpriteFrames" id="SpriteFrames_f5bkq"]
 animations = [{
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l62to")
+"texture": SubResource("AtlasTexture_o7v4d")
 }],
-"loop": true,
+"loop": false,
 "name": &"dead",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tjith")
+"texture": SubResource("AtlasTexture_08267")
 }],
-"loop": true,
+"loop": false,
 "name": &"hurt",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_tjith")
+"texture": SubResource("AtlasTexture_o7v4d")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_l62to")
+"texture": SubResource("AtlasTexture_08267")
 }],
-"loop": true,
+"loop": false,
 "name": &"idle",
 "speed": 5.0
 }, {
 "frames": [{
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_5durk")
+"texture": SubResource("AtlasTexture_w2prv")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_rxj6i")
+"texture": SubResource("AtlasTexture_adwqx")
 }, {
 "duration": 1.0,
-"texture": SubResource("AtlasTexture_eyhwd")
+"texture": SubResource("AtlasTexture_rdegk")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_o3te8")
 }],
-"loop": true,
+"loop": false,
 "name": &"move",
 "speed": 5.0
 }]
@@ -247,10 +254,10 @@ tracks/3/path = NodePath("AnimatedSprite2D:frame")
 tracks/3/interp = 1
 tracks/3/loop_wrap = true
 tracks/3/keys = {
-"times": PackedFloat32Array(0, 0.4, 0.8),
-"transitions": PackedFloat32Array(1, 1, 1),
+"times": PackedFloat32Array(0, 0.3, 0.6, 0.9),
+"transitions": PackedFloat32Array(1, 1, 1, 1),
 "update": 1,
-"values": [0, 1, 2]
+"values": [0, 1, 2, 3]
 }
 tracks/4/type = "value"
 tracks/4/imported = false
@@ -267,8 +274,7 @@ tracks/4/keys = {
 
 [sub_resource type="Animation" id="Animation_c6vdg"]
 resource_name = "hurt"
-length = 1.8
-loop_mode = 1
+length = 1.2
 tracks/0/type = "value"
 tracks/0/imported = false
 tracks/0/enabled = true
@@ -419,7 +425,7 @@ _data = {
 }
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_qo6df"]
-radius = 94.0851
+radius = 103.019
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_6f1qf"]
 radius = 5.0
@@ -433,7 +439,6 @@ script = ExtResource("2_g0mmh")
 [node name="AnimatedSprite2D" parent="." index="1"]
 sprite_frames = SubResource("SpriteFrames_f5bkq")
 animation = &"idle"
-autoplay = "idle"
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(0, 3)
