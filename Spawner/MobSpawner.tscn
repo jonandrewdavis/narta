@@ -4,20 +4,22 @@
 [ext_resource type="Texture2D" uid="uid://b6ligfo7nkk2w" path="res://Art/Icons19/starsB.png" id="2_mb68r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_eiphj"]
-size = Vector2(1815, 424)
+size = Vector2(1815, 480)
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_yob30"]
-size = Vector2(1788, 450.25)
+size = Vector2(1788, 647.125)
 
 [node name="MobSpawner" type="Node2D"]
 script = ExtResource("1_khojc")
+metadata/_edit_vertical_guides_ = [-885.0]
+metadata/_edit_horizontal_guides_ = [-635.0]
 
 [node name="Timer" type="Timer" parent="."]
 wait_time = 2.0
 autostart = true
 
 [node name="Spawn1" type="Area2D" parent="."]
-position = Vector2(0, -389)
+position = Vector2(-2, -434)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Spawn1"]
@@ -25,10 +27,11 @@ scale = Vector2(0.104605, 0.104605)
 texture = ExtResource("2_mb68r")
 
 [node name="SpawnShape" type="CollisionShape2D" parent="Spawn1"]
+position = Vector2(0, -10)
 shape = SubResource("RectangleShape2D_eiphj")
 
 [node name="Spawn2" type="Area2D" parent="."]
-position = Vector2(-19, 269)
+position = Vector2(-20, 323)
 metadata/_edit_group_ = true
 
 [node name="Sprite2D" type="Sprite2D" parent="Spawn2"]
@@ -36,6 +39,7 @@ scale = Vector2(0.104605, 0.104605)
 texture = ExtResource("2_mb68r")
 
 [node name="SpawnShape2" type="CollisionShape2D" parent="Spawn2"]
+position = Vector2(0, 98.4375)
 shape = SubResource("RectangleShape2D_yob30")
 
 [connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]

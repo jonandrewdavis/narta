@@ -14,6 +14,8 @@ var enet_peer = ENetMultiplayerPeer.new()
 var Player = preload('res://Characters/Player/Player.tscn')
 var MobSpawner = preload("res://Spawner/MobSpawner.tscn")
 
+var nospawn = false
+
 const ip = '44.202.245.201'
 
 func _ready():
@@ -28,6 +30,9 @@ func _ready():
 				print('DEBUG: SERVER TIME -- server found')
 				await get_tree().create_timer(2).timeout
 				_on_host_pressed()
+			"nospawn":
+				nospawn = true
+		
 	if OS.has_feature('client'):
 		host_button.hide()
 		check_button.hide()
@@ -52,7 +57,7 @@ func _on_host_pressed():
 	multiplayer.peer_disconnected.connect(remove_player)
 	print('DEBUG: SEVER IS READY:', multiplayer.get_unique_id())
 	var spawner = MobSpawner.instantiate()
-	get_parent().add_child(spawner, true)
+	if nospawn == false:	get_parent().add_child(spawner, true)
 	add_player(multiplayer.get_unique_id())	
 	if toggle_upnp == true:
 		upnp_setup()

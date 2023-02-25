@@ -389,6 +389,9 @@ properties/6/sync = true
 properties/7/path = NodePath(".:collision_layer")
 properties/7/spawn = true
 properties/7/sync = true
+properties/8/path = NodePath("HealthBar:visible")
+properties/8/spawn = true
+properties/8/sync = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0abgp"]
 radius = 11.7047

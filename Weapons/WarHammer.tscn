@@ -250,7 +250,24 @@ tracks/9/keys = {
 "times": PackedFloat32Array(0, 1.5),
 "transitions": PackedFloat32Array(1, 1),
 "update": 1,
-"values": [280, 200]
+"values": [290, 200]
+}
+tracks/10/type = "method"
+tracks/10/imported = false
+tracks/10/enabled = true
+tracks/10/path = NodePath(".")
+tracks/10/interp = 1
+tracks/10/loop_wrap = true
+tracks/10/keys = {
+"times": PackedFloat32Array(0, 0.4),
+"transitions": PackedFloat32Array(1, 1),
+"values": [{
+"args": [],
+"method": &"apply_slow"
+}, {
+"args": [],
+"method": &"remove_slow"
+}]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_j2k2e"]
@@ -275,6 +292,9 @@ properties/3/sync = true
 properties/4/path = NodePath("Node2D/Sprite2D/Hitbox:damage")
 properties/4/spawn = true
 properties/4/sync = true
+properties/5/path = NodePath("Node2D/Sprite2D:visible")
+properties/5/spawn = true
+properties/5/sync = true
 
 [node name="WarHammer" instance=ExtResource("1")]
 script = ExtResource("2_lu22n")

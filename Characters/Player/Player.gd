@@ -217,6 +217,10 @@ func interact():
 
 # TODO: This should be emit, (signal up)
 func player_pvp(value):
+	if value == true:
+		userlabel.add_theme_color_override("font_color", Color(1,0,0))
+	else:
+		userlabel.remove_theme_color_override("font_color")
 	self.set_collision_layer_value(6, value)
 	for weapon in weapons.get_children():
 		weapon.toggle_pvp(value)

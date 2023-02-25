@@ -76,6 +76,7 @@ color = Color(1, 1, 1, 0.470588)
 layout_mode = 2
 offset_right = 20.0
 offset_bottom = 20.0
+expand_mode = 1
 stretch_mode = 3
 
 [node name="Panel5" type="Panel" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels"]
@@ -95,7 +96,7 @@ layout_mode = 2
 offset_left = -0.166656
 offset_right = 19.8333
 offset_bottom = 20.0
-expand_mode = 3
+expand_mode = 1
 
 [node name="Panel2" type="Panel" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels"]
 custom_minimum_size = Vector2(20, 20)
@@ -105,14 +106,15 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_bbijw")
 [node name="ColorRect" type="ColorRect" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels/Panel2"]
 visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(1, 1, 1, 0.470588)
 
 [node name="TextureRect" type="TextureRect" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels/Panel2"]
 layout_mode = 2
 offset_right = 20.0
 offset_bottom = 20.0
-expand_mode = 4
+expand_mode = 1
 
 [node name="Panel3" type="Panel" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels"]
 custom_minimum_size = Vector2(20, 20)
@@ -122,14 +124,16 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_bbijw")
 [node name="ColorRect" type="ColorRect" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels/Panel3"]
 visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(1, 1, 1, 0.470588)
 
 [node name="TextureRect" type="TextureRect" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels/Panel3"]
 layout_mode = 2
 offset_left = 4.0
 offset_right = 14.0
 offset_bottom = 21.0
+expand_mode = 1
 
 [node name="Panel4" type="Panel" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels"]
 custom_minimum_size = Vector2(20, 20)
@@ -139,14 +143,16 @@ theme_override_styles/panel = SubResource("StyleBoxFlat_bbijw")
 [node name="ColorRect" type="ColorRect" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels/Panel4"]
 visible = false
 layout_mode = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_right = 20.0
+offset_bottom = 20.0
+color = Color(1, 1, 1, 0.470588)
 
 [node name="TextureRect" type="TextureRect" parent="UICanvas/Weapons/Control/WeaponContainer/WeaponPanels/Panel4"]
 layout_mode = 2
 offset_left = 4.0
 offset_right = 14.0
 offset_bottom = 21.0
+expand_mode = 1
 
 [node name="NartaMenu" type="Control" parent="UICanvas"]
 layout_mode = 3
