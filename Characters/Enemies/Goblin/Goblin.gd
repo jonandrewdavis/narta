@@ -19,7 +19,8 @@ func _throw_knife() -> void:
 	var projectile: Area2D = THROWABLE_KNIFE_SCENE.instantiate()
 	if PZ.player != null:
 		projectile.launch(self, global_position, (PZ.player.position - global_position).normalized(), projectile_speed)
-	get_tree().current_scene.add_child(projectile)
+		get_tree().current_scene.add_child(projectile)
+
 
 func _on_path_timer_timeout():
 	if is_instance_valid(PZ.player):

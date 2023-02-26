@@ -392,6 +392,9 @@ properties/7/sync = true
 properties/8/path = NodePath("HealthBar:visible")
 properties/8/spawn = true
 properties/8/sync = true
+properties/9/path = NodePath("Label:theme_override_colors/font_color")
+properties/9/spawn = true
+properties/9/sync = true
 
 [sub_resource type="CircleShape2D" id="CircleShape2D_0abgp"]
 radius = 11.7047

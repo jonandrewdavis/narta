@@ -141,7 +141,6 @@ animation = &"hurt"
 
 [node name="CollisionShape2D" parent="." index="2"]
 position = Vector2(-1, -2.07143)
-scale = Vector2(1, 1)
 shape = SubResource("RectangleShape2D_46pka")
 
 [node name="AnimationPlayer" parent="." index="3"]
@@ -150,11 +149,10 @@ libraries = {
 }
 
 [node name="Numbers" type="Label" parent="." index="10"]
-modulate = Color(1, 1, 1, 0.5)
-offset_left = -2.85707
-offset_top = -35.0
-offset_right = 37.1429
-offset_bottom = -9.0
+offset_left = -2.85714
+offset_top = -30.0
+offset_right = 37.1428
+offset_bottom = -4.0
 theme_override_font_sizes/font_size = 5
 text = "1
 "
