@@ -10,7 +10,7 @@ func set_data(data: InventoryData) -> void:
 func _can_handle(object):
 	return object is Item2D or object is Item3D or object is Control or object is ItemUI
 
-func _parse_property(object: Object, type: Variant.Type, name: String, hint_type: PropertyHint, hint_string: String, usage_flags: PropertyUsageFlags, wide: bool) -> bool:
+func _parse_property(object: Object, type: Variant.Type, name: String, hint_type: PropertyHint, hint_string: String, int, wide: bool) -> bool:
 	if type == TYPE_STRING:
 		match name:
 			"to_inventory", "inventory_uuid", "inventory":
